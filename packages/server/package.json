@@ -1,0 +1,19 @@
+{
+  "name": "@hyperstar/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "start": "bun run index.ts",
+    "deploy": "fly deploy"
+  },
+  "dependencies": {
+    "@fly/sprites": "^0.0.1",
+    "hono": "^4.11.4",
+    "tar-stream": "^3.1.7"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
+  }
+}

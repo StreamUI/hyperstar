@@ -1,0 +1,55 @@
+{
+  "name": "hyperstar-cli",
+  "version": "0.1.0",
+  "description": "CLI for Hyperstar - server-driven UI for real-time web apps",
+  "type": "module",
+  "bin": {
+    "hyperstar": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "commands",
+    "lib",
+    "templates",
+    "skill"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "dev": "bun run index.ts"
+  },
+  "author": {
+    "name": "Jordan Howlett",
+    "email": "jordan@howlett.io"
+  },
+  "homepage": "https://github.com/longtailLABS/hyperstar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longtailLABS/hyperstar.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/longtailLABS/hyperstar/issues"
+  },
+  "keywords": [
+    "hyperstar",
+    "cli",
+    "scaffold",
+    "deploy",
+    "bun",
+    "realtime"
+  ],
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "dependencies": {
+    "@effect/cli": "^0.73.0",
+    "@effect/platform": "^0.94.1",
+    "@effect/platform-bun": "^0.87.0",
+    "effect": "^3.19.14",
+    "tar-stream": "^3.1.7"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
+  }
+}

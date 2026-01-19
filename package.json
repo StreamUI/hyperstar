@@ -1,0 +1,59 @@
+{
+  "name": "hyperstar-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Server-driven UI framework for real-time web apps",
+  "author": {
+    "name": "Jordan Howlett",
+    "email": "jordan@howlett.io"
+  },
+  "homepage": "https://github.com/longtailLABS/hyperstar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longtailLABS/hyperstar.git"
+  },
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --hot examples/counter.ts",
+    "check": "bunx tsc --noEmit",
+    "build:client": "bun build packages/hyperstar-client/src/index.ts --outfile=packages/hyperstar/dist/hyperstar.min.js --minify --target=browser",
+    "publish:hyperstar": "cd packages/hyperstar && npm publish --access public",
+    "publish:cli": "cd packages/cli && npm publish --access public",
+    "publish:all": "npm run publish:hyperstar && npm run publish:cli",
+    "version:patch": "npm version patch --workspaces --no-git-tag-version",
+    "version:minor": "npm version minor --workspaces --no-git-tag-version",
+    "version:major": "npm version major --workspaces --no-git-tag-version",
+    "prepublish:check": "npm run check && echo '✓ Type check passed'",
+    "example:counter": "bun --hot examples/counter.ts",
+    "example:todos": "bun --hot examples/todos.ts",
+    "example:chat": "bun --hot examples/chat-room.ts",
+    "example:llm": "bun --hot examples/llm-streaming.ts",
+    "example:poll": "bun --hot examples/poll.ts",
+    "example:game": "bun --hot examples/grid-game.ts",
+    "example:fps": "bun --hot examples/fps.ts",
+    "example:notes": "bun --hot examples/persistent-notes.ts",
+    "example:sqlite": "bun --hot examples/sqlite-notes.ts",
+    "example:head": "bun --hot examples/head-demo.ts"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "dependencies": {
+    "hyperstar": "workspace:*",
+    "hyperstar-client": "workspace:*",
+    "hyperstarv2": "workspace:*"
+  },
+  "devDependencies": {
+    "@kitajs/html": "^4.2.11",
+    "@kitajs/ts-html-plugin": "^4.1.3",
+    "@preact/signals-core": "^1.12.1",
+    "@types/bun": "latest",
+    "@types/tar-stream": "^3.1.4",
+    "effect": "^3.19.14",
+    "idiomorph": "^0.7.4",
+    "typescript": "^5.9.3"
+  }
+}

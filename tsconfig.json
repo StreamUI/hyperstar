@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "declaration": true,
+    "types": ["@types/bun"]
+  },
+  "include": [
+    "packages/hyperstar/src/**/*",
+    "packages/hyperstar-client/src/**/*",
+    "packages/cli/**/*",
+    "packages/server/**/*",
+    "examples/**/*"
+  ],
+  "exclude": [
+    "templates/**/*",
+    "node_modules",
+    "packages/cli/templates/**/*",
+  ]
+}
