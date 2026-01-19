@@ -1,11 +1,113 @@
 # Publishing Hyperstar
 
+Powered by [Changesets](https://github.com/changesets/changesets) 🦋
+
 ## Packages
 
 | Package | npm name | Description |
 |---------|----------|-------------|
 | `packages/hyperstar` | `hyperstar` | Main framework |
-| `packages/cli` | `create-hyperstar` | Project scaffolding CLI |
+| `packages/cli` | `hyperstar-cli` | CLI tools |
+
+---
+
+## Quick Start
+
+### 1. Add a changeset as you work
+
+Every time you make a change you want to release, add a changeset:
+
+```bash
+bun changeset
+```
+
+This will prompt you to:
+1. Select which packages changed (hyperstar, hyperstar-cli, or both)
+2. Choose bump type (patch, minor, or major) for each package
+3. Write a summary of the change (goes in CHANGELOG.md)
+
+**Example:**
+```bash
+$ bun changeset
+🦋  Which packages would you like to include?
+  ◉ hyperstar
+  ◯ hyperstar-cli
+
+🦋  What kind of change is this for hyperstar?
+  ◯ patch (0.1.0 → 0.1.1)
+  ◉ minor (0.1.0 → 0.2.0)
+  ◯ major (0.1.0 → 1.0.0)
+
+🦋  Please enter a summary for this change:
+  Add new signal methods for nullable values
+```
+
+The changeset is saved as a markdown file in `.changeset/` - commit it with your changes!
+
+### 2. Version packages when ready to release
+
+When you're ready to release, run:
+
+```bash
+bun run version
+```
+
+This will:
+- ✅ Consume all changesets in `.changeset/`
+- ✅ Bump package versions appropriately
+- ✅ Update CHANGELOG.md files
+- ✅ Delete consumed changeset files
+
+Review the version changes and changelogs, then commit them:
+
+```bash
+git add .
+git commit -m "chore: release v0.2.0"
+git push
+```
+
+### 3. Publish to npm
+
+```bash
+bun run release
+```
+
+This will:
+- ✅ Run type checks
+- ✅ Publish all changed packages to npm
+- ✅ Create git tags for the new versions
+
+**Note:** Make sure you're logged into npm first (`npm login`)
+
+---
+
+## Complete Workflow Example
+
+```bash
+# 1. Make your changes
+# ... edit code ...
+
+# 2. Add a changeset
+bun changeset
+# Select packages, bump type, write summary
+# Commit the changeset file
+
+git add .
+git commit -m "feat: add new API methods"
+git push
+
+# 3. When ready to release (could be multiple changesets accumulated)
+bun run version
+# Review the version bumps and changelogs
+
+git add .
+git commit -m "chore: release v0.2.0"
+git push
+
+# 4. Publish
+bun run release
+# Packages are published to npm!
+```
 
 ---
 
@@ -17,109 +119,157 @@ npm login
 
 # Verify you're logged in
 npm whoami
+
+# Authenticate with GitHub (for tags)
+gh auth login
 ```
 
 ---
 
-## Publishing Steps
+## Advanced Usage
 
-### 1. Pre-publish Checks
+### Multiple changesets
+
+You can add multiple changesets before releasing:
 
 ```bash
-# Type check all packages
-bun run prepublish:check
+bun changeset  # Add changeset for feature A
+bun changeset  # Add changeset for feature B
+bun changeset  # Add changeset for bug fix
 
-# Verify package contents (dry run)
-cd packages/hyperstar && npm pack --dry-run
-cd packages/cli && npm pack --dry-run
+# Later, when ready
+bun run version  # Consumes all changesets at once
+bun run release  # Publishes everything
 ```
 
-### 2. Version Bump (if needed)
+### Skip packages
+
+When adding a changeset, just don't select packages you don't want to bump.
+
+### Manual version control
+
+Edit the changeset markdown files in `.changeset/` to:
+- Change bump types in the YAML frontmatter
+- Improve changelog summaries in the markdown body
+- Delete changesets you don't want to include
+
+### Pre-releases
+
+Create pre-release versions:
 
 ```bash
-# Patch: 0.1.0 → 0.1.1 (bug fixes)
-bun run version:patch
+# Enter pre-release mode
+bun changeset pre enter beta
 
-# Minor: 0.1.0 → 0.2.0 (new features)
-bun run version:minor
+# Add changesets as normal
+bun changeset
 
-# Major: 0.1.0 → 1.0.0 (breaking changes)
-bun run version:major
-```
+# Version (creates 0.2.0-beta.0)
+bun run version
 
-### 3. Publish
+# Publish
+bun run release
 
-```bash
-# Publish both packages (hyperstar first, then CLI)
-bun run publish:all
-
-# Or individually:
-bun run publish:hyperstar
-bun run publish:cli
-```
-
----
-
-## After Publishing
-
-### Users can create new projects:
-
-```bash
-# Using bunx (recommended)
-bunx create-hyperstar my-app
-
-# Using npx
-npx create-hyperstar my-app
-
-# Then
-cd my-app
-bun run dev
-```
-
-### Users can install framework directly:
-
-```bash
-bun add hyperstar
+# Exit pre-release mode
+bun changeset pre exit
 ```
 
 ---
 
-## Available Scripts
+## CI/CD with GitHub Actions
 
-| Script | Description |
-|--------|-------------|
-| `bun run publish:hyperstar` | Publish hyperstar package |
-| `bun run publish:cli` | Publish create-hyperstar CLI |
-| `bun run publish:all` | Publish both packages |
-| `bun run version:patch` | Bump patch version (x.x.X) |
-| `bun run version:minor` | Bump minor version (x.X.0) |
-| `bun run version:major` | Bump major version (X.0.0) |
-| `bun run prepublish:check` | Run type checks before publish |
+You can automate releases with GitHub Actions. Create `.github/workflows/release.yml`:
+
+```yaml
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Create Release Pull Request or Publish
+        uses: changesets/action@v1
+        with:
+          version: bun run version
+          publish: bun run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+This will:
+- Create a PR with version bumps when changesets are merged
+- Publish packages when the version PR is merged
 
 ---
 
 ## Troubleshooting
 
-### Package name already taken
-Check npm for availability:
+### "No changesets present"
+
+You need to add a changeset first:
 ```bash
-npm view hyperstar
-npm view create-hyperstar
+bun changeset
 ```
 
-### Permission denied
-Make sure you're logged in and have publish rights:
+### npm publish fails
+
+Check you're logged in:
 ```bash
 npm whoami
-npm access ls-packages
+npm login
 ```
 
-### Forgot to bump version
+### Version didn't bump
+
+Make sure you committed the changeset files in `.changeset/`:
 ```bash
-# Unpublish within 72 hours (use carefully!)
-npm unpublish hyperstar@0.1.0
-
-# Or just bump and republish
-bun run version:patch
-bun run publish:all
+git status
+git add .changeset
+git commit -m "chore: add changeset"
 ```
+
+### Wrong version bumped
+
+Edit the changeset file in `.changeset/` before running `bun run version`. The YAML frontmatter controls the bump:
+
+```yaml
+---
+"hyperstar": minor
+"hyperstar-cli": patch
+---
+```
+
+### Need to undo a release
+
+You can't unpublish npm packages after 72 hours. Your options:
+1. Publish a new patch version fixing the issue
+2. Deprecate the version: `npm deprecate hyperstar@0.2.0 "Use 0.2.1 instead"`
+
+---
+
+## Learn More
+
+- [Changesets documentation](https://github.com/changesets/changesets)
+- [Adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
+- [Changesets with pnpm](https://pnpm.io/using-changesets)

@@ -532,7 +532,7 @@ export const createHyperstar = <
 
       // Runtime state
       let storeRef: SubscriptionRef.SubscriptionRef<S>
-      const sseClients = new Map<string, { controller: ReadableStreamDefaultController; session: Session }>()
+      const sseClients = new Map<string, { controller: ReadableStreamDefaultController; session: Session; connectionId: string }>()
       const signalState = new Map<string, Record<string, unknown>>()
       const userStores = new Map<string, U>()
       const defaultUserStore = config.userStore ?? ({} as U)
@@ -824,16 +824,20 @@ export const createHyperstar = <
         }
 
         if (reqPath === "/hs/sse") {
-          const finalSessionId = sessionId
+          const connectionId = crypto.randomUUID()
           const stream = new ReadableStream({
             start(controller) {
-              sseClients.set(finalSessionId, { controller, session })
+              sseClients.set(connectionId, { controller, session, connectionId })
               config.onConnect?.({ session, store: getStore(), update: updateStore })
               controller.enqueue(new TextEncoder().encode(": connected\n\n"))
             },
             cancel() {
-              sseClients.delete(finalSessionId)
-              cleanupSession(finalSessionId)
+              sseClients.delete(connectionId)
+              // Only cleanup session if this was the last connection for this session
+              const hasOtherConnections = Array.from(sseClients.values()).some(c => c.session.id === session.id)
+              if (!hasOtherConnections) {
+                cleanupSession(session.id)
+              }
               config.onDisconnect?.({ session, store: getStore(), update: updateStore })
             },
           })
@@ -1169,6 +1173,8 @@ export const createHyperstar = <
           const app = {
             port: actualPort,
             stop: async () => {
+              console.log("🧹 Cleaning up and shutting down...")
+
               // Stop timers and intervals (these use their own fibers with pauseRef)
               for (const timer of timerHandles.values()) timer.stop()
               timerHandles.clear()

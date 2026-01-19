@@ -13,7 +13,7 @@ A hypermedia-inspired framework for Bun where the server owns the state and the 
 
 ```bash
 # Create a new project
-bunx hyperstar create my-app
+bunx hyperstar-cli create my-app
 cd my-app
 bun install
 
@@ -55,7 +55,7 @@ Save and the browser hot-reloads. Open multiple tabs - they all sync in real-tim
 Ready to ship? Deploy to [Fly.io Sprites](https://fly.io/sprites):
 
 ```bash
-bunx hyperstar deploy --managed
+bunx hyperstar-cli deploy --managed
 ```
 
 Your app is live. No Docker, no config, no CI/CD setup.

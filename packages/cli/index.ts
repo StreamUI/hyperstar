@@ -3,10 +3,10 @@
  * Hyperstar CLI
  *
  * Usage:
- *   bunx hyperstar create my-app              # Create new project (interactive)
- *   bunx hyperstar create my-app -t minimal   # With specific template
- *   bunx hyperstar deploy                     # Deploy with SPRITE_TOKEN
- *   bunx hyperstar deploy --managed           # Deploy to managed hosting
+ *   bunx hyperstar-cli create my-app              # Create new project (interactive)
+ *   bunx hyperstar-cli create my-app -t minimal   # With specific template
+ *   bunx hyperstar-cli deploy                     # Deploy with SPRITE_TOKEN
+ *   bunx hyperstar-cli deploy --managed           # Deploy to managed hosting
  */
 import { Args, Command, Options, Prompt } from "@effect/cli"
 import { BunContext, BunRuntime } from "@effect/platform-bun"
