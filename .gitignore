@@ -8,3 +8,4 @@ node_modules/
 test-deploy/
 examples/data
 inspo
+npm_recovery_codes.txt

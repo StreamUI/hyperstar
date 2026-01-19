@@ -81,6 +81,80 @@ This will:
 
 ---
 
+## Recommended Workflows
+
+Choose the workflow that fits your development style:
+
+### Option A: Feature Branches (Recommended for Teams)
+
+**Use for:** New features, breaking changes, anything that needs review
+
+```bash
+# 1. Create feature branch
+git checkout -b feat/new-feature
+
+# 2. Make your changes
+# ... edit code ...
+
+# 3. Add changeset
+bun changeset
+# Select packages, bump type, write summary
+
+# 4. Commit changes + changeset together
+git add .
+git commit -m "feat: add new feature"
+git push origin feat/new-feature
+
+# 5. Open PR, review, and merge to master
+# (The changeset file goes with your code into master)
+
+# 6. When ready to release (on master, could be days/weeks later):
+git checkout master
+git pull
+bun run version
+git add .
+git commit -m "chore: release v0.2.0"
+git push
+
+# 7. Publish
+bun run release
+```
+
+### Option B: Direct to Master (Fast, Solo Dev)
+
+**Use for:** Quick fixes, docs, minor tweaks when you're the only maintainer
+
+```bash
+# 1. Make changes directly on master
+# ... edit code ...
+
+# 2. Add changeset
+bun changeset
+
+# 3. Commit both together
+git add .
+git commit -m "fix: bug fix"
+git push origin master
+
+# 4. When ready to release (could be multiple changesets accumulated):
+bun run version
+git add .
+git commit -m "chore: release v0.2.0"
+git push
+
+# 5. Publish
+bun run release
+```
+
+### Key Points
+
+✅ **Always commit the changeset file WITH your code changes**
+✅ **Changesets accumulate** - merge multiple PRs before releasing
+✅ **You control when to publish** - version can happen days/weeks later
+✅ **One changeset per logical change** - but multiple changesets per PR is fine
+
+---
+
 ## Complete Workflow Example
 
 ```bash
@@ -109,20 +183,58 @@ bun run release
 # Packages are published to npm!
 ```
 
+**Real Example from Terminal:**
+```bash
+$ bun run release
+🦋  info npm info hyperstar-cli
+🦋  info npm info hyperstar
+🦋  warn hyperstar-cli is not being published because version 0.1.0 is already published on npm
+🦋  info hyperstar is being published because our local version (0.2.0) has not been published on npm
+🦋  info Publishing "hyperstar" at "0.2.0"
+🦋  success packages published successfully:
+🦋  hyperstar@0.2.0
+```
+
+**Note:** With a granular access token configured with "Bypass 2FA", you won't be prompted for any OTP/2FA codes.
+
 ---
 
 ## Prerequisites
 
-```bash
-# Login to npm (one-time)
-npm login
+### npm Authentication Setup
 
-# Verify you're logged in
-npm whoami
+**IMPORTANT:** As of September 2025, npm removed support for TOTP authenticator apps (Google Authenticator, etc.). You can only use Security Keys (YubiKey, Touch ID, Face ID).
 
-# Authenticate with GitHub (for tags)
-gh auth login
-```
+**For CLI publishing, use a Granular Access Token instead:**
+
+1. **Create a token on npmjs.com:**
+   - Go to https://www.npmjs.com/settings/YOUR_USERNAME/tokens
+   - Click "Generate New Token" → "Granular Access Token"
+   - Configure:
+     - **Token Type:** Publish
+     - **Packages:** Select `hyperstar` and `hyperstar-cli`
+     - **Permissions:** Read and Write
+     - ✅ **CHECK "Bypass 2FA"** (critical!)
+   - Copy the token (starts with `npm_...`)
+
+2. **Configure npm to use the token:**
+   ```bash
+   # Log out of npm CLI
+   npm logout
+
+   # Set the token directly (replace with your actual token)
+   npm config set //registry.npmjs.org/:_authToken=npm_YOUR_TOKEN_HERE
+
+   # Verify it worked
+   npm whoami
+   ```
+
+3. **Authenticate with GitHub (for tags):**
+   ```bash
+   gh auth login
+   ```
+
+Now you can publish without OTP prompts!
 
 ---
 
@@ -225,6 +337,14 @@ This will:
 
 ## Troubleshooting
 
+### "Enter one-time password" prompt appears
+
+**This means you don't have a granular access token configured with "Bypass 2FA" enabled.**
+
+npm removed TOTP authenticator app support in September 2025. You can't use Google Authenticator, etc. anymore.
+
+**Solution:** Set up a granular access token (see Prerequisites section above).
+
 ### "No changesets present"
 
 You need to add a changeset first:
@@ -232,12 +352,14 @@ You need to add a changeset first:
 bun changeset
 ```
 
-### npm publish fails
+### npm publish fails with 401/403
 
-Check you're logged in:
+Your token might be expired or not configured:
 ```bash
+# Check if you're authenticated
 npm whoami
-npm login
+
+# If not, set up your token again (see Prerequisites)
 ```
 
 ### Version didn't bump
