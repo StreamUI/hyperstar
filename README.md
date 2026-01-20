@@ -51,7 +51,7 @@ app.app({
 
 Open multiple tabs - they all sync in real-time.
 
-Ready to ship? Deploy to [Fly.io Sprites](https://fly.io/sprites):
+Ready to ship? Deploy to [Fly.io Sprites](https://sprites.dev/):
 
 ```bash
 bunx hyperstar-cli deploy --managed
@@ -191,7 +191,7 @@ bun --hot examples/fps-jsx.tsx           # FPS stress test
 
 ## Deployment
 
-Hyperstar apps are just Bun servers - deploy anywhere you can run `bun run app.tsx`. The CLI has built-in support for [Fly.io Sprites](https://fly.io/sprites), lightweight VMs that hibernate when idle.
+Hyperstar apps are just Bun servers - deploy anywhere you can run `bun run app.tsx`. The CLI has built-in support for [Fly.io Sprites](https://sprites.dev/), lightweight VMs that hibernate when idle.
 
 Create a `hyperstar.json` in your project root:
 
@@ -215,7 +215,7 @@ No account needed. Deploy instantly via longtailLABS.
 
 ### Self-Deploy (Recommended)
 
-For full control, use your own [Fly.io Sprites](https://fly.io/sprites) token:
+For full control, use your own [Fly.io Sprites](https://sprites.dev/) token:
 
 ```bash
 export SPRITE_TOKEN=your_token
