@@ -8,7 +8,14 @@
     "skipLibCheck": true,
     "noEmit": true,
     "declaration": true,
-    "types": ["@types/bun"]
+    "jsx": "react-jsx",
+    "jsxImportSource": "hyperstar",
+    "types": ["@types/bun"],
+    "plugins": [
+      {
+        "name": "@kitajs/ts-html-plugin"
+      }
+    ]
   },
   "include": [
     "packages/hyperstar/src/**/*",
@@ -20,6 +27,6 @@
   "exclude": [
     "templates/**/*",
     "node_modules",
-    "packages/cli/templates/**/*",
+    "packages/cli/templates/**/*"
   ]
 }

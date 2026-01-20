@@ -5,23 +5,86 @@
  * This allows views to reference action variables directly.
  *
  * @example
- * const hs = createHyperstar<Store, UserStore>()
+ * ```tsx
+ * const app = createHyperstar<Store, UserStore>()
  *
  * // Define actions first
- * const increment = hs.action("increment", (ctx) => {
+ * const increment = app.action("increment", (ctx) => {
  *   ctx.update(s => ({ ...s, count: s.count + 1 }))
  * })
  *
- * // Configure app with view that references actions
- * hs.app({
+ * // Configure app with JSX view that references actions
+ * app.app({
  *   store: { count: 0 },
- *   view: (ctx) => UI.button({ events: { click: on.action(increment) } }, "+1")
+ *   view: (ctx) => <button $={hs.action(increment)}>+1</button>
  * }).serve({ port: 3000 })
+ * ```
  */
 import { Effect, SubscriptionRef, Stream, pipe, Schedule, Ref, Fiber, Cron, Duration, Either, Scope, Exit } from "effect"
 import * as fs from "node:fs"
 import * as path from "node:path"
 import { type Session, SSE, type SSEEventTyped } from "./core/services"
+
+// ============================================================================
+// Client Bundle Cache
+// ============================================================================
+
+let clientBundleCache: string | null = null
+
+// Clear cache on every request during development
+const isDev = process.env.NODE_ENV !== "production"
+
+/**
+ * Get the bundled hyperstar-client script.
+ * Lazily bundles on first request and caches the result.
+ */
+async function getClientBundle(): Promise<string> {
+  // In dev mode, always rebuild to pick up changes
+  if (clientBundleCache && !isDev) return clientBundleCache
+
+  try {
+    // Find the hyperstar-client package
+    const clientEntry = path.resolve(__dirname, "../../hyperstar-client/src/index.ts")
+
+    // Bundle with Bun
+    const result = await Bun.build({
+      entrypoints: [clientEntry],
+      minify: true,
+      target: "browser",
+      format: "esm",
+    })
+
+    if (!result.success) {
+      console.error("[hyperstar] Failed to bundle client:", result.logs)
+      throw new Error("Client bundle failed")
+    }
+
+    const bundle = result.outputs[0]
+    if (!bundle) {
+      throw new Error("Client bundle produced no output")
+    }
+    clientBundleCache = await bundle.text()
+    return clientBundleCache
+  } catch (e) {
+    console.error("[hyperstar] Error bundling client:", e)
+    // Fallback to inline ESM imports if bundling fails
+    return `
+      import { signal, effect, batch } from "https://esm.sh/@preact/signals-core@1.8.0";
+      import { Idiomorph } from "https://esm.sh/idiomorph@0.7.4";
+      console.warn("[hyperstar] Using fallback client - bundling failed");
+      window.Hyperstar = {
+        dispatch: async (actionId, args) => {
+          const response = await fetch("/hs/action", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId: window.__hs_sessionId, actionId, args, signals: {} })
+          });
+          if (!response.ok) console.error("Action failed:", await response.text());
+        }
+      };
+    `
+  }
+}
 import {
   type ActionDescriptor,
   type SimplifiedActionContext,
@@ -29,7 +92,6 @@ import {
   createWithArgsAction,
 } from "./action/schema"
 import { Schema } from "effect"
-import { type UINode, render } from "./ui"
 import { type LifecycleContext, createLifecycleContext } from "./core/lifecycle"
 
 // ============================================================================
@@ -60,6 +122,22 @@ export class Expr {
   toString(): string {
     return this.code
   }
+
+  /**
+   * Auto-convert to string in JSX/template contexts.
+   * Eliminates the need for .toString() on Expr values.
+   */
+  [Symbol.toPrimitive](hint: string): string {
+    return this.code
+  }
+
+  toJSON(): string {
+    return this.code
+  }
+
+  valueOf(): string {
+    return this.code
+  }
 }
 
 /**
@@ -77,6 +155,10 @@ export interface SignalHandle<T> {
   is(value: T): Expr
   /** Check inequality: $name.value !== value */
   isNot(value: T): Expr
+  /** Check if value is one of multiple values: $name.value === v1 || $name.value === v2 || ... */
+  oneOf(values: T[]): Expr
+  /** Check if value is none of multiple values: $name.value !== v1 && $name.value !== v2 && ... */
+  noneOf(values: T[]): Expr
   /** Create patch object for patchSignals */
   patch(value: T): Record<string, T>
 }
@@ -84,6 +166,10 @@ export interface SignalHandle<T> {
 export interface StringSignalHandle<T extends string = string> extends SignalHandle<T> {
   isEmpty(): Expr
   isNotEmpty(): Expr
+  /** Check if value is one of multiple values */
+  oneOf(values: T[]): Expr
+  /** Check if value is none of multiple values */
+  noneOf(values: T[]): Expr
 }
 
 export interface BooleanSignalHandle extends SignalHandle<boolean> {
@@ -97,6 +183,10 @@ export interface NumberSignalHandle extends SignalHandle<number> {
   gte(n: number): Expr
   lt(n: number): Expr
   lte(n: number): Expr
+  /** Check if value is one of multiple values */
+  oneOf(values: number[]): Expr
+  /** Check if value is none of multiple values */
+  noneOf(values: number[]): Expr
 }
 
 export interface NullableSignalHandle<T> extends SignalHandle<T | null> {
@@ -122,6 +212,14 @@ function createSignalHandle<T>(name: string, defaultValue: T): SignalHandle<T> {
     set: (value: T) => new Expr(`$${name}.value = ${toLiteral(value)}`),
     is: (value: T) => new Expr(`$${name}.value === ${toLiteral(value)}`),
     isNot: (value: T) => new Expr(`$${name}.value !== ${toLiteral(value)}`),
+    oneOf: (values: T[]) => {
+      const conditions = values.map(v => `$${name}.value === ${toLiteral(v)}`).join(" || ")
+      return new Expr(`(${conditions})`)
+    },
+    noneOf: (values: T[]) => {
+      const conditions = values.map(v => `$${name}.value !== ${toLiteral(v)}`).join(" && ")
+      return new Expr(`(${conditions})`)
+    },
     patch: (value: T) => ({ [name]: value }),
   }
 }
@@ -154,6 +252,15 @@ function createUniversalSignalHandle(name: string): unknown {
     set: (value: unknown) => new Expr(`$${name}.value = ${toLiteral(value)}`),
     is: (value: unknown) => new Expr(`$${name}.value === ${toLiteral(value)}`),
     isNot: (value: unknown) => new Expr(`$${name}.value !== ${toLiteral(value)}`),
+    // Multi-value helpers
+    oneOf: (values: unknown[]) => {
+      const conditions = values.map(v => `$${name}.value === ${toLiteral(v)}`).join(" || ")
+      return new Expr(`(${conditions})`)
+    },
+    noneOf: (values: unknown[]) => {
+      const conditions = values.map(v => `$${name}.value !== ${toLiteral(v)}`).join(" && ")
+      return new Expr(`(${conditions})`)
+    },
     patch: (value: unknown) => ({ [name]: value }),
     // String methods
     isEmpty: () => new Expr(`$${name}.value === ''`),
@@ -285,7 +392,8 @@ export interface HyperstarConfig<S extends object, U extends object, Signals ext
   readonly userStore?: U
   /** Default signal values - like store, these are the initial values for client-side signals */
   readonly signals?: { [K in keyof Signals]: Signals[K] }
-  readonly view: (ctx: ViewContext<S, U>) => UINode
+  /** View function - returns JSX (string or Promise<string>) */
+  readonly view: (ctx: ViewContext<S, U>) => string | Promise<string>
   /** Page title - string or derived function */
   readonly title?: string | ((ctx: { store: S; userStore: U }) => string)
   /** Favicon - string path or derived function */
@@ -658,6 +766,8 @@ export const createHyperstar = <
         if (triggerRegistry) {
           triggerRegistry.onUserStoreUpdate(key, oldUserStore, newUserStore)
         }
+        // Broadcast re-render to this user's clients (fire-and-forget)
+        broadcastToSession(key).catch(() => {})
       }
 
       const updateUserStoreById = (sessionId: string, fn: (u: U) => U) => {
@@ -668,6 +778,8 @@ export const createHyperstar = <
           if (triggerRegistry) {
             triggerRegistry.onUserStoreUpdate(sessionId, current, newUserStore)
           }
+          // Broadcast re-render to this user's clients (fire-and-forget)
+          broadcastToSession(sessionId).catch(() => {})
         }
       }
 
@@ -690,7 +802,42 @@ export const createHyperstar = <
         }
       }
 
-      const renderView = (session: Session): string => {
+      // Send to all clients connected with a specific session ID
+      const sendToSession = (sessionId: string, event: SSEEventTyped) => {
+        const data = JSON.stringify(event.data)
+        const message = `event: ${event.type}\ndata: ${data}\n\n`
+        for (const [, client] of sseClients) {
+          if (client.session.id === sessionId) {
+            try {
+              client.controller.enqueue(new TextEncoder().encode(message))
+            } catch {
+              // Client disconnected
+            }
+          }
+        }
+      }
+
+      // Re-render and send to a specific session (used for user store updates)
+      const broadcastToSession = async (sessionId: string) => {
+        const session = { id: sessionId } as Session
+        const html = await renderView(session)
+        const morphEvent = SSE.morph(html, "app")
+        sendToSession(sessionId, morphEvent)
+
+        // Also send title/favicon if dynamic
+        const store = getStore()
+        const userStore = getUserStore(session)
+        if (typeof config.title === "function") {
+          const titleEvent = SSE.title(config.title({ store, userStore }))
+          sendToSession(sessionId, titleEvent)
+        }
+        if (typeof config.favicon === "function") {
+          const newFavicon = config.favicon({ store, userStore })
+          if (newFavicon) sendToSession(sessionId, SSE.favicon(newFavicon))
+        }
+      }
+
+      const renderView = async (session: Session): Promise<string> => {
         const store = getStore()
         const userStore = getUserStore(session)
         const ctx: ViewContext<S, U> = {
@@ -698,7 +845,11 @@ export const createHyperstar = <
           userStore,
           session,
         }
-        return render(config.view(ctx))
+        const result = config.view(ctx)
+        if (typeof result === "string") {
+          return result
+        }
+        return await result
       }
 
       const computeTitle = (store: S, userStore: U): string => {
@@ -713,7 +864,7 @@ export const createHyperstar = <
         return config.favicon({ store, userStore })
       }
 
-      const renderFullDocument = (session: Session): string => {
+      const renderFullDocument = async (session: Session): Promise<string> => {
         const store = getStore()
         const userStore = getUserStore(session)
         const title = computeTitle(store, userStore)
@@ -725,10 +876,11 @@ export const createHyperstar = <
           session,
         }
 
-        const body = render(config.view(ctx))
-        const signalInit = Object.entries(signalDefaults)
-          .map(([name, value]) => `const $${name} = signal(${JSON.stringify(value)}); window.$${name} = $${name};`)
-          .join("\n")
+        const viewResult = config.view(ctx)
+        const body = typeof viewResult === "string" ? viewResult : await viewResult
+
+        // Escape signal defaults for JSON attribute
+        const signalsJson = JSON.stringify(signalDefaults).replace(/"/g, "&quot;")
 
         return `<!DOCTYPE html>
 <html lang="en">
@@ -738,98 +890,9 @@ export const createHyperstar = <
   <title>${title}</title>${faviconStr ? `\n  <link rel="icon" href="${faviconStr}">` : ""}
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body hs-signals="${signalsJson}" hs-init="Hyperstar.setSessionId('${session.id}'); Hyperstar.connect('/hs/sse')">
   <div id="app">${body}</div>
-  <script type="module">
-    import { signal, effect } from "https://esm.sh/@preact/signals-core@1.8.0";
-    import { Idiomorph } from "https://esm.sh/idiomorph@0.7.4";
-
-    ${signalInit}
-
-    const Hyperstar = {
-      sessionId: "${session.id}",
-      async dispatch(mode, actionId, args) {
-        const signalValues = {
-          ${Object.keys(signalDefaults)
-            .map((name) => `${name}: $${name}.value`)
-            .join(",\n          ")}
-        };
-        const response = await fetch("/hs/action", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId: this.sessionId, actionId, args, signals: signalValues }),
-        });
-        if (!response.ok) console.error("Action failed:", await response.text());
-      },
-    };
-
-    function evaluateHsShow() {
-      document.querySelectorAll("[hs-show]").forEach((el) => {
-        const condition = el.getAttribute("hs-show");
-        try { el.style.display = eval(condition) ? "" : "none"; } catch {}
-      });
-    }
-
-    function evaluateHsText() {
-      document.querySelectorAll("[hs-text]").forEach((el) => {
-        const expr = el.getAttribute("hs-text");
-        try { el.textContent = eval(expr); } catch {}
-      });
-    }
-
-    const sse = new EventSource("/hs/sse?sessionId=" + Hyperstar.sessionId);
-    sse.addEventListener("morph", (e) => {
-      const { html, target } = JSON.parse(e.data);
-      const targetEl = document.getElementById(target || "app");
-      if (targetEl) {
-        Idiomorph.morph(targetEl, html, { morphStyle: "innerHTML" });
-        evaluateHsShow();
-        evaluateHsText();
-      }
-    });
-    sse.addEventListener("signals", (e) => {
-      const patches = JSON.parse(e.data);
-      for (const [name, value] of Object.entries(patches)) {
-        const signalRef = eval("$" + name);
-        if (signalRef) signalRef.value = value;
-      }
-    });
-    sse.addEventListener("redirect", (e) => { window.location.href = e.data; });
-    sse.addEventListener("title", (e) => { document.title = JSON.parse(e.data).title; });
-    sse.addEventListener("favicon", (e) => {
-      const { href, type } = JSON.parse(e.data);
-      let link = document.querySelector("link[rel~='icon']");
-      if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); }
-      link.type = type; link.href = href;
-    });
-
-    window.Hyperstar = Hyperstar;
-
-    document.addEventListener("click", (e) => {
-      const target = e.target.closest("[hs-on\\\\:click]");
-      if (target) { e.preventDefault(); new Function("event", target.getAttribute("hs-on:click"))(e); }
-    });
-    document.addEventListener("submit", (e) => {
-      const target = e.target.closest("[hs-on\\\\:submit]");
-      if (target) { e.preventDefault(); new Function("event", target.getAttribute("hs-on:submit"))(e); }
-    });
-    document.addEventListener("input", (e) => {
-      const target = e.target;
-      const bind = target.getAttribute("hs-bind");
-      if (bind) {
-        const signalRef = eval("$" + bind);
-        if (signalRef) signalRef.value = target.type === "checkbox" ? target.checked : target.value;
-      }
-    });
-
-    effect(() => {
-      ${Object.keys(signalDefaults).map((name) => `void $${name}.value;`).join("\n      ")}
-      evaluateHsShow();
-      evaluateHsText();
-    });
-    evaluateHsShow();
-    evaluateHsText();
-  </script>
+  <script type="module" src="/hs/client.js"></script>
 </body>
 </html>`
       }
@@ -845,7 +908,7 @@ export const createHyperstar = <
         const session: Session = { id: sessionId, userId: null, connectedAt: new Date() }
 
         if (reqPath === "/") {
-          const html = renderFullDocument(session)
+          const html = await renderFullDocument(session)
           return new Response(html, {
             headers: {
               "Content-Type": "text/html",
@@ -856,15 +919,19 @@ export const createHyperstar = <
 
         if (reqPath === "/hs/sse") {
           const connectionId = crypto.randomUUID()
+          console.log(`[hyperstar] SSE connect: session=${sessionId.slice(0, 8)}... conn=${connectionId.slice(0, 8)}...`)
           const stream = new ReadableStream({
             start(controller) {
               sseClients.set(connectionId, { controller, session, connectionId })
+              console.log(`[hyperstar] SSE client registered. Total clients: ${sseClients.size}`)
               checkIdleState()  // Check if we went from idle to active
               config.onConnect?.({ session, store: getStore(), update: updateStore })
               controller.enqueue(new TextEncoder().encode(": connected\n\n"))
             },
             cancel() {
+              console.log(`[hyperstar] SSE disconnect: conn=${connectionId.slice(0, 8)}...`)
               sseClients.delete(connectionId)
+              console.log(`[hyperstar] SSE client removed. Total clients: ${sseClients.size}`)
               // Only cleanup session if this was the last connection for this session
               const hasOtherConnections = Array.from(sseClients.values()).some(c => c.session.id === session.id)
               if (!hasOtherConnections) {
@@ -876,6 +943,16 @@ export const createHyperstar = <
           })
           return new Response(stream, {
             headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" },
+          })
+        }
+
+        if (reqPath === "/hs/client.js") {
+          const bundle = await getClientBundle()
+          return new Response(bundle, {
+            headers: {
+              "Content-Type": "application/javascript",
+              "Cache-Control": "no-cache", // Don't cache during development
+            },
           })
         }
 
@@ -891,6 +968,10 @@ export const createHyperstar = <
             const { actionId, args, signals } = parseResult.right
 
             signalState.set(sessionId, signals ?? {})
+
+            // Merge signals into args - allows form/bind pattern where
+            // inputs bound to signals automatically become action args
+            const mergedArgs = { ...(signals ?? {}), ...(args ?? {}) }
 
             const action = actionDefs.get(actionId)
             if (!action) {
@@ -945,7 +1026,7 @@ export const createHyperstar = <
 
             await Effect.runPromise(
               pipe(
-                action.run(actionCtx as any, args),
+                action.run(actionCtx as any, mergedArgs),
                 Effect.catchAll((error) => {
                   console.error("Action error:", error)
                   return Effect.succeed(undefined)
@@ -953,16 +1034,8 @@ export const createHyperstar = <
               ),
             )
 
-            for (const [, client] of sseClients) {
-              const html = renderView(client.session)
-              const event = SSE.morph(html, "app")
-              const message = `event: ${event.type}\ndata: ${JSON.stringify(event.data)}\n\n`
-              try {
-                client.controller.enqueue(new TextEncoder().encode(message))
-              } catch {
-                // Client disconnected
-              }
-            }
+            // Broadcast is handled by storeRef.changes watcher (no need to broadcast here)
+            // This prevents duplicate broadcasts when actions update the store
 
             return new Response(JSON.stringify({ ok: true }), { headers: { "Content-Type": "application/json" } })
           } catch (error) {
@@ -1192,14 +1265,36 @@ export const createHyperstar = <
           forkScoped(
             pipe(
               storeRef.changes,
-              Stream.tap(() =>
-                Effect.sync(() => {
+              Stream.tap((store) =>
+                Effect.promise(async () => {
                   for (const [, client] of sseClients) {
-                    const html = renderView(client.session)
-                    const event = SSE.morph(html, "app")
-                    const message = `event: ${event.type}\ndata: ${JSON.stringify(event.data)}\n\n`
+                    const userStore = getUserStore(client.session)
+                    const html = await renderView(client.session)
+
+                    // Send morph event for view update
+                    const morphEvent = SSE.morph(html, "app")
+                    const morphMessage = `event: ${morphEvent.type}\ndata: ${JSON.stringify(morphEvent.data)}\n\n`
+
+                    // Send title update if title is dynamic
+                    let titleMessage = ""
+                    if (typeof config.title === "function") {
+                      const newTitle = config.title({ store, userStore })
+                      const titleEvent = SSE.title(newTitle)
+                      titleMessage = `event: ${titleEvent.type}\ndata: ${JSON.stringify(titleEvent.data)}\n\n`
+                    }
+
+                    // Send favicon update if favicon is dynamic
+                    let faviconMessage = ""
+                    if (typeof config.favicon === "function") {
+                      const newFavicon = config.favicon({ store, userStore })
+                      if (newFavicon) {
+                        const faviconEvent = SSE.favicon(newFavicon)
+                        faviconMessage = `event: ${faviconEvent.type}\ndata: ${JSON.stringify(faviconEvent.data)}\n\n`
+                      }
+                    }
+
                     try {
-                      client.controller.enqueue(new TextEncoder().encode(message))
+                      client.controller.enqueue(new TextEncoder().encode(morphMessage + titleMessage + faviconMessage))
                     } catch {}
                   }
                 }),
@@ -1223,7 +1318,30 @@ export const createHyperstar = <
           // Start scheduled tasks
           startScheduledTasks(forkScoped)
 
-          const server = Bun.serve({ port, hostname, fetch: handleRequest })
+          // SSE heartbeat - send a comment every 30 seconds to keep connections alive
+          forkScoped(
+            pipe(
+              Stream.repeatEffect(Effect.sleep(Duration.seconds(30))),
+              Stream.tap(() =>
+                Effect.sync(() => {
+                  const heartbeat = `: heartbeat ${Date.now()}\n\n`
+                  for (const [, client] of sseClients) {
+                    try {
+                      client.controller.enqueue(new TextEncoder().encode(heartbeat))
+                    } catch {}
+                  }
+                }),
+              ),
+              Stream.runDrain,
+            ),
+          )
+
+          const server = Bun.serve({
+            port,
+            hostname,
+            fetch: handleRequest,
+            idleTimeout: 255, // Max value (255 seconds) - SSE needs long-lived connections
+          })
           const actualPort = server.port ?? port
           console.log(`🌟 Hyperstar v3 running at http://localhost:${actualPort}`)
 

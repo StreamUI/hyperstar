@@ -1,0 +1,16 @@
+{
+  "name": "hyperstar-client",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@preact/signals-core": "^1.12.1",
+    "idiomorph": "^0.7.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

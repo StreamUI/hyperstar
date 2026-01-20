@@ -138,6 +138,21 @@ export interface ActionDescriptor<
   ) => Effect.Effect<O, ActionError | ValidationError>
 }
 
+/**
+ * Minimal action type for passing to reusable components.
+ * Only requires the `id` field which is all hs.action() needs.
+ *
+ * @example
+ * // In a reusable component:
+ * function Button({ action, children }: { action?: Action; children: string }) {
+ *   return <button $={action && hs.action(action)}>{children}</button>
+ * }
+ *
+ * // Usage:
+ * <Button action={increment}>+1</Button>
+ */
+export type Action = { readonly id: string }
+
 // ============================================================================
 // Internal: Create Action Descriptor
 // ============================================================================

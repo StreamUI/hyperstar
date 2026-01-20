@@ -1,6 +1,6 @@
 {
   "name": "hyperstar",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -8,15 +8,19 @@
     ".": "./src/index.ts",
     "./ui": "./src/ui/index.ts",
     "./action": "./src/action/index.ts",
-    "./signals": "./src/signals/index.ts"
+    "./signals": "./src/signals/index.ts",
+    "./jsx-runtime": "./src/jsx-runtime.ts",
+    "./jsx-dev-runtime": "./src/jsx-dev-runtime.ts"
   },
   "dependencies": {
-    "effect": "^3.19.14"
+    "effect": "^3.19.14",
+    "@kitajs/html": "^4.2.11"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@kitajs/ts-html-plugin": "^4.1.3"
   }
 }

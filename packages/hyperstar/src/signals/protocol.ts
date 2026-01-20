@@ -5,7 +5,31 @@
  * The protocol defines what signals exist and their types at compile time.
  */
 import { Schema } from "effect"
-import { Expression, expr } from "../ui/nodes"
+
+// ============================================================================
+// Expression Type (for signal accessor expressions)
+// ============================================================================
+
+/**
+ * Expression represents a JavaScript expression string.
+ * Used by signal accessors for reactive conditionals.
+ */
+export interface Expression {
+  readonly _tag: "Expression"
+  readonly code: string
+  toString(): string
+}
+
+/**
+ * Create an expression from a code string
+ */
+export function expr(code: string): Expression {
+  return {
+    _tag: "Expression",
+    code,
+    toString: () => code,
+  }
+}
 
 // ============================================================================
 // Signal Definition Types

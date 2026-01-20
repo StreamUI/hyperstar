@@ -8,7 +8,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "declaration": true,
-    "types": ["@types/bun"]
+    "types": ["@types/bun"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hyperstar"
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

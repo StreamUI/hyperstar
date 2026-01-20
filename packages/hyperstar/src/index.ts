@@ -1,64 +1,34 @@
 /**
- * Hyperstar v3 - Simplified API
+ * Hyperstar v3 - JSX-First Server-Driven UI
  *
- * Small, cohesive DSL with power and strong typing.
- * ONE way to do each thing.
+ * Build real-time web apps with JSX and server-side state.
+ * Uses Kita HTML for fast JSX rendering.
  *
  * @example
- * ```typescript
- * import { createHyperstar, UI, on, Schema } from "hyperstar"
+ * ```tsx
+ * import { createHyperstar, hs, Schema } from "hyperstar"
  *
  * interface Store { count: number }
  *
- * const app = createHyperstar<Store>({
- *   store: { count: 0 },
- *   view: (ctx) => UI.div({},
- *     UI.h1({}, `Count: ${ctx.store.count}`),
- *     UI.button({ events: { click: on.action(increment) } }, "+1"),
- *   ),
- * })
+ * const app = createHyperstar<Store>()
  *
- * // Actions - ONE pattern
  * const increment = app.action("increment", ctx => {
  *   ctx.update(s => ({ ...s, count: s.count + 1 }))
  * })
  *
- * const add = app.action("add", { amount: Schema.Number }, (ctx, { amount }) => {
- *   ctx.update(s => ({ ...s, count: s.count + amount }))
- * })
- *
- * // Timer - game loops
- * app.timer("ticker", {
- *   interval: 16,
- *   when: s => s.running,
- *   handler: ctx => ctx.update(s => ({ ...s, frame: s.frame + 1 }))
- * })
- *
- * // Interval - simple repeating
- * app.interval("heartbeat", {
- *   every: "5 seconds",
- *   handler: ctx => console.log("heartbeat", ctx.getStore().count)
- * })
- *
- * // Cron - scheduled jobs
- * app.cron("cleanup", {
- *   schedule: "1 hour",
- *   handler: ctx => console.log("cleanup")
- * })
- *
- * // Triggers - react to changes
- * app.trigger("count-changed", {
- *   watch: s => s.count,
- *   handler: (ctx, { oldValue, newValue }) => {
- *     console.log(`Count: ${oldValue} → ${newValue}`)
- *   }
- * })
- *
- * app.serve({ port: 3000 })
+ * app.app({
+ *   store: { count: 0 },
+ *   view: (ctx) => (
+ *     <div>
+ *       <h1>Count: {ctx.store.count}</h1>
+ *       <button $={hs.action(increment)}>+1</button>
+ *     </div>
+ *   ),
+ * }).serve({ port: 3000 })
  * ```
  */
 
-// Core - Errors and Services (keep for power users)
+// Core - Errors and Services
 export {
   RecoveryHint,
   Recovery,
@@ -86,38 +56,6 @@ export {
   SSE,
 } from "./core"
 
-// UI - ADT, Builder, Renderer
-export {
-  Expression,
-  expr,
-  signal,
-  compileExpr,
-  AttrValue,
-  attr,
-  dynamicAttr,
-  boolAttr,
-  EventHandler,
-  UINode,
-  isElement,
-  isText,
-  isEmpty,
-  mapChildren,
-  deepMap,
-  findAll,
-  countNodes,
-  UI,
-  on,
-  $,
-  bind,
-  cx,
-  escapeHtml,
-  escapeAttr,
-  render,
-  renderEffect,
-  renderDocument,
-  prettyPrint,
-} from "./ui"
-
 // Actions - simplified context only
 export {
   type ActionContext,
@@ -125,9 +63,10 @@ export {
   type SimplifiedHeadService,
   type HeadServiceApi,
   type ActionDescriptor,
+  type Action,
 } from "./action"
 
-// Signals
+// Signals (protocol types for type-safe signal handles)
 export {
   type SignalScope,
   type SignalDef,
@@ -171,9 +110,17 @@ export {
   type BooleanSignalHandle,
   type NumberSignalHandle,
   type NullableSignalHandle,
+  // Expression class for JSX views
+  Expr,
   createServer,
   createHyperstar,
 } from "./server"
+
+// JSX View Helpers - the $ prop API
+export { hs, HSBuilder } from "./hs"
+
+// JSX type extensions (import for side effects)
+import "./jsx.d.ts"
 
 // Lifecycle (simplified)
 export {
@@ -191,8 +138,6 @@ export {
 
 // Schedule - keep Cron helper
 export { Cron } from "./schedule"
-
-// createHyperstar is exported from "./server" above
 
 // Re-export Schema from Effect for action args
 export { Schema } from "effect"

@@ -1,6 +1,6 @@
 {
   "name": "hyperstar-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for Hyperstar - server-driven UI for real-time web apps",
   "type": "module",
   "bin": {

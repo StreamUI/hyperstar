@@ -1,4 +1,4 @@
 {
   "name": "my-hyperstar-app",
-  "entrypoint": "app.ts"
+  "entrypoint": "app.tsx"
 }

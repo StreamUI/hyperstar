@@ -1,0 +1,306 @@
+/**
+ * Hyperstar v3 - Live Polling Example (JSX Version)
+ *
+ * A real-time poll where users can vote and see results update live.
+ * Uses session IDs to prevent double voting.
+ *
+ * Demonstrates:
+ * - hs.action() with Schema validation
+ * - Signal bindings for forms
+ * - Session-based voting (one vote per session)
+ * - Real-time sync across tabs
+ */
+import { createHyperstar, hs, Schema } from "hyperstar"
+
+// ============================================================================
+// Types
+// ============================================================================
+
+interface PollOption {
+  id: string
+  text: string
+  votes: number
+  color: string
+}
+
+interface Store {
+  question: string
+  options: PollOption[]
+  totalVotes: number
+  voters: Record<string, true> // JSON-serializable (Set doesn't serialize)
+}
+
+interface Signals {
+  newQuestion: string
+  newOption: string
+}
+
+// ============================================================================
+// Constants
+// ============================================================================
+
+const COLORS = ["#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c"]
+
+// ============================================================================
+// Create Factory
+// ============================================================================
+
+const app = createHyperstar<Store, {}, Signals>()
+
+// ============================================================================
+// Signals - Client-side form state
+// ============================================================================
+
+const { newQuestion, newOption } = app.signals
+
+// ============================================================================
+// Actions
+// ============================================================================
+
+// Vote action - checks if user already voted using session ID
+const vote = app.action("vote", { optionId: Schema.String }, (ctx, { optionId }) => {
+  const store = ctx.getStore()
+  if (ctx.sessionId in store.voters) {
+    return // Already voted!
+  }
+
+  ctx.update((s) => ({
+    ...s,
+    options: s.options.map((o) => (o.id === optionId ? { ...o, votes: o.votes + 1 } : o)),
+    totalVotes: s.totalVotes + 1,
+    voters: { ...s.voters, [ctx.sessionId]: true as const },
+  }))
+})
+
+// Reset all votes
+const resetPoll = app.action("resetPoll", (ctx) => {
+  ctx.update((s) => ({
+    ...s,
+    options: s.options.map((o) => ({ ...o, votes: 0 })),
+    totalVotes: 0,
+    voters: {},
+  }))
+})
+
+// Set new question
+const setQuestion = app.action("setQuestion", { newQuestion: Schema.String }, (ctx, { newQuestion }) => {
+  ctx.update((s) => ({
+    ...s,
+    question: newQuestion,
+    options: s.options.map((o) => ({ ...o, votes: 0 })),
+    totalVotes: 0,
+    voters: {},
+  }))
+  ctx.patchSignals({ newQuestion: "" }) // Clear input after update
+})
+
+// Add new option
+const addOption = app.action("addOption", { newOption: Schema.String }, (ctx, { newOption }) => {
+  const store = ctx.getStore()
+  if (store.options.length >= 6) return
+
+  ctx.update((s) => ({
+    ...s,
+    options: [
+      ...s.options,
+      {
+        id: crypto.randomUUID().slice(0, 8),
+        text: newOption,
+        votes: 0,
+        color: COLORS[s.options.length % COLORS.length]!,
+      },
+    ],
+  }))
+  ctx.patchSignals({ newOption: "" }) // Clear input after adding
+})
+
+// Remove option
+const removeOption = app.action("removeOption", { optionId: Schema.String }, (ctx, { optionId }) => {
+  const store = ctx.getStore()
+  if (store.options.length <= 2) return
+
+  const option = store.options.find((o) => o.id === optionId)
+  if (option) {
+    ctx.update((s) => ({
+      ...s,
+      options: s.options.filter((o) => o.id !== optionId),
+      totalVotes: s.totalVotes - option.votes,
+    }))
+  }
+})
+
+// ============================================================================
+// Reusable Components
+// ============================================================================
+
+function PollOptionRow(props: { option: PollOption; percentage: number; hasVoted: boolean }) {
+  const { option, percentage, hasVoted } = props
+
+  return (
+    <div id={`option-${option.id}`} class="relative overflow-hidden rounded-lg border-2 border-gray-200">
+      {/* Progress bar background */}
+      <div
+        class="absolute top-0 left-0 h-full transition-all duration-300"
+        style={`width: ${percentage}%; background: ${option.color}20;`}
+      />
+
+      {/* Content */}
+      <div class="relative flex items-center p-4 gap-4">
+        {hasVoted ? (
+          <div
+            class="w-6 h-6 rounded-full bg-transparent shrink-0 opacity-50 cursor-not-allowed"
+            style={`border: 2px solid ${option.color};`}
+          />
+        ) : (
+          <button
+            $={hs.action(vote, { optionId: option.id })}
+            class="w-6 h-6 rounded-full bg-transparent shrink-0 cursor-pointer hover:opacity-70"
+            style={`border: 2px solid ${option.color};`}
+          />
+        )}
+
+        <span class="flex-1 font-medium text-gray-800">{option.text}</span>
+
+        <div class="text-right min-w-16">
+          <div class="font-bold" style={`color: ${option.color};`}>
+            {percentage}%
+          </div>
+          <div class="text-xs text-gray-400">
+            {option.votes} vote{option.votes !== 1 ? "s" : ""}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ============================================================================
+// App Config
+// ============================================================================
+
+const server = app.app({
+  store: {
+    question: "What's your favorite programming language?",
+    options: [
+      { id: "ts", text: "TypeScript", votes: 0, color: COLORS[0]! },
+      { id: "py", text: "Python", votes: 0, color: COLORS[1]! },
+      { id: "rs", text: "Rust", votes: 0, color: COLORS[2]! },
+      { id: "go", text: "Go", votes: 0, color: COLORS[3]! },
+      { id: "other", text: "Other", votes: 0, color: COLORS[4]! },
+    ],
+    totalVotes: 0,
+    voters: {},
+  } as Store,
+  signals: { newQuestion: "", newOption: "" },
+
+  title: ({ store }) => `Poll: ${store.question} (${store.totalVotes} votes)`,
+
+  view: (ctx) => {
+    const hasVoted = ctx.session.id in ctx.store.voters
+
+    return (
+      <div id="app" class="max-w-xl mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">Live Poll</h1>
+
+        {/* Poll Question */}
+        <div class="bg-gray-100 p-6 rounded-lg mb-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">{ctx.store.question}</h2>
+          <p class="text-gray-500 text-sm">
+            {ctx.store.totalVotes} vote{ctx.store.totalVotes !== 1 ? "s" : ""} total
+            {hasVoted && <span class="ml-2 text-green-600">(You voted!)</span>}
+          </p>
+        </div>
+
+        {/* Poll Options */}
+        <div class="flex flex-col gap-4 mb-8">
+          {ctx.store.options.map((option) => {
+            const percentage =
+              ctx.store.totalVotes > 0 ? Math.round((option.votes / ctx.store.totalVotes) * 100) : 0
+            return <PollOptionRow option={option} percentage={percentage} hasVoted={hasVoted} />
+          })}
+        </div>
+
+        {/* Admin Controls */}
+        <details class="bg-gray-100 p-4 rounded-lg">
+          <summary class="cursor-pointer font-semibold text-gray-700">Admin Controls</summary>
+
+          <div class="flex flex-col gap-4 mt-4">
+            {/* Change Question */}
+            <div class="flex gap-2">
+              <input
+                type="text"
+                placeholder="New poll question..."
+                $={hs.bind(newQuestion)}
+                class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <button
+                $={hs.action(setQuestion, { newQuestion })}
+                hs-show={newQuestion.isNotEmpty()}
+                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
+              >
+                Update
+              </button>
+            </div>
+
+            {/* Add Option */}
+            <div class="flex gap-2">
+              <input
+                type="text"
+                placeholder="New option..."
+                $={hs.bind(newOption)}
+                class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+              {ctx.store.options.length < 6 ? (
+                <button
+                  $={hs.action(addOption, { newOption })}
+                  hs-show={newOption.isNotEmpty()}
+                  class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors"
+                >
+                  Add
+                </button>
+              ) : (
+                <button
+                  disabled
+                  class="px-4 py-2 bg-green-300 text-white font-medium rounded-lg cursor-not-allowed"
+                >
+                  Add
+                </button>
+              )}
+            </div>
+
+            {/* Reset */}
+            <button
+              $={hs.action(resetPoll)}
+              class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors"
+            >
+              Reset All Votes
+            </button>
+          </div>
+        </details>
+
+        {/* Footer */}
+        <footer class="mt-8 text-center text-gray-400 text-sm">
+          <p>Open in multiple tabs - votes sync in real-time!</p>
+        </footer>
+      </div>
+    )
+  },
+}).serve({ port: 3011 })
+
+console.log(`
+╔═══════════════════════════════════════════════════════════════╗
+║                      Live Poll (JSX)                          ║
+╠═══════════════════════════════════════════════════════════════╣
+║  http://localhost:${server.port}                                    ║
+║                                                               ║
+║  Session-based voting:                                        ║
+║  • Each session can vote once                                 ║
+║  • Votes sync across all connected tabs                       ║
+╚═══════════════════════════════════════════════════════════════╝
+`)
+
+process.on("SIGINT", async () => {
+  console.log("\nShutting down...")
+  await server.stop()
+  process.exit(0)
+})

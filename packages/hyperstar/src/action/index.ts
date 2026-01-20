@@ -12,6 +12,8 @@ export {
   type HeadServiceApi,
   // Descriptor type
   type ActionDescriptor,
+  // Minimal action type for component props
+  type Action,
   // Internal helpers (used by server.ts)
   createSimplifiedContext,
   createNoArgsAction,

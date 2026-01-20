@@ -1,9 +1,10 @@
 # Hyperstar
 
-> [!TIP]
-> **Built for Vibe Coding** - Optimized for LLM code generation with powerful server-driven capabilities and end-to-end type safety.
+> **Very Beta** - API changes frequently. Great for prototypes and fun real-time multiplayer apps.
 
-A minimal framework for building real-time web applications with server-side state. Think "Redux on the server" with automatic UI sync across all connected clients.
+A server-driven UI framework for Bun. Server owns state, clients sync automatically via SSE.
+
+**Real-time = all clients see the same store.** User A makes a change, User B sees it instantly.
 
 ## Core Concept
 
@@ -19,8 +20,8 @@ Store (server state, shared)  →  view(ctx) → HTML
 
 ## Architecture
 
-- **Server-side rendering**: UI builders (UI.div, UI.button, etc.) → HTML
-- **Real-time sync**: SSE streaming and DOM morphing
+- **JSX rendering**: Uses @kitajs/html with custom `$` prop for reactive attributes
+- **Real-time sync**: SSE streaming and Idiomorph DOM morphing
 - **State management**: Immutable updates via `ctx.update()`
 - **Validation**: Effect Schema for typed action args
 - **Runtime**: Built for Bun
@@ -29,37 +30,47 @@ Store (server state, shared)  →  view(ctx) → HTML
 
 ```
 packages/hyperstar/src/
-├── index.ts          # Main entry, exports createHyperstar, UI, on, $, Schema
+├── index.ts          # Main entry, exports createHyperstar, hs, Schema
 ├── server.ts         # Bun server, SSE handling, action dispatch, signal handles
+├── hs.ts             # HSBuilder and hs namespace for reactive attributes
+├── jsx-runtime.ts    # Custom JSX runtime for $ prop
+├── jsx.d.ts          # JSX type extensions
 ├── action/
 │   ├── index.ts      # Action creation and execution
 │   └── schema.ts     # Effect Schema integration
 ├── core/
 │   └── lifecycle.ts  # Lifecycle hooks (onStart, onConnect, etc.)
 ├── schedule/
-│   └── index.ts      # Scheduled tasks
+│   └── index.ts      # Timers, intervals, crons
 └── triggers/
-    └── index.ts      # Trigger system
+    └── index.ts      # Store change watchers
+
+packages/hyperstar-client/src/
+├── index.ts          # Main entry, Hyperstar global
+├── actions.ts        # dispatch() - send actions to server
+├── signals.ts        # Preact Signals for client state
+├── sse.ts            # SSE connection, auto-reconnect
+├── morph.ts          # Idiomorph for DOM diffing
+├── process.ts        # Process hs-* attributes
+└── expression.ts     # Evaluate expressions with signal context
 
 examples/
-├── counter.ts            # Basic counter
-├── todos.ts              # Full todo app with filters
-├── signal-test.ts        # Type-safe signals demo
-├── chat-room.ts          # Real-time multi-user chat
-├── llm-streaming.ts      # Streaming LLM responses
-├── poll.ts               # Voting with sessions
-├── grid-game.ts          # Multiplayer game
-├── persistent-notes.ts   # JSON file persistence
-├── sqlite-notes.ts       # SQLite persistence
-└── async-actions.ts      # Async action patterns
+├── simple-counter.tsx    # Minimal counter
+├── counter.tsx           # Counter with form input
+├── todos.tsx             # Full todo app with filters
+├── chat-room.tsx         # Real-time multi-user chat
+├── fps-jsx.tsx           # Timer/FPS stress test
+├── state-types.tsx       # Three-tier state demo
+├── persistent-notes.tsx  # JSON file persistence
+└── sqlite-notes.tsx      # SQLite persistence
 ```
 
 ## API Reference
 
 ### Creating an App
 
-```ts
-import { createHyperstar, UI, on, $, Schema } from "hyperstar"
+```tsx
+import { createHyperstar, hs, Schema } from "hyperstar"
 
 interface Todo {
   id: string
@@ -78,13 +89,13 @@ interface Signals {
 }
 
 // Create typed factory with Store, UserStore, and Signals type parameters
-const hs = createHyperstar<Store, {}, Signals>()
+const app = createHyperstar<Store, {}, Signals>()
 
 // Get typed signal handles
-const { filter, text, editingId } = hs.signals
+const { filter, text, editingId } = app.signals
 
 // Actions (server-side state changes)
-const addTodo = hs.action("addTodo", { text: Schema.String }, (ctx, { text: t }) => {
+const addTodo = app.action("addTodo", { text: Schema.String }, (ctx, { text: t }) => {
   ctx.update((s) => ({
     ...s,
     todos: [...s.todos, { id: crypto.randomUUID(), text: t, done: false }],
@@ -92,7 +103,7 @@ const addTodo = hs.action("addTodo", { text: Schema.String }, (ctx, { text: t })
   ctx.patchSignals({ text: "" }) // Clear input for triggering user only
 })
 
-const toggleTodo = hs.action("toggleTodo", { id: Schema.String }, (ctx, { id }) => {
+const toggleTodo = app.action("toggleTodo", { id: Schema.String }, (ctx, { id }) => {
   ctx.update((s) => ({
     ...s,
     todos: s.todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
@@ -100,56 +111,36 @@ const toggleTodo = hs.action("toggleTodo", { id: Schema.String }, (ctx, { id }) 
 })
 
 // App config
-hs.app({
+app.app({
   store: { todos: [] },
   signals: { filter: "all", text: "", editingId: null },
 
-  view: (ctx) => {
-    const activeCount = ctx.store.todos.filter((t) => !t.done).length
+  view: (ctx) => (
+    <div id="app">
+      {/* Form with signal binding */}
+      <form $={hs.form(addTodo)}>
+        <input name="text" $={hs.bind(text)} />
+        <button type="submit">Add</button>
+      </form>
 
-    return UI.div(
-      { attrs: { id: "app" } },
-
-      // Filter tabs - instant, no server roundtrip
-      UI.button(
-        {
-          attrs: { "hs-class": `${filter.is("all")} ? 'bg-blue-500' : ''` },
-          events: { click: on.signal("filter", $.str("all")) },
-        },
-        `All (${ctx.store.todos.length})`
-      ),
-
-      // Add form
-      UI.form(
-        {
-          events: {
-            submit: on.seq(
-              on.script("event.preventDefault()"),
-              on.action(addTodo, { text: $.signal("text") })
-            ),
-          },
-        },
-        UI.input({ attrs: { "hs-bind": "text" } }),
-        UI.button({ attrs: { type: "submit" } }, "Add")
-      ),
-
-      // Todo list with hybrid filtering
-      ...ctx.store.todos.map((todo) =>
-        UI.div(
-          {
-            attrs: {
-              id: `todo-${todo.id}`,
-              "hs-show": filter.is("all")
-                .or(filter.is("active").and(!todo.done))
-                .or(filter.is("done").and(todo.done))
-                .toString(),
-            },
-          },
-          todo.text
-        )
-      )
-    )
-  },
+      {/* Hybrid filtering (server data + client filter) */}
+      {ctx.store.todos.map((todo) => (
+        <div
+          id={`todo-${todo.id}`}
+          hs-show={filter.is("all")
+            .or(filter.is("active").and(!todo.done))
+            .or(filter.is("done").and(todo.done))}
+        >
+          <input
+            type="checkbox"
+            checked={todo.done}
+            $={hs.action(toggleTodo, { id: todo.id })}
+          />
+          {todo.text}
+        </div>
+      ))}
+    </div>
+  ),
 }).serve({ port: 3000 })
 ```
 
@@ -157,7 +148,7 @@ hs.app({
 
 Signals are defined as a type parameter and values provided in `app()`:
 
-```ts
+```tsx
 interface Signals {
   // Simple types
   isAdding: boolean
@@ -171,13 +162,13 @@ interface Signals {
   editingId: string | null
 }
 
-const hs = createHyperstar<Store, {}, Signals>()
+const app = createHyperstar<Store, {}, Signals>()
 
 // Get typed signal handles
-const { isAdding, text, filter, editingId } = hs.signals
+const { isAdding, text, filter, editingId } = app.signals
 
 // Provide default values
-hs.app({
+app.app({
   store: { ... },
   signals: {
     isAdding: false,
@@ -194,48 +185,40 @@ hs.app({
 
 Signal handles produce client-side JavaScript expressions:
 
-```ts
-// Boolean signal
-isAdding.toggle()         // "$isAdding.value = !$isAdding.value"
-isAdding.setTrue()        // "$isAdding.value = true"
-isAdding.setFalse()       // "$isAdding.value = false"
-isAdding.not()            // "!$isAdding.value"
-
+```tsx
 // String/enum signal
-filter.is("active")       // "$filter.value === 'active'"
-filter.isNot("done")      // "$filter.value !== 'done'"
-text.isEmpty()            // "$text.value === ''"
-text.isNotEmpty()         // "$text.value !== ''"
+filter.is("active")        // "$filter.value === 'active'"
+filter.isNot("done")       // "$filter.value !== 'done'"
+text.isEmpty()             // "$text.value === ''"
+text.isNotEmpty()          // "$text.value !== ''"
 
 // Number signal
-count.gt(5)               // "$count.value > 5"
-count.gte(5)              // "$count.value >= 5"
-count.lt(10)              // "$count.value < 10"
-count.eq(0)               // "$count.value === 0"
+count.gt(5)                // "$count.value > 5"
+count.gte(5)               // "$count.value >= 5"
+count.lt(10)               // "$count.value < 10"
+count.eq(0)                // "$count.value === 0"
 
 // Nullable signal
-editingId.is("abc")       // "$editingId.value === 'abc'"
-editingId.isNot("x")      // "$editingId.value !== 'x'"
-editingId.isNull()        // "$editingId.value === null"
-editingId.isNotNull()     // "$editingId.value !== null"
+editingId.is("abc")        // "$editingId.value === 'abc'"
+editingId.isNot("x")       // "$editingId.value !== 'x'"
+editingId.isNull()         // "$editingId.value === null"
+editingId.isNotNull()      // "$editingId.value !== null"
 ```
 
 ### Expression Composition
 
 Expressions compose with `.and()`, `.or()`, `.not()`:
 
-```ts
-const { filter, count, isOpen } = hs.signals
-
-// Logical AND
+```tsx
+// AND
 filter.is("active").and(count.gt(0))
 // → "($filter.value === 'active') && ($count.value > 0)"
 
-// Logical OR
+// OR
 isOpen.or(filter.is("all"))
 // → "($isOpen.value) || ($filter.value === 'all')"
 
-// Negation
+// NOT
 isOpen.not()
 // → "!($isOpen.value)"
 
@@ -244,109 +227,159 @@ filter.is("active").and(!todo.done)
 // → "($filter.value === 'active') && false"
 ```
 
-### UI Builders
+### JSX with the `$` Prop
 
-Build HTML with `UI.*` functions:
+The `$` prop takes an `hs.*` helper that adds reactive attributes:
 
-```ts
-// Basic elements
-UI.div({ attrs: { id: "app", class: "container" } }, ...children)
-UI.span({}, "text content")
-UI.button({ events: { click: handler } }, "Click me")
-UI.input({ attrs: { type: "text", "hs-bind": "signalName" } })
-UI.form({ events: { submit: handler } }, ...children)
+```tsx
+// Trigger action on click
+<button $={hs.action(increment)}>+1</button>
 
-// Special attributes
-UI.div({
-  attrs: {
-    "hs-show": expression.toString(),      // Conditional visibility
-    "hs-class": "`${expr} ? 'a' : 'b'`",   // Dynamic classes
-    "hs-bind": "signalName",                // Two-way binding
-  }
-})
+// Action with arguments
+<button $={hs.action(deleteTodo, { id: todo.id })}>Delete</button>
 
-// Conditional rendering (server-side)
-condition ? UI.div({}, "shown") : UI.empty()
+// Form submission
+<form $={hs.form(addTodo)}>
+  <input name="text" $={hs.bind(text)} />
+  <button type="submit">Add</button>
+</form>
 
-// Lists
-...items.map(item => UI.li({ attrs: { id: item.id } }, item.text))
+// Conditional visibility
+<div $={hs.show(isVisible)}>Shown when visible</div>
 
-// Fragments
-UI.fragment(UI.h1({}, "Title"), UI.p({}, "Content"))
+// Dynamic classes
+<div $={hs.class("active", isActive)}>...</div>
+
+// Chaining
+<div $={hs.show(isVisible).class("active", isActive)}>...</div>
 ```
 
-### Event Handlers (`on.*`)
+### hs Namespace
 
-```ts
+```tsx
+hs.action(action, args?)       // Trigger action on click
+hs.form(action, args?)         // Submit form to action
+hs.bind(signal)                // Two-way bind signal to input
+hs.show(condition)             // Show/hide element
+hs.class(className, condition) // Toggle CSS class
+hs.attr(attrName, condition)   // Set attribute based on condition
+hs.disabled(condition)         // Disable element
+hs.on(event, handler, mods?)   // Bind event to expression
+hs.expr(code)                  // Create client-side expression
+hs.compose(...builders)        // Compose multiple builders
+```
+
+### Direct Attributes
+
+You can also use `hs-*` attributes directly:
+
+```tsx
+// Direct signal update
+<button hs-on:click="$tab.value = 'home'">Home</button>
+
+// Show/hide
+<div hs-show={tab.is("home")}>Home content</div>
+
+// Dynamic class
+<button hs-class:bg-blue-500={filter.is("all")}>All</button>
+```
+
+### Event Handlers
+
+```tsx
 // Server actions
-on.action(myAction)                              // Dispatch action
-on.action(myAction, { id: "123" })               // With static args
-on.action(myAction, { text: $.signal("input") }) // With signal value
+<button $={hs.action(myAction)}>Click</button>
+<button $={hs.action(myAction, { id: "123" })}>With static args</button>
+<button $={hs.action(myAction, { amount: hs.expr("parseInt($amount.value)") })}>With expr</button>
 
-// Client-side signal updates
-on.signal("tab", $.str("home"))        // Set string
-on.signal("count", $.num(0))           // Set number
-on.signal("isOpen", $.bool(true))      // Set boolean
-on.signal("editingId", $.null())       // Set null
+// Form submission
+<form $={hs.form(submitForm)}>...</form>
 
-// Sequences
-on.seq(
-  on.script("event.preventDefault()"),
-  on.action(submitForm, { text: $.signal("input") })
-)
-
-// Prevent default
-on.prevent(on.action(toggle, { id }))
+// Direct event binding
+<button hs-on:click="$tab.value = 'home'">Home</button>
+<button hs-on:click__debounce_300ms="...">Debounced</button>
 ```
 
 ### Lifecycle Hooks
 
-```ts
-hs.app({
-  store: { ... },
+```tsx
+app.app({
+  store: { online: 0 },
 
-  onStart({ spawn, update }) {
-    spawn(async (ctx) => {
-      while (!ctx.signal.aborted) {
-        await Bun.sleep(1000)
-        ctx.update((s) => ({ ...s, timer: s.timer + 1 }))
-      }
-    })
+  onStart: (ctx) => {
+    console.log("Server started")
   },
 
-  onConnect({ session, update }) {
-    update((s) => ({ ...s, onlineCount: s.onlineCount + 1 }))
+  onConnect: (ctx) => {
+    ctx.update((s) => ({ ...s, online: s.online + 1 }))
   },
 
-  onDisconnect({ session, update }) {
-    update((s) => ({ ...s, onlineCount: s.onlineCount - 1 }))
+  onDisconnect: (ctx) => {
+    ctx.update((s) => ({ ...s, online: s.online - 1 }))
   },
 
-  view: (ctx) => { ... },
+  view: (ctx) => ...
+})
+```
+
+### Timers
+
+High-frequency state updates for games and animations:
+
+```tsx
+app.timer("gameLoop", {
+  interval: 16,                   // ms (~60fps)
+  when: (s) => s.running,         // Only run when condition is true
+  trackFps: true,                 // Enable FPS tracking
+  handler: (ctx) => {
+    ctx.update((s) => ({
+      ...s,
+      frame: s.frame + 1,
+      fps: ctx.fps,
+    }))
+  },
+})
+```
+
+### Intervals
+
+```tsx
+app.interval("heartbeat", {
+  every: "5 seconds",             // or: "1 minute", 5000 (ms)
+  handler: (ctx) => {
+    ctx.update((s) => ({ ...s, lastPing: Date.now() }))
+  },
+})
+```
+
+### Crons
+
+```tsx
+app.cron("cleanup", {
+  schedule: "0 * * * *",          // Cron expression or "1 hour"
+  handler: (ctx) => {
+    ctx.update((s) => ({ ...s, messages: s.messages.slice(-100) }))
+  },
 })
 ```
 
 ### Persistence
 
-```ts
-hs.app({
+```tsx
+app.app({
   store: { todos: [] },
   persist: "./data/todos.json",  // Auto-save on changes
-  view: (ctx) => { ... },
+  view: (ctx) => ...
 })
 ```
 
-### Dynamic Title & Favicon
+### Dynamic Title
 
-```ts
-hs.app({
+```tsx
+app.app({
   store: { unreadCount: 0 },
-
   title: ({ store }) =>
-    store.unreadCount > 0
-      ? `(${store.unreadCount}) My App`
-      : "My App",
-
+    store.unreadCount > 0 ? `(${store.unreadCount}) My App` : "My App",
   view: ...
 })
 ```
@@ -355,8 +388,8 @@ hs.app({
 
 Actions can patch signals for the triggering user only:
 
-```ts
-const addTodo = hs.action("addTodo", { text: Schema.String }, (ctx, { text }) => {
+```tsx
+const addTodo = app.action("addTodo", { text: Schema.String }, (ctx, { text }) => {
   ctx.update((s) => ({
     ...s,
     todos: [...s.todos, { id: crypto.randomUUID(), text, done: false }],
@@ -372,7 +405,7 @@ const addTodo = hs.action("addTodo", { text: Schema.String }, (ctx, { text }) =>
 
 Uses Effect Schema for type-safe validation:
 
-```ts
+```tsx
 import { Schema } from "hyperstar"
 
 // Primitives
@@ -385,16 +418,26 @@ Schema.Boolean
 
 // Arrays
 Schema.Array(Schema.String)
+
+// With constraints
+Schema.String.pipe(Schema.minLength(1))
 ```
 
 ## How Store vs Signals Work
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ ctx.store (Server State)                                    │
+│ ctx.store (Server State - Shared)                           │
 │ • Shared across ALL connected clients                       │
 │ • Changes broadcast via SSE to everyone                     │
 │ • Persisted (optionally)                                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ ctx.userStore (Server State - Per-Session)                  │
+│ • Private to each session                                   │
+│ • Stored on server, survives page reload                    │
+│ • Perfect for: theme, settings, voting state                │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -409,8 +452,8 @@ Schema.Array(Schema.String)
 
 ```bash
 # Run an example
-bun run examples/counter.ts
-bun run examples/todos.ts
+bun --hot examples/simple-counter.tsx
+bun --hot examples/todos.tsx
 
 # Type check
 bun run check
@@ -420,6 +463,7 @@ bun run check
 
 1. `packages/hyperstar/src/index.ts` - Factory pattern, exports
 2. `packages/hyperstar/src/server.ts` - HTTP server, SSE streaming, signal handles
-3. `packages/hyperstar/src/action/index.ts` - Action creation and execution
-4. `examples/counter.ts` - Simple counter example
-5. `examples/todos.ts` - Complete todo app with all patterns
+3. `packages/hyperstar/src/hs.ts` - HSBuilder and hs namespace
+4. `packages/hyperstar/src/action/index.ts` - Action creation and execution
+5. `examples/simple-counter.tsx` - Minimal example
+6. `examples/todos.tsx` - Complete todo app with all patterns
