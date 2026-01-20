@@ -291,6 +291,12 @@ export interface HyperstarConfig<S extends object, U extends object, Signals ext
   /** Favicon - string path or derived function */
   readonly favicon?: string | ((ctx: { store: S; userStore: U }) => string)
   readonly persist?: string | { path: string; debounceMs?: number }
+  /**
+   * Auto-pause background tasks when no clients are connected.
+   * Allows Sprites to hibernate and reduce billing.
+   * @default true
+   */
+  readonly autoPauseWhenIdle?: boolean
   readonly onStart?: (ctx: LifecycleContext<S>) => void
   readonly onConnect?: (ctx: { session: Session; store: S; update: (fn: (s: S) => S) => void }) => void
   readonly onDisconnect?: (ctx: { session: Session; store: S; update: (fn: (s: S) => S) => void }) => void
@@ -536,6 +542,31 @@ export const createHyperstar = <
       const signalState = new Map<string, Record<string, unknown>>()
       const userStores = new Map<string, U>()
       const defaultUserStore = config.userStore ?? ({} as U)
+
+      // Idle state tracking for auto-pause
+      let isIdle = true  // Start idle (no clients yet)
+
+      // Forward declarations for pause/resume functions (defined after startScheduledTasks)
+      let pauseBackgroundTasks: () => void
+      let resumeBackgroundTasks: () => void
+
+      const checkIdleState = () => {
+        const autoPause = config.autoPauseWhenIdle ?? true
+        if (!autoPause) return
+
+        const wasIdle = isIdle
+        isIdle = sseClients.size === 0
+
+        if (wasIdle !== isIdle) {
+          if (isIdle) {
+            console.log('🌙 No active clients - pausing background tasks for hibernation')
+            pauseBackgroundTasks()
+          } else {
+            console.log('☀️  Client connected - resuming background tasks')
+            resumeBackgroundTasks()
+          }
+        }
+      }
 
       // Handles for cleanup
       const timerHandles = new Map<string, TimerHandle>()
@@ -828,6 +859,7 @@ export const createHyperstar = <
           const stream = new ReadableStream({
             start(controller) {
               sseClients.set(connectionId, { controller, session, connectionId })
+              checkIdleState()  // Check if we went from idle to active
               config.onConnect?.({ session, store: getStore(), update: updateStore })
               controller.enqueue(new TextEncoder().encode(": connected\n\n"))
             },
@@ -839,6 +871,7 @@ export const createHyperstar = <
                 cleanupSession(session.id)
               }
               config.onDisconnect?.({ session, store: getStore(), update: updateStore })
+              checkIdleState()  // Check if we went from active to idle
             },
           })
           return new Response(stream, {
@@ -1092,6 +1125,31 @@ export const createHyperstar = <
             },
           }
           cronHandles.set(id, handle)
+        }
+      }
+
+      // Implement pause/resume functions for idle detection
+      pauseBackgroundTasks = () => {
+        for (const timer of timerHandles.values()) {
+          if (timer.isRunning) timer.stop()
+        }
+        for (const interval of intervalHandles.values()) {
+          if (interval.isRunning) interval.stop()
+        }
+        for (const cron of cronHandles.values()) {
+          if (!cron.isPaused) cron.pause()
+        }
+      }
+
+      resumeBackgroundTasks = () => {
+        for (const timer of timerHandles.values()) {
+          if (!timer.isRunning) timer.start()
+        }
+        for (const interval of intervalHandles.values()) {
+          if (!interval.isRunning) interval.start()
+        }
+        for (const cron of cronHandles.values()) {
+          if (cron.isPaused) cron.resume()
         }
       }
 

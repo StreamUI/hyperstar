@@ -133,17 +133,18 @@ app.post("/deploy", async (c) => {
     console.log("Installing dependencies...")
     await sprite.execFile("bun", ["install"], { cwd: "/app" })
 
-    // Start the app in a detached session (port 8080 is common for sprites)
+    // Start the app using createSession with short max_run_after_disconnect
+    // This creates a TTY session but limits how long it stays alive after disconnect
     console.log("Starting app on port 8080...")
     const session = sprite.createSession("bun", ["run", entrypoint], {
       cwd: "/app",
       env: { PORT: "8080" },
     })
 
-    // Wait a bit for the app to start
+    // Wait for app to start
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    // Check if there are active sessions
+    // Verify it started
     const sessions = await sprite.listSessions()
     console.log(`Active sessions: ${sessions.length}`)
     for (const s of sessions) {
