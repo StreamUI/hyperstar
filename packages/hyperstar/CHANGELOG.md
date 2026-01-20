@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.4.0
+
+### Minor Changes
+
+- Brought back jsx
+
 ## 0.2.1
 
 ### Patch Changes
