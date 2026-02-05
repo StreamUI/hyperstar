@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.8.0
+
+### Minor Changes
+
+- 7241899: fix bundle
+
 ## 0.7.0
 
 ### Minor Changes
