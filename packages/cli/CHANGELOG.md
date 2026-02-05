@@ -1,5 +1,23 @@
 # hyperstar-cli
 
+## 0.4.2
+
+### Patch Changes
+
+- Fix dev script to use app.tsx instead of app.ts
+
+## 0.4.1
+
+### Patch Changes
+
+- Dynamically fetch latest hyperstar version when scaffolding new projects
+
+## 0.4.0
+
+### Minor Changes
+
+- f4036ac: fix cli
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "hyperstar-cli",
-  "version": "0.3.0",
+  "version": "0.4.2",
   "description": "CLI for Hyperstar - server-driven UI for real-time web apps",
   "type": "module",
   "bin": {
@@ -21,14 +21,14 @@
     "name": "Jordan Howlett",
     "email": "jordan@howlett.io"
   },
-  "homepage": "https://github.com/longtailLABS/hyperstar",
+  "homepage": "https://github.com/StreamUI/hyperstar",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/longtailLABS/hyperstar.git",
+    "url": "git+https://github.com/StreamUI/hyperstar.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/longtailLABS/hyperstar/issues"
+    "url": "https://github.com/StreamUI/hyperstar/issues"
   },
   "keywords": [
     "hyperstar",

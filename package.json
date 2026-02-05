@@ -7,16 +7,17 @@
     "name": "Jordan Howlett",
     "email": "jordan@howlett.io"
   },
-  "homepage": "https://github.com/longtailLABS/hyperstar",
+  "homepage": "https://github.com/StreamUI/hyperstar",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/longtailLABS/hyperstar.git"
+    "url": "git+https://github.com/StreamUI/hyperstar.git"
   },
   "license": "MIT",
   "workspaces": [
     "packages/hyperstar",
     "packages/cli",
-    "packages/server"
+    "packages/server",
+    "examples/hn-uncensored"
   ],
   "scripts": {
     "dev": "bun --hot examples/counter.ts",

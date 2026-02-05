@@ -36,14 +36,24 @@ const isDev = process.env.NODE_ENV !== "production"
 
 /**
  * Get the bundled hyperstar-client script.
- * Lazily bundles on first request and caches the result.
+ * Priority:
+ * 1. Use pre-bundled dist/hyperstar.min.js (for npm installs)
+ * 2. Bundle from source at runtime (for monorepo development)
+ * 3. Fallback to inline ESM imports
  */
 async function getClientBundle(): Promise<string> {
   // In dev mode, always rebuild to pick up changes
   if (clientBundleCache && !isDev) return clientBundleCache
 
+  // Try pre-bundled file first (for npm installs)
+  const preBundledPath = path.resolve(__dirname, "../dist/hyperstar.min.js")
+  if (fs.existsSync(preBundledPath)) {
+    clientBundleCache = fs.readFileSync(preBundledPath, "utf-8")
+    return clientBundleCache
+  }
+
   try {
-    // Find the hyperstar-client package
+    // Fall back to runtime bundling (for monorepo development)
     const clientEntry = path.resolve(__dirname, "../../hyperstar-client/src/index.ts")
 
     // Bundle with Bun
@@ -1291,7 +1301,7 @@ export const createHyperstar = <
             idleTimeout: 255, // Max value (255 seconds) - SSE needs long-lived connections
           })
           const actualPort = server.port ?? port
-          console.log(`🌟 Hyperstar v3 running at http://localhost:${actualPort}`)
+          console.log(`🌟 Hyperstar running at http://localhost:${actualPort}`)
 
           // Handle graceful shutdown signals (for Sprites hibernation, Ctrl+C, etc.)
           const app = {

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "bun --hot app.ts",
-    "start": "bun app.ts"
+    "dev": "bun --hot app.tsx",
+    "start": "bun app.tsx"
   },
   "dependencies": {
-    "hyperstar": "^0.1.0"
+    "hyperstar": "latest"
   },
   "devDependencies": {
     "@types/bun": "latest",
