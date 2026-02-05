@@ -1,5 +1,11 @@
 # hyperstar-cli
 
+## 0.4.1
+
+### Patch Changes
+
+- Dynamically fetch latest hyperstar version when scaffolding new projects
+
 ## 0.4.0
 
 ### Minor Changes

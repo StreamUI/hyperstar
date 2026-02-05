@@ -1,0 +1,7024 @@
+{
+  "items": {
+    "46835677": {
+      "id": 46835677,
+      "title": "Why S7 Scheme? (2020)",
+      "points": 64,
+      "user": "bmacho",
+      "time": 1769859336,
+      "time_ago": "5 days ago",
+      "comments_count": 18,
+      "type": "link",
+      "url": "https://iainctduncan.github.io/scheme-for-max-docs/s7.html",
+      "domain": "iainctduncan.github.io"
+    },
+    "46839036": {
+      "id": 46839036,
+      "title": "Improving Unnesting of Complex Queries [pdf]",
+      "points": 26,
+      "user": "todsacerdoti",
+      "time": 1769882967,
+      "time_ago": "5 days ago",
+      "comments_count": 4,
+      "type": "link",
+      "url": "https://15799.courses.cs.cmu.edu/spring2025/papers/11-unnesting/neumann-btw2025.pdf",
+      "domain": "15799.courses.cs.cmu.edu"
+    },
+    "46840558": {
+      "id": 46840558,
+      "title": "Brazilian Micro-SaaS Map",
+      "points": 93,
+      "user": "acfilho",
+      "time": 1769891751,
+      "time_ago": "5 days ago",
+      "comments_count": 4,
+      "type": "link",
+      "url": "https://saas-map.ssr.trapiche.cloud/",
+      "domain": "saas-map.ssr.trapiche.cloud"
+    },
+    "46841897": {
+      "id": 46841897,
+      "title": "150 MB Minimal FreeBSD Installation",
+      "points": 108,
+      "user": "vermaden",
+      "time": 1769901330,
+      "time_ago": "5 days ago",
+      "comments_count": 16,
+      "type": "link",
+      "url": "https://vermaden.wordpress.com/2026/02/01/150-mb-minimal-freebsd-installation/",
+      "domain": "vermaden.wordpress.com"
+    },
+    "46842288": {
+      "id": 46842288,
+      "title": "High-Altitude Adventure with a DIY Pico Balloon",
+      "points": 123,
+      "user": "jnord",
+      "time": 1769904895,
+      "time_ago": "5 days ago",
+      "comments_count": 58,
+      "type": "link",
+      "url": "https://spectrum.ieee.org/explore-stratosphere-diy-pico-balloon",
+      "domain": "spectrum.ieee.org"
+    },
+    "46844301": {
+      "id": 46844301,
+      "title": "Fela Kuti First African to Get Grammys Lifetime Achievement Award",
+      "points": 103,
+      "user": "defrost",
+      "time": 1769931414,
+      "time_ago": "5 days ago",
+      "comments_count": 24,
+      "type": "link",
+      "url": "https://www.aljazeera.com/news/2026/2/1/fela-kuti-becomes-first-african-to-get-grammys-lifetime-achievement-award",
+      "domain": "aljazeera.com"
+    },
+    "46844393": {
+      "id": 46844393,
+      "title": "A Broken Heart",
+      "points": 139,
+      "user": "memalign",
+      "time": 1769932686,
+      "time_ago": "5 days ago",
+      "comments_count": 38,
+      "type": "link",
+      "url": "https://allenpike.com/2026/a-broken-heart/",
+      "domain": "allenpike.com"
+    },
+    "46844511": {
+      "id": 46844511,
+      "title": "CG/SQL – SQL dialect compiler to C for sqlite3 mimicking stored procedures",
+      "points": 22,
+      "user": "linkdd",
+      "time": 1769934330,
+      "time_ago": "5 days ago",
+      "comments_count": 8,
+      "type": "link",
+      "url": "https://ricomariani.github.io/CG-SQL-author/",
+      "domain": "ricomariani.github.io"
+    },
+    "46845203": {
+      "id": 46845203,
+      "title": "Listen to Understand",
+      "points": 113,
+      "user": "bradwoodsio",
+      "time": 1769942979,
+      "time_ago": "4 days ago",
+      "comments_count": 24,
+      "type": "link",
+      "url": "https://talk.bradwoods.io/blog/listen-to-understand/",
+      "domain": "talk.bradwoods.io"
+    },
+    "46845239": {
+      "id": 46845239,
+      "title": "Sqldef: Idempotent schema management tool for MySQL, PostgreSQL, SQLite",
+      "points": 252,
+      "user": "Palmik",
+      "time": 1769943402,
+      "time_ago": "4 days ago",
+      "comments_count": 52,
+      "type": "link",
+      "url": "https://sqldef.github.io/",
+      "domain": "sqldef.github.io"
+    },
+    "46845296": {
+      "id": 46845296,
+      "title": "OpenClaw: When AI Agents Get Full System Access. Security nightmare?",
+      "points": 6,
+      "user": "i-blis",
+      "time": 1769943989,
+      "time_ago": "4 days ago",
+      "comments_count": 2,
+      "type": "link",
+      "url": "https://innfactory.ai:443/en/blog/openclaw-ai-agent-security/",
+      "domain": "innfactory.ai"
+    },
+    "46845617": {
+      "id": 46845617,
+      "title": "Data Poems",
+      "points": 45,
+      "user": "putzdown",
+      "time": 1769947577,
+      "time_ago": "4 days ago",
+      "comments_count": 7,
+      "type": "link",
+      "url": "https://dr.eamer.dev/datavis/poems/",
+      "domain": "dr.eamer.dev"
+    },
+    "46845642": {
+      "id": 46845642,
+      "title": "Remarkable Pro Colors",
+      "points": 133,
+      "user": "ffaser5gxlsll",
+      "time": 1769947920,
+      "time_ago": "4 days ago",
+      "comments_count": 57,
+      "type": "link",
+      "url": "https://www.thregr.org/wavexx/rnd/20260201-remarkable_pro_colors/",
+      "domain": "thregr.org"
+    },
+    "46845790": {
+      "id": 46845790,
+      "title": "Simply Scheme: Introducing Computer Science (1999)",
+      "points": 91,
+      "user": "AlexeyBrin",
+      "time": 1769949330,
+      "time_ago": "4 days ago",
+      "comments_count": 31,
+      "type": "link",
+      "url": "https://people.eecs.berkeley.edu/~bh/ss-toc2.html",
+      "domain": "people.eecs.berkeley.edu"
+    },
+    "46845845": {
+      "id": 46845845,
+      "title": "Claude Code: connect to a local model when your quota runs out",
+      "points": 374,
+      "user": "fugu2",
+      "time": 1769949821,
+      "time_ago": "4 days ago",
+      "comments_count": 197,
+      "type": "link",
+      "url": "https://boxc.net/blog/2026/claude-code-connecting-to-local-models-when-your-quota-runs-out/",
+      "domain": "boxc.net"
+    },
+    "46846101": {
+      "id": 46846101,
+      "title": "Resurrecting Crimsonland – Decompiling and preserving a cult 2003 classic game",
+      "points": 167,
+      "user": "banteg",
+      "time": 1769952778,
+      "time_ago": "4 days ago",
+      "comments_count": 45,
+      "type": "link",
+      "url": "https://banteg.xyz/posts/crimsonland/",
+      "domain": "banteg.xyz"
+    },
+    "46846940": {
+      "id": 46846940,
+      "title": "Programming Patterns: The Story of the Jacquard Loom",
+      "points": 69,
+      "user": "andsoitis",
+      "time": 1769960595,
+      "time_ago": "4 days ago",
+      "comments_count": 26,
+      "type": "link",
+      "url": "https://www.scienceandindustrymuseum.org.uk/objects-and-stories/jacquard-loom",
+      "domain": "scienceandindustrymuseum.org.uk"
+    },
+    "46847297": {
+      "id": 46847297,
+      "title": "There Will Come Soft Rains (1950) [pdf]",
+      "points": 81,
+      "user": "wallflower",
+      "time": 1769963476,
+      "time_ago": "4 days ago",
+      "comments_count": 21,
+      "type": "link",
+      "url": "https://www.btboces.org/Downloads/7_There%20Will%20Come%20Soft%20Rains%20by%20Ray%20Bradbury.pdf",
+      "domain": "btboces.org"
+    },
+    "46847603": {
+      "id": 46847603,
+      "title": "I built a search engine to index the un-indexable parts of Telegram",
+      "points": 46,
+      "user": "alenmangattu",
+      "time": 1769965967,
+      "time_ago": "4 days ago",
+      "comments_count": 12,
+      "type": "link",
+      "url": "https://telehunt.org",
+      "domain": "telehunt.org"
+    },
+    "46847690": {
+      "id": 46847690,
+      "title": "Show HN: Craftplan – I built my wife a production management tool for her bakery",
+      "points": 558,
+      "user": "deofoo",
+      "time": 1769966739,
+      "time_ago": "4 days ago",
+      "comments_count": 163,
+      "type": "link",
+      "url": "https://github.com/puemos/craftplan",
+      "domain": "github.com"
+    },
+    "46848077": {
+      "id": 46848077,
+      "title": "Triton Bespoke Layouts",
+      "points": 8,
+      "user": "matt_d",
+      "time": 1769969861,
+      "time_ago": "4 days ago",
+      "comments_count": 0,
+      "type": "link",
+      "url": "https://www.lei.chat/posts/triton-bespoke-layouts/",
+      "domain": "lei.chat"
+    },
+    "46848876": {
+      "id": 46848876,
+      "title": "Lessons learned shipping 500 units of my first hardware product",
+      "points": 815,
+      "user": "sberens",
+      "time": 1769976060,
+      "time_ago": "4 days ago",
+      "comments_count": 402,
+      "type": "link",
+      "url": "https://www.simonberens.com/p/lessons-learned-shipping-500-units",
+      "domain": "simonberens.com"
+    },
+    "46849753": {
+      "id": 46849753,
+      "title": "Lily Programming Language",
+      "points": 68,
+      "user": "FascinatedBox",
+      "time": 1769982792,
+      "time_ago": "4 days ago",
+      "comments_count": 44,
+      "type": "link",
+      "url": "https://lily-lang.org",
+      "domain": "lily-lang.org"
+    },
+    "46855057": {
+      "id": 46855057,
+      "title": "Making Ferrite Core Inductors at Home",
+      "points": 93,
+      "user": "hasheddan",
+      "time": 1770034066,
+      "time_ago": "3 days ago",
+      "comments_count": 30,
+      "type": "link",
+      "url": "https://danielmangum.com/posts/making-ferrite-core-inductors-home/",
+      "domain": "danielmangum.com"
+    },
+    "46862574": {
+      "id": 46862574,
+      "title": "Adobe Animate will be discontinued",
+      "points": 69,
+      "user": "g0ld3nrati0",
+      "time": 1770070442,
+      "time_ago": "3 days ago",
+      "comments_count": 56,
+      "type": "link",
+      "url": "https://helpx.adobe.com/uk/animate/kb/end-of-life.html",
+      "domain": "helpx.adobe.com"
+    },
+    "46867018": {
+      "id": 46867018,
+      "title": "An interactive version of Byrne's The Elements of Euclid (1847)",
+      "points": 86,
+      "user": "tzury",
+      "time": 1770097796,
+      "time_ago": "3 days ago",
+      "comments_count": 21,
+      "type": "link",
+      "url": "https://c82.net/euclid/",
+      "domain": "c82.net"
+    },
+    "46867526": {
+      "id": 46867526,
+      "title": "MenuetOS – a GUI OS that boots from a single floppy disk",
+      "points": 41,
+      "user": "pjerem",
+      "time": 1770102214,
+      "time_ago": "3 days ago",
+      "comments_count": 6,
+      "type": "link",
+      "url": "https://www.menuetos.net/",
+      "domain": "menuetos.net"
+    },
+    "46868998": {
+      "id": 46868998,
+      "title": "X offices raided in France as UK opens fresh investigation into Grok",
+      "points": 586,
+      "user": "vikaveri",
+      "time": 1770113332,
+      "time_ago": "2 days ago",
+      "comments_count": 1102,
+      "type": "link",
+      "url": "https://www.bbc.com/news/articles/ce3ex92557jo",
+      "domain": "bbc.com"
+    },
+    "46871173": {
+      "id": 46871173,
+      "title": "Agent Skills",
+      "points": 529,
+      "user": "mooreds",
+      "time": 1770127794,
+      "time_ago": "2 days ago",
+      "comments_count": 256,
+      "type": "link",
+      "url": "https://agentskills.io/home",
+      "domain": "agentskills.io"
+    },
+    "46872540": {
+      "id": 46872540,
+      "title": "New York’s budget bill would require “blocking technology” on all 3D printers",
+      "points": 667,
+      "user": "ptorrone",
+      "time": 1770133902,
+      "time_ago": "2 days ago",
+      "comments_count": 808,
+      "type": "link",
+      "url": "https://blog.adafruit.com/2026/02/03/new-york-wants-to-ctrlaltdelete-your-3d-printer/",
+      "domain": "blog.adafruit.com"
+    },
+    "46876105": {
+      "id": 46876105,
+      "title": "Data centers in space makes no sense",
+      "points": 1090,
+      "user": "ajyoon",
+      "time": 1770147450,
+      "time_ago": "2 days ago",
+      "comments_count": 1305,
+      "type": "link",
+      "url": "https://civai.org/blog/space-data-centers",
+      "domain": "civai.org"
+    },
+    "46877278": {
+      "id": 46877278,
+      "title": "Tractor",
+      "points": 203,
+      "user": "surprisetalk",
+      "time": 1770152699,
+      "time_ago": "2 days ago",
+      "comments_count": 62,
+      "type": "link",
+      "url": "https://incoherency.co.uk/blog/stories/tractor.html",
+      "domain": "incoherency.co.uk"
+    },
+    "46886191": {
+      "id": 46886191,
+      "title": "Guinea worm on track to be 2nd eradicated human disease; only 10 cases in 2025",
+      "points": 309,
+      "user": "bookofjoe",
+      "time": 1770215225,
+      "time_ago": "a day ago",
+      "comments_count": 147,
+      "type": "link",
+      "url": "https://arstechnica.com/health/2026/02/guinea-worm-on-track-to-be-2nd-eradicated-human-disease-only-10-cases-in-2025/",
+      "domain": "arstechnica.com"
+    },
+    "46886440": {
+      "id": 46886440,
+      "title": "A case study in PDF forensics: The Epstein PDFs",
+      "points": 386,
+      "user": "DuffJohnson",
+      "time": 1770216406,
+      "time_ago": "a day ago",
+      "comments_count": 223,
+      "type": "link",
+      "url": "https://pdfa.org/a-case-study-in-pdf-forensics-the-epstein-pdfs/",
+      "domain": "pdfa.org"
+    },
+    "46886735": {
+      "id": 46886735,
+      "title": "Voxtral Transcribe 2",
+      "points": 968,
+      "user": "meetpateltech",
+      "time": 1770217697,
+      "time_ago": "a day ago",
+      "comments_count": 236,
+      "type": "link",
+      "url": "https://mistral.ai/news/voxtral-transcribe-2",
+      "domain": "mistral.ai"
+    },
+    "46887326": {
+      "id": 46887326,
+      "title": "Arcan-A12: Weaving a Different Web",
+      "points": 65,
+      "user": "ingenieroariel",
+      "time": 1770220250,
+      "time_ago": "a day ago",
+      "comments_count": 18,
+      "type": "link",
+      "url": "https://www.divergent-desktop.org/blog/2026/01/26/a12web/",
+      "domain": "divergent-desktop.org"
+    },
+    "46887564": {
+      "id": 46887564,
+      "title": "Microsoft's Copilot chatbot is running into problems",
+      "points": 285,
+      "user": "fortran77",
+      "time": 1770221335,
+      "time_ago": "a day ago",
+      "comments_count": 360,
+      "type": "link",
+      "url": "https://www.wsj.com/tech/ai/microsofts-pivotal-ai-product-is-running-into-big-problems-ce235b28",
+      "domain": "wsj.com"
+    },
+    "46887893": {
+      "id": 46887893,
+      "title": "Postgres Postmaster does not scale",
+      "points": 123,
+      "user": "davidgu",
+      "time": 1770222651,
+      "time_ago": "a day ago",
+      "comments_count": 83,
+      "type": "link",
+      "url": "https://www.recall.ai/blog/postgres-postmaster-does-not-scale",
+      "domain": "recall.ai"
+    },
+    "46888142": {
+      "id": 46888142,
+      "title": "RS-SDK: Drive RuneScape with Claude Code",
+      "points": 119,
+      "user": "evakhoury",
+      "time": 1770223646,
+      "time_ago": "a day ago",
+      "comments_count": 42,
+      "type": "link",
+      "url": "https://github.com/MaxBittker/rs-sdk",
+      "domain": "github.com"
+    },
+    "46888441": {
+      "id": 46888441,
+      "title": "AI is killing B2B SaaS",
+      "points": 477,
+      "user": "namanyayg",
+      "time": 1770224968,
+      "time_ago": "a day ago",
+      "comments_count": 701,
+      "type": "link",
+      "url": "https://nmn.gl/blog/ai-killing-b2b-saas",
+      "domain": "nmn.gl"
+    },
+    "46888795": {
+      "id": 46888795,
+      "title": "Building a 24-bit arcade CRT display adapter from scratch",
+      "points": 196,
+      "user": "evakhoury",
+      "time": 1770226505,
+      "time_ago": "a day ago",
+      "comments_count": 59,
+      "type": "link",
+      "url": "https://www.scd31.com/posts/building-an-arcade-display-adapter",
+      "domain": "scd31.com"
+    },
+    "46889008": {
+      "id": 46889008,
+      "title": "The Great Unwind",
+      "points": 311,
+      "user": "jart",
+      "time": 1770227366,
+      "time_ago": "a day ago",
+      "comments_count": 329,
+      "type": "link",
+      "url": "https://occupywallst.com/yen",
+      "domain": "occupywallst.com"
+    },
+    "46889703": {
+      "id": 46889703,
+      "title": "Claude Code for Infrastructure",
+      "points": 260,
+      "user": "aspectrr",
+      "time": 1770230048,
+      "time_ago": "a day ago",
+      "comments_count": 173,
+      "type": "link",
+      "url": "https://www.fluid.sh/",
+      "domain": "fluid.sh"
+    },
+    "46891827": {
+      "id": 46891827,
+      "title": "Show HN: Morph – Videos of AI testing your PR, embedded in GitHub",
+      "points": 34,
+      "user": "bhaktatejas922",
+      "time": 1770239455,
+      "time_ago": "a day ago",
+      "comments_count": 12,
+      "type": "link",
+      "url": "https://morphllm.com/products/glance",
+      "domain": "morphllm.com"
+    },
+    "46891860": {
+      "id": 46891860,
+      "title": "A real-world benchmark for AI code review",
+      "points": 50,
+      "user": "benocodes",
+      "time": 1770239597,
+      "time_ago": "a day ago",
+      "comments_count": 26,
+      "type": "link",
+      "url": "https://www.qodo.ai/blog/how-we-built-a-real-world-benchmark-for-ai-code-review/",
+      "domain": "qodo.ai"
+    },
+    "46893411": {
+      "id": 46893411,
+      "title": "Why more companies are recognizing the benefits of keeping older employees",
+      "points": 255,
+      "user": "andsoitis",
+      "time": 1770247583,
+      "time_ago": "a day ago",
+      "comments_count": 123,
+      "type": "link",
+      "url": "https://longevity.stanford.edu/why-more-companies-are-recognizing-the-benefits-of-keeping-older-employees/",
+      "domain": "longevity.stanford.edu"
+    },
+    "46893970": {
+      "id": 46893970,
+      "title": "OpenClaw is what Apple intelligence should have been",
+      "points": 477,
+      "user": "jakequist",
+      "time": 1770251286,
+      "time_ago": "21 hours ago",
+      "comments_count": 397,
+      "type": "link",
+      "url": "https://www.jakequist.com/thoughts/openclaw-is-what-apple-intelligence-should-have-been",
+      "domain": "jakequist.com"
+    },
+    "46895144": {
+      "id": 46895144,
+      "title": "A tale of two flows: Metaflow and Kubeflow",
+      "points": 22,
+      "user": "savin-goyal",
+      "time": 1770260792,
+      "time_ago": "19 hours ago",
+      "comments_count": 2,
+      "type": "link",
+      "url": "https://blog.kubeflow.org/metaflow/",
+      "domain": "blog.kubeflow.org"
+    },
+    "46895381": {
+      "id": 46895381,
+      "title": "Wirth's Revenge",
+      "points": 175,
+      "user": "signa11",
+      "time": 1770262706,
+      "time_ago": "18 hours ago",
+      "comments_count": 79,
+      "type": "link",
+      "url": "https://jmoiron.net/blog/wirths-revenge/",
+      "domain": "jmoiron.net"
+    },
+    "46895388": {
+      "id": 46895388,
+      "title": "A few CPU hardware bugs",
+      "points": 110,
+      "user": "signa11",
+      "time": 1770262783,
+      "time_ago": "18 hours ago",
+      "comments_count": 37,
+      "type": "link",
+      "url": "https://www.taricorp.net/2026/a-few-cpu-bugs/",
+      "domain": "taricorp.net"
+    },
+    "46895972": {
+      "id": 46895972,
+      "title": "When internal hostnames are leaked to the clown",
+      "points": 410,
+      "user": "zdw",
+      "time": 1770268956,
+      "time_ago": "16 hours ago",
+      "comments_count": 218,
+      "type": "link",
+      "url": "https://rachelbythebay.com/w/2026/02/03/badnas/",
+      "domain": "rachelbythebay.com"
+    },
+    "46896146": {
+      "id": 46896146,
+      "title": "Don't rent the cloud, own instead",
+      "points": 1019,
+      "user": "Torq_boi",
+      "time": 1770270601,
+      "time_ago": "16 hours ago",
+      "comments_count": 425,
+      "type": "link",
+      "url": "https://blog.comma.ai/datacenter/",
+      "domain": "blog.comma.ai"
+    },
+    "46896427": {
+      "id": 46896427,
+      "title": "BMW's Newest \"Innovation\" Is a Logo-Shaped Middle Finger to Right to Repair",
+      "points": 137,
+      "user": "gnabgib",
+      "time": 1770273227,
+      "time_ago": "15 hours ago",
+      "comments_count": 65,
+      "type": "link",
+      "url": "https://www.ifixit.com/News/115528/bmws-newest-innovation-is-a-logo-shaped-middle-finger-to-right-to-repair",
+      "domain": "ifixit.com"
+    },
+    "46897332": {
+      "id": 46897332,
+      "title": "Show HN: Micropolis/SimCity Clone in Emacs Lisp",
+      "points": 142,
+      "user": "vkazanov",
+      "time": 1770281173,
+      "time_ago": "13 hours ago",
+      "comments_count": 37,
+      "type": "link",
+      "url": "https://github.com/vkazanov/elcity",
+      "domain": "github.com"
+    },
+    "46897407": {
+      "id": 46897407,
+      "title": "Wood Gas Vehicles: Firewood in the Fuel Tank (2010)",
+      "points": 21,
+      "user": "Rygian",
+      "time": 1770281785,
+      "time_ago": "13 hours ago",
+      "comments_count": 5,
+      "type": "link",
+      "url": "https://solar.lowtechmagazine.com/2010/01/wood-gas-vehicles-firewood-in-the-fuel-tank/",
+      "domain": "solar.lowtechmagazine.com"
+    },
+    "46897620": {
+      "id": 46897620,
+      "title": "If you've got Nothing to Hide (2015)",
+      "points": 91,
+      "user": "jacquesm",
+      "time": 1770283491,
+      "time_ago": "12 hours ago",
+      "comments_count": 67,
+      "type": "link",
+      "url": "https://jacquesmattheij.com/if-you-have-nothing-to-hide/",
+      "domain": "jacquesmattheij.com"
+    },
+    "46897737": {
+      "id": 46897737,
+      "title": "Nanobot: Ultra-Lightweight Alternative to OpenClaw",
+      "points": 186,
+      "user": "ms7892",
+      "time": 1770284351,
+      "time_ago": "12 hours ago",
+      "comments_count": 102,
+      "type": "link",
+      "url": "https://github.com/HKUDS/nanobot",
+      "domain": "github.com"
+    },
+    "46897810": {
+      "id": 46897810,
+      "title": "Battle-Testing Lynx at Allegro",
+      "points": 33,
+      "user": "tgebarowski",
+      "time": 1770284963,
+      "time_ago": "12 hours ago",
+      "comments_count": 23,
+      "type": "link",
+      "url": "https://blog.allegro.tech/2026/02/battle-testing-lynx-js-at-allegro.html",
+      "domain": "blog.allegro.tech"
+    },
+    "46898615": {
+      "id": 46898615,
+      "title": "Top downloaded skill in ClawHub contains malware",
+      "points": 285,
+      "user": "pelario",
+      "time": 1770291903,
+      "time_ago": "10 hours ago",
+      "comments_count": 136,
+      "type": "link",
+      "url": "https://1password.com/blog/from-magic-to-malware-how-openclaws-agent-skills-become-an-attack-surface",
+      "domain": "1password.com"
+    },
+    "46899066": {
+      "id": 46899066,
+      "title": "GB Renewables Map",
+      "points": 114,
+      "user": "RobinL",
+      "time": 1770295681,
+      "time_ago": "9 hours ago",
+      "comments_count": 45,
+      "type": "link",
+      "url": "https://renewables-map.robinhawkes.com/",
+      "domain": "renewables-map.robinhawkes.com"
+    },
+    "46899100": {
+      "id": 46899100,
+      "title": "CIA to Sunset the World Factbook",
+      "points": 322,
+      "user": "kshahkshah",
+      "time": 1770295992,
+      "time_ago": "9 hours ago",
+      "comments_count": 236,
+      "type": "link",
+      "url": "https://www.abc.net.au/news/2026-02-05/cia-closes-world-factbook-online-resource/106307724",
+      "domain": "abc.net.au"
+    },
+    "46899132": {
+      "id": 46899132,
+      "title": "Company as Code",
+      "points": 192,
+      "user": "ahamez",
+      "time": 1770296188,
+      "time_ago": "9 hours ago",
+      "comments_count": 99,
+      "type": "link",
+      "url": "https://blog.42futures.com/p/company-as-code",
+      "domain": "blog.42futures.com"
+    },
+    "46899591": {
+      "id": 46899591,
+      "title": "The New Collabora Office for Desktop",
+      "points": 130,
+      "user": "mfld",
+      "time": 1770299279,
+      "time_ago": "8 hours ago",
+      "comments_count": 79,
+      "type": "link",
+      "url": "https://www.collaboraonline.com/collabora-office/",
+      "domain": "collaboraonline.com"
+    },
+    "46899808": {
+      "id": 46899808,
+      "title": "CIA suddenly stops publishing, removes archives of The World Factbook",
+      "points": 254,
+      "user": "ck2",
+      "time": 1770300673,
+      "time_ago": "7 hours ago",
+      "comments_count": 100,
+      "type": "link",
+      "url": "https://simonwillison.net/2026/Feb/5/the-world-factbook/",
+      "domain": "simonwillison.net"
+    },
+    "46900241": {
+      "id": 46900241,
+      "title": "Why Elixir is the best language for AI – Dashbit Blog",
+      "points": 11,
+      "user": "tortilla",
+      "time": 1770303001,
+      "time_ago": "7 hours ago",
+      "comments_count": 0,
+      "type": "link",
+      "url": "https://dashbit.co/blog/why-elixir-best-language-for-ai",
+      "domain": "dashbit.co"
+    },
+    "46901078": {
+      "id": 46901078,
+      "title": "AI is just the latest Monoculture",
+      "points": 7,
+      "user": "Decabytes",
+      "time": 1770307156,
+      "time_ago": "6 hours ago",
+      "comments_count": 0,
+      "type": "link",
+      "url": "https://www.deusinmachina.net/p/ai-is-just-the-latest-monoculture",
+      "domain": "deusinmachina.net"
+    },
+    "46901452": {
+      "id": 46901452,
+      "title": "European Commission Trials Matrix to Replace Teams",
+      "points": 293,
+      "user": "Arathorn",
+      "time": 1770309236,
+      "time_ago": "5 hours ago",
+      "comments_count": 154,
+      "type": "link",
+      "url": "https://www.euractiv.com/news/commission-trials-european-open-source-communications-software/",
+      "domain": "euractiv.com"
+    },
+    "46901471": {
+      "id": 46901471,
+      "title": "Is it Really So Much Better Now?",
+      "points": 9,
+      "user": "dxs",
+      "time": 1770309321,
+      "time_ago": "5 hours ago",
+      "comments_count": 0,
+      "type": "link",
+      "url": "https://walkingtheworld.substack.com/p/is-it-really-so-much-better-now",
+      "domain": "walkingtheworld.substack.com"
+    },
+    "46901716": {
+      "id": 46901716,
+      "title": "Hypernetworks: Neural Networks for Hierarchical Data",
+      "points": 5,
+      "user": "mkmccjr",
+      "time": 1770310538,
+      "time_ago": "5 hours ago",
+      "comments_count": 0,
+      "type": "link",
+      "url": "https://blog.sturdystatistics.com/posts/hnet_part_I/",
+      "domain": "blog.sturdystatistics.com"
+    },
+    "46902223": {
+      "id": 46902223,
+      "title": "Claude Opus 4.6",
+      "points": 1132,
+      "user": "HellsMaddy",
+      "time": 1770313133,
+      "time_ago": "4 hours ago",
+      "comments_count": 480,
+      "type": "link",
+      "url": "https://www.anthropic.com/news/claude-opus-4-6",
+      "domain": "anthropic.com"
+    },
+    "46902273": {
+      "id": 46902273,
+      "title": "Advancing finance with Claude Opus 4.6",
+      "points": 107,
+      "user": "da_grift_shift",
+      "time": 1770313367,
+      "time_ago": "4 hours ago",
+      "comments_count": 25,
+      "type": "link",
+      "url": "https://claude.com/blog/opus-4-6-finance",
+      "domain": "claude.com"
+    },
+    "46902368": {
+      "id": 46902368,
+      "title": "Orchestrate teams of Claude Code sessions",
+      "points": 241,
+      "user": "davidbarker",
+      "time": 1770313794,
+      "time_ago": "4 hours ago",
+      "comments_count": 111,
+      "type": "link",
+      "url": "https://code.claude.com/docs/en/agent-teams",
+      "domain": "code.claude.com"
+    },
+    "46902512": {
+      "id": 46902512,
+      "title": "Unsealed court documents show teen addiction was big tech's \"top priority\"",
+      "points": 221,
+      "user": "Shamar",
+      "time": 1770314407,
+      "time_ago": "4 hours ago",
+      "comments_count": 122,
+      "type": "link",
+      "url": "https://techoversight.org/2026/01/25/top-report-mdl-jan-25/",
+      "domain": "techoversight.org"
+    },
+    "46902638": {
+      "id": 46902638,
+      "title": "GPT-5.3-Codex",
+      "points": 749,
+      "user": "meetpateltech",
+      "time": 1770314888,
+      "time_ago": "4 hours ago",
+      "comments_count": 293,
+      "type": "link",
+      "url": "https://openai.com/index/introducing-gpt-5-3-codex/",
+      "domain": "openai.com"
+    },
+    "46902745": {
+      "id": 46902745,
+      "title": "The Wyden Siren: Senator's Cryptic CIA Letter Pattern Has Never Been Wrong",
+      "points": 60,
+      "user": "hn_acker",
+      "time": 1770315299,
+      "time_ago": "3 hours ago",
+      "comments_count": 5,
+      "type": "link",
+      "url": "https://www.techdirt.com/2026/02/05/the-wyden-siren-senators-cryptic-cia-letter-follows-a-pattern-thats-never-been-wrong/",
+      "domain": "techdirt.com"
+    },
+    "46902789": {
+      "id": 46902789,
+      "title": "A small, shared skill library by builders, for builders. (human and agent)",
+      "points": 36,
+      "user": "recrush",
+      "time": 1770315434,
+      "time_ago": "3 hours ago",
+      "comments_count": 3,
+      "type": "link",
+      "url": "https://github.com/PsiACE/skills",
+      "domain": "github.com"
+    },
+    "46902855": {
+      "id": 46902855,
+      "title": "Psychometric Jailbreaks Reveal Internal Conflict in Frontier Models",
+      "points": 36,
+      "user": "toomuchtodo",
+      "time": 1770315713,
+      "time_ago": "3 hours ago",
+      "comments_count": 32,
+      "type": "link",
+      "url": "https://arxiv.org/abs/2512.04124",
+      "domain": "arxiv.org"
+    },
+    "46902909": {
+      "id": 46902909,
+      "title": "Opus 4.6 uncovers 500 zero-day flaws in open-source code",
+      "points": 132,
+      "user": "speckx",
+      "time": 1770315905,
+      "time_ago": "3 hours ago",
+      "comments_count": 83,
+      "type": "link",
+      "url": "https://www.axios.com/2026/02/05/anthropic-claude-opus-46-software-hunting",
+      "domain": "axios.com"
+    },
+    "46902960": {
+      "id": 46902960,
+      "title": "LLatte: Scalable Transformers for Ads at Meta",
+      "points": 6,
+      "user": "LatteMetaAI",
+      "time": 1770316074,
+      "time_ago": "3 hours ago",
+      "comments_count": 3,
+      "type": "link",
+      "url": "https://twitter.com/fb_engineering/status/2019440354840154554",
+      "domain": "twitter.com"
+    },
+    "46903001": {
+      "id": 46903001,
+      "title": "Ardour 9.0 Released",
+      "points": 156,
+      "user": "PaulDavisThe1st",
+      "time": 1770316216,
+      "time_ago": "3 hours ago",
+      "comments_count": 26,
+      "type": "link",
+      "url": "https://ardour.org/whatsnew.html",
+      "domain": "ardour.org"
+    },
+    "46903556": {
+      "id": 46903556,
+      "title": "Flock CEO calls Deflock a \"terrorist organization\" [video] (2025)",
+      "points": 237,
+      "user": "cdrnsf",
+      "time": 1770318277,
+      "time_ago": "3 hours ago",
+      "comments_count": 142,
+      "type": "link",
+      "url": "https://www.youtube.com/watch?v=l-kZGrDz7PU",
+      "domain": "youtube.com"
+    },
+    "46903558": {
+      "id": 46903558,
+      "title": "My AI Adoption Journey",
+      "points": 118,
+      "user": "anurag",
+      "time": 1770318280,
+      "time_ago": "3 hours ago",
+      "comments_count": 29,
+      "type": "link",
+      "url": "https://mitchellh.com/writing/my-ai-adoption-journey",
+      "domain": "mitchellh.com"
+    },
+    "46903616": {
+      "id": 46903616,
+      "title": "We tasked Opus 4.6 using agent teams to build a C Compiler",
+      "points": 190,
+      "user": "modeless",
+      "time": 1770318471,
+      "time_ago": "3 hours ago",
+      "comments_count": 150,
+      "type": "link",
+      "url": "https://www.anthropic.com/engineering/building-c-compiler",
+      "domain": "anthropic.com"
+    },
+    "46903677": {
+      "id": 46903677,
+      "title": "OpenAI is hoppin' mad about Anthropic's new Super Bowl TV ads",
+      "points": 11,
+      "user": "isaacdl",
+      "time": 1770318699,
+      "time_ago": "2 hours ago",
+      "comments_count": 1,
+      "type": "link",
+      "url": "https://arstechnica.com/information-technology/2026/02/openai-is-hoppin-mad-about-anthropics-new-super-bowl-tv-ads/",
+      "domain": "arstechnica.com"
+    },
+    "46903929": {
+      "id": 46903929,
+      "title": "The time I didn't meet Jeffrey Epstein",
+      "points": 65,
+      "user": "pfdietz",
+      "time": 1770319781,
+      "time_ago": "2 hours ago",
+      "comments_count": 52,
+      "type": "link",
+      "url": "https://scottaaronson.blog/?p=9534",
+      "domain": "scottaaronson.blog"
+    },
+    "46904171": {
+      "id": 46904171,
+      "title": "Bitcoin drops below $67,000 as selloff heats up and pessimism grows about crypto",
+      "points": 20,
+      "user": "stalfosknight",
+      "time": 1770320848,
+      "time_ago": "2 hours ago",
+      "comments_count": 1,
+      "type": "link",
+      "url": "https://www.cnbc.com/2026/02/05/bitcoin-price-today-70000-in-focus.html",
+      "domain": "cnbc.com"
+    },
+    "46904361": {
+      "id": 46904361,
+      "title": "LinkedIn checks for 2953 browser extensions",
+      "points": 139,
+      "user": "mdp",
+      "time": 1770321639,
+      "time_ago": "2 hours ago",
+      "comments_count": 76,
+      "type": "link",
+      "url": "https://github.com/mdp/linkedin-extension-fingerprinting",
+      "domain": "github.com"
+    },
+    "46904569": {
+      "id": 46904569,
+      "title": "Claude Opus 4.6 extra usage promo",
+      "points": 12,
+      "user": "rob",
+      "time": 1770322548,
+      "time_ago": "an hour ago",
+      "comments_count": 5,
+      "type": "link",
+      "url": "https://support.claude.com/en/articles/13613973-claude-opus-4-6-extra-usage-promo",
+      "domain": "support.claude.com"
+    },
+    "46904619": {
+      "id": 46904619,
+      "title": "Stocks tumble for a third day, pushing the S&P 500 into the red for 2026",
+      "points": 16,
+      "user": "speckx",
+      "time": 1770322725,
+      "time_ago": "an hour ago",
+      "comments_count": 1,
+      "type": "link",
+      "url": "https://www.cnbc.com/2026/02/04/stock-market-today-live-updates.html",
+      "domain": "cnbc.com"
+    }
+  },
+  "history": {
+    "46835677": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 55,
+        "points": 64,
+        "comments": 18
+      }
+    ],
+    "46839036": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 50,
+        "points": 26,
+        "comments": 4
+      }
+    ],
+    "46840558": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 80,
+        "points": 93,
+        "comments": 4
+      }
+    ],
+    "46841897": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 15,
+        "points": 108,
+        "comments": 16
+      }
+    ],
+    "46842288": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 73,
+        "points": 123,
+        "comments": 58
+      }
+    ],
+    "46844301": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 24,
+        "points": 103,
+        "comments": 24
+      }
+    ],
+    "46844393": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 25,
+        "points": 139,
+        "comments": 38
+      }
+    ],
+    "46844511": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 40,
+        "points": 22,
+        "comments": 8
+      }
+    ],
+    "46845203": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 57,
+        "points": 113,
+        "comments": 24
+      }
+    ],
+    "46845239": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 38,
+        "points": 252,
+        "comments": 52
+      }
+    ],
+    "46845296": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 14,
+        "points": 6,
+        "comments": 2
+      }
+    ],
+    "46845617": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 77,
+        "points": 45,
+        "comments": 7
+      }
+    ],
+    "46845642": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 49,
+        "points": 133,
+        "comments": 57
+      }
+    ],
+    "46845790": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 31,
+        "points": 91,
+        "comments": 31
+      }
+    ],
+    "46845845": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 36,
+        "points": 374,
+        "comments": 197
+      }
+    ],
+    "46846101": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 88,
+        "points": 167,
+        "comments": 45
+      }
+    ],
+    "46846940": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 27,
+        "points": 69,
+        "comments": 26
+      }
+    ],
+    "46847297": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 7,
+        "points": 81,
+        "comments": 21
+      }
+    ],
+    "46847603": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 65,
+        "points": 46,
+        "comments": 12
+      }
+    ],
+    "46847690": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 84,
+        "points": 558,
+        "comments": 163
+      }
+    ],
+    "46848077": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 29,
+        "points": 8,
+        "comments": 0
+      }
+    ],
+    "46848876": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 72,
+        "points": 815,
+        "comments": 402
+      }
+    ],
+    "46849753": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 64,
+        "points": 68,
+        "comments": 44
+      }
+    ],
+    "46855057": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 33,
+        "points": 93,
+        "comments": 30
+      }
+    ],
+    "46862574": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 71,
+        "points": 69,
+        "comments": 56
+      }
+    ],
+    "46867018": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 52,
+        "points": 86,
+        "comments": 21
+      }
+    ],
+    "46867526": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 6,
+        "points": 41,
+        "comments": 6
+      }
+    ],
+    "46868998": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 81,
+        "points": 586,
+        "comments": 1102
+      }
+    ],
+    "46871173": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 87,
+        "points": 529,
+        "comments": 256
+      }
+    ],
+    "46872540": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 76,
+        "points": 667,
+        "comments": 808
+      }
+    ],
+    "46876105": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 63,
+        "points": 1090,
+        "comments": 1305
+      }
+    ],
+    "46877278": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 82,
+        "points": 203,
+        "comments": 62
+      }
+    ],
+    "46886191": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 75,
+        "points": 309,
+        "comments": 147
+      }
+    ],
+    "46886440": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 62,
+        "points": 386,
+        "comments": 223
+      }
+    ],
+    "46886735": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 46,
+        "points": 968,
+        "comments": 236
+      }
+    ],
+    "46887326": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 74,
+        "points": 65,
+        "comments": 18
+      }
+    ],
+    "46887564": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 68,
+        "points": 285,
+        "comments": 360
+      }
+    ],
+    "46887893": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 79,
+        "points": 123,
+        "comments": 83
+      }
+    ],
+    "46888142": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 66,
+        "points": 119,
+        "comments": 42
+      }
+    ],
+    "46888441": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 39,
+        "points": 477,
+        "comments": 701
+      }
+    ],
+    "46888795": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 44,
+        "points": 196,
+        "comments": 59
+      }
+    ],
+    "46889008": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 61,
+        "points": 311,
+        "comments": 329
+      }
+    ],
+    "46889703": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 47,
+        "points": 260,
+        "comments": 173
+      }
+    ],
+    "46891827": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 85,
+        "points": 34,
+        "comments": 12
+      }
+    ],
+    "46891860": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 86,
+        "points": 50,
+        "comments": 26
+      }
+    ],
+    "46893411": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 60,
+        "points": 255,
+        "comments": 123
+      }
+    ],
+    "46893970": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 48,
+        "points": 477,
+        "comments": 397
+      }
+    ],
+    "46895144": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 89,
+        "points": 22,
+        "comments": 2
+      }
+    ],
+    "46895381": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 35,
+        "points": 175,
+        "comments": 79
+      }
+    ],
+    "46895388": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 53,
+        "points": 110,
+        "comments": 37
+      }
+    ],
+    "46895972": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 19,
+        "points": 410,
+        "comments": 218
+      }
+    ],
+    "46896146": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 9,
+        "points": 1019,
+        "comments": 425
+      }
+    ],
+    "46896427": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 67,
+        "points": 137,
+        "comments": 65
+      }
+    ],
+    "46897332": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 30,
+        "points": 142,
+        "comments": 37
+      }
+    ],
+    "46897407": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 58,
+        "points": 21,
+        "comments": 5
+      }
+    ],
+    "46897620": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 83,
+        "points": 91,
+        "comments": 67
+      }
+    ],
+    "46897737": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 22,
+        "points": 186,
+        "comments": 102
+      }
+    ],
+    "46897810": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 69,
+        "points": 33,
+        "comments": 23
+      }
+    ],
+    "46898615": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 43,
+        "points": 285,
+        "comments": 136
+      }
+    ],
+    "46899066": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 21,
+        "points": 114,
+        "comments": 45
+      }
+    ],
+    "46899100": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 45,
+        "points": 322,
+        "comments": 236
+      }
+    ],
+    "46899132": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 18,
+        "points": 192,
+        "comments": 99
+      }
+    ],
+    "46899591": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 16,
+        "points": 130,
+        "comments": 79
+      }
+    ],
+    "46899808": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 28,
+        "points": 254,
+        "comments": 100
+      }
+    ],
+    "46900241": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 59,
+        "points": 11,
+        "comments": 0
+      }
+    ],
+    "46901078": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 54,
+        "points": 7,
+        "comments": 0
+      }
+    ],
+    "46901452": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 32,
+        "points": 293,
+        "comments": 154
+      }
+    ],
+    "46901471": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 78,
+        "points": 9,
+        "comments": 0
+      }
+    ],
+    "46901716": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 20,
+        "points": 5,
+        "comments": 0
+      }
+    ],
+    "46902223": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 1,
+        "points": 1132,
+        "comments": 480
+      }
+    ],
+    "46902273": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 17,
+        "points": 107,
+        "comments": 25
+      }
+    ],
+    "46902368": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 5,
+        "points": 241,
+        "comments": 111
+      }
+    ],
+    "46902512": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 37,
+        "points": 221,
+        "comments": 122
+      }
+    ],
+    "46902638": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 2,
+        "points": 749,
+        "comments": 293
+      }
+    ],
+    "46902745": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 42,
+        "points": 60,
+        "comments": 5
+      }
+    ],
+    "46902789": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 10,
+        "points": 36,
+        "comments": 3
+      }
+    ],
+    "46902855": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 13,
+        "points": 36,
+        "comments": 32
+      }
+    ],
+    "46902909": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 23,
+        "points": 132,
+        "comments": 83
+      }
+    ],
+    "46902960": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 70,
+        "points": 6,
+        "comments": 3
+      }
+    ],
+    "46903001": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 12,
+        "points": 156,
+        "comments": 26
+      }
+    ],
+    "46903556": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 26,
+        "points": 237,
+        "comments": 142
+      }
+    ],
+    "46903558": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 3,
+        "points": 118,
+        "comments": 29
+      }
+    ],
+    "46903616": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 4,
+        "points": 190,
+        "comments": 150
+      }
+    ],
+    "46903677": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 56,
+        "points": 11,
+        "comments": 1
+      }
+    ],
+    "46903929": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 41,
+        "points": 65,
+        "comments": 52
+      }
+    ],
+    "46904171": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 51,
+        "points": 20,
+        "comments": 1
+      }
+    ],
+    "46904361": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 8,
+        "points": 139,
+        "comments": 76
+      }
+    ],
+    "46904569": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 11,
+        "points": 12,
+        "comments": 5
+      }
+    ],
+    "46904619": [
+      {
+        "timestamp": 1770327858268,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328158417,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328458231,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328735059,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328751019,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328766637,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328812808,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328841371,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770328855225,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      },
+      {
+        "timestamp": 1770329410340,
+        "rank": 34,
+        "points": 16,
+        "comments": 1
+      }
+    ]
+  },
+  "alerts": [],
+  "topIds": [
+    46902223,
+    46902638,
+    46903558,
+    46903616,
+    46902368,
+    46867526,
+    46847297,
+    46904361,
+    46896146,
+    46902789,
+    46904569,
+    46903001,
+    46902855,
+    46845296,
+    46841897,
+    46899591,
+    46902273,
+    46899132,
+    46895972,
+    46901716,
+    46899066,
+    46897737,
+    46902909,
+    46844301,
+    46844393,
+    46903556,
+    46846940,
+    46899808,
+    46848077,
+    46897332,
+    46845790,
+    46901452,
+    46855057,
+    46904619,
+    46895381,
+    46845845,
+    46902512,
+    46845239,
+    46888441,
+    46844511,
+    46903929,
+    46902745,
+    46898615,
+    46888795,
+    46899100,
+    46886735,
+    46889703,
+    46893970,
+    46845642,
+    46839036,
+    46904171,
+    46867018,
+    46895388,
+    46901078,
+    46835677,
+    46903677,
+    46845203,
+    46897407,
+    46900241,
+    46893411,
+    46889008,
+    46886440,
+    46876105,
+    46849753,
+    46847603,
+    46888142,
+    46896427,
+    46887564,
+    46897810,
+    46902960,
+    46862574,
+    46848876,
+    46842288,
+    46887326,
+    46886191,
+    46872540,
+    46845617,
+    46901471,
+    46887893,
+    46840558,
+    46868998,
+    46877278,
+    46897620,
+    46847690,
+    46891827,
+    46891860,
+    46871173,
+    46846101,
+    46895144
+  ],
+  "frontPageIds": [
+    46902223,
+    46902638,
+    46903558,
+    46903616,
+    46902368,
+    46867526,
+    46847297,
+    46904361,
+    46896146,
+    46902789,
+    46904569,
+    46903001,
+    46902855,
+    46845296,
+    46841897,
+    46899591,
+    46902273,
+    46899132,
+    46895972,
+    46901716,
+    46899066,
+    46897737,
+    46902909,
+    46844301,
+    46844393,
+    46903556,
+    46846940,
+    46899808,
+    46848077,
+    46897332
+  ],
+  "lastPollAt": 1770329410340,
+  "lastPollDurationMs": 40,
+  "pollIntervalMinutes": 5,
+  "pollCount": 10,
+  "status": "idle",
+  "errorMessage": null,
+  "detectors": {
+    "46841897": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46844301": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46844393": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46845296": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46846940": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46847297": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46848077": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46867526": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46895972": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46896146": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46897332": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46897737": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46899066": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46899132": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46899591": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46899808": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46901716": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902223": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902273": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902368": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902638": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902789": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902855": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46902909": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46903001": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46903556": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46903558": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46903616": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46904361": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    },
+    "46904569": {
+      "filteredDeltas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "avgFilter": 0,
+      "stdFilter": 1
+    }
+  }
+}
