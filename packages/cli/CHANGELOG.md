@@ -1,5 +1,11 @@
 # hyperstar-cli
 
+## 0.5.0
+
+### Minor Changes
+
+- f1fdb67: fixes
+
 ## 0.4.2
 
 ### Patch Changes

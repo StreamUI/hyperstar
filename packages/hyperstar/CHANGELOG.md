@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.7.0
+
+### Minor Changes
+
+- f1fdb67: fixes
+
 ## 0.6.0
 
 ### Minor Changes
