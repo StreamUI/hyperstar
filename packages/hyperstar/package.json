@@ -4,6 +4,9 @@
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "scripts": {
+    "prepack": "bun build ../../packages/hyperstar-client/src/index.ts --outfile=dist/hyperstar.min.js --minify --target=browser"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./ui": "./src/ui/index.ts",
