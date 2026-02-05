@@ -1,6 +1,6 @@
 {
   "name": "hn-uncensored",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Monitor HN for suspicious rank drops using z-score anomaly detection",
   "scripts": {

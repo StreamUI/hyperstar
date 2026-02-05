@@ -1,5 +1,11 @@
 # hyperstar-cli
 
+## 0.4.0
+
+### Minor Changes
+
+- f4036ac: fix cli
+
 ## 0.3.0
 
 ### Minor Changes
