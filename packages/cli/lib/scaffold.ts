@@ -19,6 +19,16 @@ function isPackagePublished(packageName: string): boolean {
   }
 }
 
+// Get the latest version of a package from npm
+function getLatestVersion(packageName: string): string | null {
+  try {
+    const version = execSync(`npm view ${packageName} version`, { stdio: "pipe" }).toString().trim()
+    return version
+  } catch {
+    return null
+  }
+}
+
 // Get the directory where this file is located
 const __dirname = dirname(fileURLToPath(import.meta.url))
 // CLI package root (go up from lib/)
@@ -68,6 +78,13 @@ export function scaffoldProject(projectName: string, template: TemplateType) {
         // Use absolute path to package root
         packageJson.dependencies.hyperstar = `file:${hyperstarPackage}`
         yield* Console.log(`Using local hyperstar: file:${hyperstarPackage}`)
+      } else if (packageJson.dependencies?.hyperstar) {
+        // Use the latest published version
+        const latestVersion = getLatestVersion("hyperstar")
+        if (latestVersion) {
+          packageJson.dependencies.hyperstar = `^${latestVersion}`
+          yield* Console.log(`Using hyperstar@^${latestVersion}`)
+        }
       }
 
       writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))

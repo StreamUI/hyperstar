@@ -1291,7 +1291,7 @@ export const createHyperstar = <
             idleTimeout: 255, // Max value (255 seconds) - SSE needs long-lived connections
           })
           const actualPort = server.port ?? port
-          console.log(`🌟 Hyperstar v3 running at http://localhost:${actualPort}`)
+          console.log(`🌟 Hyperstar running at http://localhost:${actualPort}`)
 
           // Handle graceful shutdown signals (for Sprites hibernation, Ctrl+C, etc.)
           const app = {

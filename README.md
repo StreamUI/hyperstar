@@ -2,6 +2,8 @@
 
 # Hyperstar
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20Us-5865F2?logo=discord&logoColor=white)](https://discord.gg/QsKYQhdqNu)
+
 > [!CAUTION]
 > **Very Beta** - This is experimental software. The API changes frequently and will break your code. Don't use this for anything production-critical. Great for prototypes, internal tools, and fun real-time multiplayer apps.
 
@@ -10,7 +12,7 @@
 Inspired by [Phoenix LiveView](https://hexdocs.pm/phoenix_live_view/) | [Datastar](https://data-star.dev/) | [HTMX](https://htmx.org/)
 
 > [!TIP]
-> **Built for Vibe Coding** - JSX that feels like React, but there's no client bundle, no hydration, no state sync bugs. The server owns everything. Live, realtime UI, directly from the server.
+> **Built for Vibe Coding** - JSX that feels like React, but there's no client bundle, no hydration, no state sync bugs. The server owns everything. Live, realtime UI, directly from the server. When you use `bunx hyperstar-cli create`, your project includes a Claude Code skill that teaches Claude how to build Hyperstar apps. If you're not using the CLI, you can copy the skill from [`packages/cli/skill/SKILL.md`](https://github.com/longtailLABS/hyperstar/blob/master/packages/cli/skill/SKILL.md) into your project's `.claude/skills/` directory.
 
 ## Quick Start
 
@@ -21,7 +23,7 @@ bun install
 bun run dev
 ```
 
-Open http://localhost:3000 - you have a working app. Edit `app.tsx` and save - the browser updates instantly.
+Open http://localhost:3000 - you have a working app.
 
 Now edit `app.tsx`:
 
@@ -63,29 +65,13 @@ Your app is live. No Docker, no config, no CI/CD setup.
 
 ## Why Hyperstar?
 
-### The Old Way (Pain)
+**Zero client code.** Your entire app lives on the server. No React components, no client-side state management, no API routes to wire up. Just TypeScript functions that update state and JSX that renders it.
 
-```
-React + Next.js + TanStack Query + WebSockets + Redis + ...
+**Real-time by default.** Every state change automatically syncs to all connected clients. User A clicks a button, User B sees it instantly. No WebSocket setup, no pub/sub configuration, no cache invalidation.
 
-1. Write React components
-2. Set up API routes
-3. Add TanStack Query for data fetching
-4. Add WebSocket server for real-time
-5. Sync client state with server state
-6. Handle loading states everywhere
-7. Deal with cache invalidation
-8. Cry yourself to sleep
-```
+**One mental model.** Server state is the source of truth. No wondering if the client is out of sync, no optimistic updates gone wrong, no race conditions between tabs.
 
-### The Hyperstar Way (Joy)
-
-```
-Hyperstar
-
-1. Write a view function and actions to update state
-2. Done. It's real-time. It syncs. It works.
-```
+**Ship faster.** Internal tools, prototypes, multiplayer games, live dashboards - build them in seconds instead of hours. When the server owns everything, there's just less to think about.
 
 ---
 
@@ -127,6 +113,7 @@ Hyperstar has three types of state, each serving a different purpose:
 │  SIGNALS (Client State)                                         │
 │  • Lives in browser memory only                                 │
 │  • Instant updates, no server roundtrip                         │
+│  • Server can update via ctx.patchSignals()                     │
 │  • Use for: form inputs, UI tabs, modals, hover state           │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -145,7 +132,7 @@ const setTheme = app.action("setTheme", { theme: Schema.String }, (ctx, { theme 
   ctx.updateUserStore((u) => ({ ...u, theme }))
 })
 
-// Client-side: instant UI state
+// Client-side: instant UI state (server can also update via ctx.patchSignals)
 const { tab } = app.signals
 <button hs-on:click="$tab.value = 'settings'">Settings</button>
 ```
@@ -275,6 +262,9 @@ export SPRITE_TOKEN=your_token
 bunx hyperstar-cli deploy
 ```
 
+> [!NOTE]
+> **Sprites and Background Tasks** - Sprites hibernate when idle to save costs. When a sprite sleeps, `app.repeat()` and `app.cron()` timers pause. They resume when a user reconnects. For apps that need always-on timers (like polling external APIs), deploy to a traditional always-on server instead.
+
 ### Other Platforms
 
 Since Hyperstar apps are standard Bun servers, deploy anywhere:
@@ -369,11 +359,18 @@ app.cron("sessionSync", {
 app.app({
   store: { online: 0 },
 
+  onStart: (ctx) => {
+    // Called once when server starts
+    console.log("Server started")
+  },
+
   onConnect: (ctx) => {
+    // Called when a client connects
     ctx.update((s) => ({ ...s, online: s.online + 1 }))
   },
 
   onDisconnect: (ctx) => {
+    // Called when a client disconnects
     ctx.update((s) => ({ ...s, online: s.online - 1 }))
   },
 
@@ -432,7 +429,6 @@ app.app({
 No ORM, no connection pooling, no Redis - just `bun:sqlite`. This works because:
 - Hyperstar apps run on a single server instance
 - Bun's SQLite is synchronous and fast
-- The VM (like Sprites) hibernates when idle, preserving your data
 
 ### Dynamic Title and Favicon
 

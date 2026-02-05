@@ -7,7 +7,7 @@
     "start": "bun app.ts"
   },
   "dependencies": {
-    "hyperstar": "^0.1.0"
+    "hyperstar": "latest"
   },
   "devDependencies": {
     "@types/bun": "latest",

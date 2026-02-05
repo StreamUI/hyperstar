@@ -16,7 +16,8 @@
   "workspaces": [
     "packages/hyperstar",
     "packages/cli",
-    "packages/server"
+    "packages/server",
+    "examples/hn-uncensored"
   ],
   "scripts": {
     "dev": "bun --hot examples/counter.ts",
