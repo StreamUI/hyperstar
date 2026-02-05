@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.5.0
+
+### Minor Changes
+
+- Some new options
+
 ## 0.4.0
 
 ### Minor Changes
