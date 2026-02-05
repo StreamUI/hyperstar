@@ -310,42 +310,29 @@ const ActionRequestSchema = Schema.Struct({
 // ============================================================================
 
 /**
- * Timer configuration (game loops, high-frequency updates).
+ * Repeat configuration (replaces timer + interval).
+ * Use for game loops, heartbeats, polling, animations.
  */
-export interface TimerConfig<S extends object> {
-  readonly interval: number
-  readonly when?: (s: S) => boolean
-  readonly trackFps?: boolean
-  readonly handler: (ctx: TimerHandlerContext<S>) => void
-}
-
-export interface TimerHandlerContext<S extends object> {
-  readonly update: (fn: (s: S) => S) => void
-  readonly getStore: () => S
-  readonly fps: number
-}
-
-export interface TimerHandle {
-  readonly id: string
-  start(): void
-  stop(): void
-  readonly isRunning: boolean
-}
-
-/**
- * Interval configuration (simple repeating tasks).
- */
-export interface IntervalConfig<S extends object> {
+export interface RepeatConfig<S extends object> {
+  /** Duration: ms number (16) or duration string ("5 seconds") */
   readonly every: string | number
-  readonly handler: (ctx: IntervalHandlerContext<S>) => void
+  /** Optional: only run when condition is true */
+  readonly when?: (s: S) => boolean
+  /** Optional: enable FPS tracking (ctx.fps available in handler) */
+  readonly trackFps?: boolean
+  readonly handler: (ctx: RepeatHandlerContext<S>) => void
 }
 
-export interface IntervalHandlerContext<S extends object> {
+export interface RepeatHandlerContext<S extends object> {
   readonly update: (fn: (s: S) => S) => void
   readonly getStore: () => S
+  /** FPS value (0 if trackFps not enabled) */
+  readonly fps: number
+  /** Broadcast SSE event to all clients */
+  readonly broadcast: (event: SSEEventTyped) => void
 }
 
-export interface IntervalHandle {
+export interface RepeatHandle {
   readonly id: string
   start(): void
   stop(): void
@@ -353,11 +340,11 @@ export interface IntervalHandle {
 }
 
 /**
- * Cron configuration (scheduled jobs).
+ * Cron configuration (calendar-based scheduling).
  */
 export interface CronConfig<S extends object, U extends object = object> {
-  /** Schedule - cron expression ("0 * * * *") or duration string ("5 minutes") */
-  readonly schedule: string
+  /** Cron expression ("0 * * * *") or duration string ("5 minutes") */
+  readonly every: string
   readonly handler?: (ctx: CronHandlerContext<S>) => void
   readonly forEachUser?: (ctx: CronUserContext<S, U>) => void
 }
@@ -462,17 +449,14 @@ export interface HyperstarFactory<
   ): ActionDescriptor<{ [K in keyof Args]: Schema.Schema.Type<Args[K]> }, void, S, U>
 
   /**
-   * Define a timer (game loops, high-frequency updates).
+   * Define a repeating task (replaces timer/interval).
+   * Use for heartbeats, polling, game loops, animations.
    */
-  timer(id: string, config: TimerConfig<S>): void
+  repeat(id: string, config: RepeatConfig<S>): void
 
   /**
-   * Define a simple repeating interval.
-   */
-  interval(id: string, config: IntervalConfig<S>): void
-
-  /**
-   * Define a scheduled cron job.
+   * Define a cron job (calendar-based scheduling).
+   * Supports cron expressions and duration strings.
    */
   cron(id: string, config: CronConfig<S, U>): void
 
@@ -562,8 +546,7 @@ export const createHyperstar = <
 >(): HyperstarFactory<S, U, Signals> => {
   // Pre-registered definitions (before app() is called)
   const actionDefs = new Map<string, ActionDescriptor>()
-  const timerDefs: Array<{ id: string; config: TimerConfig<S> }> = []
-  const intervalDefs: Array<{ id: string; config: IntervalConfig<S> }> = []
+  const repeatDefs: Array<{ id: string; config: RepeatConfig<S> }> = []
   const cronDefs: Array<{ id: string; config: CronConfig<S, U> }> = []
   const triggerDefs: Array<{ id: string; config: Omit<TriggerConfig<S, unknown>, "id"> }> = []
   const userTriggerDefs: Array<{ id: string; config: Omit<UserTriggerConfig<S, U, unknown>, "id"> }> = []
@@ -614,12 +597,8 @@ export const createHyperstar = <
       return action
     },
 
-    timer(id: string, config: TimerConfig<S>): void {
-      timerDefs.push({ id, config })
-    },
-
-    interval(id: string, config: IntervalConfig<S>): void {
-      intervalDefs.push({ id, config })
+    repeat(id: string, config: RepeatConfig<S>): void {
+      repeatDefs.push({ id, config })
     },
 
     cron(id: string, config: CronConfig<S, U>): void {
@@ -677,8 +656,7 @@ export const createHyperstar = <
       }
 
       // Handles for cleanup
-      const timerHandles = new Map<string, TimerHandle>()
-      const intervalHandles = new Map<string, IntervalHandle>()
+      const repeatHandles = new Map<string, RepeatHandle>()
       const cronHandles = new Map<string, CronHandle>()
       let triggerRegistry: TriggerRegistry<S, U> | null = null
 
@@ -1050,102 +1028,78 @@ export const createHyperstar = <
         return new Response("Not Found", { status: 404 })
       }
 
-      // Start timers/intervals/crons
+      // Start repeats/crons
       const startScheduledTasks = (forkScoped: <A>(effect: Effect.Effect<A, never, never>) => void) => {
-        // Timers
-        for (const { id, config: timerConfig } of timerDefs) {
+        // Repeats (unified timer + interval)
+        for (const { id, config: repeatConfig } of repeatDefs) {
           const frameTimestamps: number[] = []
           let fiber: Fiber.RuntimeFiber<void, never> | null = null
           let pauseRef: Ref.Ref<boolean> | null = null
           let isRunning = false
 
+          // Parse duration: "5 seconds" or 16 (ms)
+          const duration = typeof repeatConfig.every === "number"
+            ? Duration.millis(repeatConfig.every)
+            : Duration.decode(repeatConfig.every as Duration.DurationInput)
+
           const calculateFps = (): number => {
-            if (!timerConfig.trackFps) return 0
+            if (!repeatConfig.trackFps) return 0
             const now = Date.now()
-            while (frameTimestamps.length > 0 && now - frameTimestamps[0]! > 1000) frameTimestamps.shift()
+            while (frameTimestamps.length > 0 && now - frameTimestamps[0]! > 1000) {
+              frameTimestamps.shift()
+            }
             return frameTimestamps.length
           }
 
-          const startTimer = () => {
+          const startRepeat = () => {
             if (isRunning) return
-            console.log(`⏱️  [Timer:${id}] Started (interval: ${timerConfig.interval}ms)`)
+            console.log(`🔄 [Repeat:${id}] Started (every: ${Duration.toMillis(duration)}ms)`)
             pauseRef = Effect.runSync(Ref.make(false))
 
             const runOnce = Effect.sync(() => {
               const paused = Effect.runSync(Ref.get(pauseRef!))
               if (paused) return
-              if (timerConfig.when && !timerConfig.when(getStore())) return
-              if (timerConfig.trackFps) frameTimestamps.push(Date.now())
-              timerConfig.handler({ update: updateStore, getStore, fps: calculateFps() })
+              if (repeatConfig.when && !repeatConfig.when(getStore())) return
+              if (repeatConfig.trackFps) frameTimestamps.push(Date.now())
+              repeatConfig.handler({
+                update: updateStore,
+                getStore,
+                fps: calculateFps(),
+                broadcast,
+              })
             })
 
+            // Use Schedule.fixed() for consistent intervals
             fiber = Effect.runFork(
-              pipe(runOnce, Effect.repeat(Schedule.spaced(Duration.millis(timerConfig.interval))), Effect.asVoid, Effect.catchAll(() => Effect.void)),
+              pipe(
+                runOnce,
+                Effect.repeat(Schedule.fixed(duration)),
+                Effect.asVoid,
+                Effect.catchAll(() => Effect.void)
+              ),
             ) as Fiber.RuntimeFiber<void, never>
             isRunning = true
           }
 
-          const handle: TimerHandle = {
+          const handle: RepeatHandle = {
             id,
             get isRunning() { return isRunning },
-            start() { startTimer() },
+            start() { startRepeat() },
             stop() {
-              console.log(`⏱️  [Timer:${id}] Stopped`)
+              console.log(`🔄 [Repeat:${id}] Stopped`)
               if (pauseRef) Effect.runSync(Ref.set(pauseRef, true))
               if (fiber) { Effect.runFork(Fiber.interruptFork(fiber)); fiber = null }
               isRunning = false
             },
           }
 
-          startTimer()
-          timerHandles.set(id, handle)
-        }
-
-        // Intervals
-        for (const { id, config: intervalConfig } of intervalDefs) {
-          const duration = typeof intervalConfig.every === "number"
-            ? Duration.millis(intervalConfig.every)
-            : Duration.decode(intervalConfig.every as Duration.DurationInput)
-          let fiber: Fiber.RuntimeFiber<void, never> | null = null
-          let pauseRef: Ref.Ref<boolean> | null = null
-          let isRunning = false
-
-          const startInterval = () => {
-            if (isRunning) return
-            console.log(`🔄 [Interval:${id}] Started (every: ${Duration.toMillis(duration)}ms)`)
-            pauseRef = Effect.runSync(Ref.make(false))
-
-            const runOnce = Effect.sync(() => {
-              const paused = Effect.runSync(Ref.get(pauseRef!))
-              if (paused) return
-              intervalConfig.handler({ update: updateStore, getStore })
-            })
-
-            fiber = Effect.runFork(
-              pipe(runOnce, Effect.repeat(Schedule.spaced(duration)), Effect.asVoid, Effect.catchAll(() => Effect.void)),
-            ) as Fiber.RuntimeFiber<void, never>
-            isRunning = true
-          }
-
-          const handle: IntervalHandle = {
-            id,
-            get isRunning() { return isRunning },
-            start() { startInterval() },
-            stop() {
-              console.log(`🔄 [Interval:${id}] Stopped`)
-              if (pauseRef) Effect.runSync(Ref.set(pauseRef, true))
-              if (fiber) { Effect.runFork(Fiber.interruptFork(fiber)); fiber = null }
-              isRunning = false
-            },
-          }
-
-          startInterval()
-          intervalHandles.set(id, handle)
+          startRepeat()
+          repeatHandles.set(id, handle)
         }
 
         // Crons
         for (const { id, config: cronConfig } of cronDefs) {
-          const effectSchedule = parseScheduleString(cronConfig.schedule)
+          const effectSchedule = parseScheduleString(cronConfig.every)
           const pauseRef = Effect.runSync(Ref.make(false))
           let isPaused = false
 
@@ -1173,7 +1127,7 @@ export const createHyperstar = <
             }
           })
 
-          console.log(`📅 [Cron:${id}] Started (schedule: ${cronConfig.schedule})`)
+          console.log(`📅 [Cron:${id}] Started (every: ${cronConfig.every})`)
           forkScoped(pipe(runOnce, Effect.repeat(effectSchedule), Effect.asVoid, Effect.catchAll(() => Effect.void)))
 
           const handle: CronHandle = {
@@ -1203,11 +1157,8 @@ export const createHyperstar = <
 
       // Implement pause/resume functions for idle detection
       pauseBackgroundTasks = () => {
-        for (const timer of timerHandles.values()) {
-          if (timer.isRunning) timer.stop()
-        }
-        for (const interval of intervalHandles.values()) {
-          if (interval.isRunning) interval.stop()
+        for (const repeat of repeatHandles.values()) {
+          if (repeat.isRunning) repeat.stop()
         }
         for (const cron of cronHandles.values()) {
           if (!cron.isPaused) cron.pause()
@@ -1215,11 +1166,8 @@ export const createHyperstar = <
       }
 
       resumeBackgroundTasks = () => {
-        for (const timer of timerHandles.values()) {
-          if (!timer.isRunning) timer.start()
-        }
-        for (const interval of intervalHandles.values()) {
-          if (!interval.isRunning) interval.start()
+        for (const repeat of repeatHandles.values()) {
+          if (!repeat.isRunning) repeat.start()
         }
         for (const cron of cronHandles.values()) {
           if (cron.isPaused) cron.resume()
@@ -1351,11 +1299,9 @@ export const createHyperstar = <
             stop: async () => {
               console.log("🧹 Cleaning up and shutting down...")
 
-              // Stop timers and intervals (these use their own fibers with pauseRef)
-              for (const timer of timerHandles.values()) timer.stop()
-              timerHandles.clear()
-              for (const interval of intervalHandles.values()) interval.stop()
-              intervalHandles.clear()
+              // Stop repeats (these use their own fibers with pauseRef)
+              for (const repeat of repeatHandles.values()) repeat.stop()
+              repeatHandles.clear()
               for (const cron of cronHandles.values()) cron.pause()
               cronHandles.clear()
 

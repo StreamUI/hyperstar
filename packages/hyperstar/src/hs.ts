@@ -40,6 +40,10 @@ interface EventModifiers {
   once?: boolean
   prevent?: boolean
   stop?: boolean
+  outside?: boolean
+  capture?: boolean
+  passive?: boolean
+  self?: boolean
 }
 
 // ============================================================================
@@ -54,6 +58,10 @@ function buildModifierSuffix(mods?: EventModifiers): string {
   if (mods.once) parts.push("once")
   if (mods.prevent) parts.push("prevent")
   if (mods.stop) parts.push("stop")
+  if (mods.outside) parts.push("outside")
+  if (mods.capture) parts.push("capture")
+  if (mods.passive) parts.push("passive")
+  if (mods.self) parts.push("self")
   return parts.length > 0 ? `__${parts.join("__")}` : ""
 }
 
@@ -113,10 +121,18 @@ function buildDispatchCall(actionId: string, args?: Record<string, unknown>): st
 // ============================================================================
 
 export class HSBuilder {
-  private attrs: HyperstarAttributes = {}
+  private readonly attrs: HyperstarAttributes
 
   constructor(initial?: HyperstarAttributes) {
-    if (initial) this.attrs = { ...initial }
+    this.attrs = initial ? { ...initial } : {}
+  }
+
+  private withAttr(key: string, value: string): HSBuilder {
+    return new HSBuilder({ ...this.attrs, [key]: value })
+  }
+
+  private withAttrs(extra: HyperstarAttributes): HSBuilder {
+    return new HSBuilder({ ...this.attrs, ...extra })
   }
 
   /**
@@ -125,32 +141,28 @@ export class HSBuilder {
   on(event: string, handler: Expr | string, mods?: EventModifiers): HSBuilder {
     const suffix = buildModifierSuffix(mods)
     const key = `hs-on:${event}${suffix}`
-    this.attrs[key] = toExprString(handler)
-    return new HSBuilder(this.attrs)
+    return this.withAttr(key, toExprString(handler))
   }
 
   /**
    * Show/hide element based on expression
    */
   show(condition: Expr | boolean): HSBuilder {
-    this.attrs["hs-show"] = toExprString(condition)
-    return new HSBuilder(this.attrs)
+    return this.withAttr("hs-show", toExprString(condition))
   }
 
   /**
    * Toggle CSS class based on condition
    */
   class(className: string, condition: Expr | boolean): HSBuilder {
-    this.attrs[`hs-class:${className}`] = toExprString(condition)
-    return new HSBuilder(this.attrs)
+    return this.withAttr(`hs-class:${className}`, toExprString(condition))
   }
 
   /**
    * Set attribute based on condition
    */
   attr(attrName: string, condition: Expr | boolean): HSBuilder {
-    this.attrs[`hs-attr:${attrName}`] = toExprString(condition)
-    return new HSBuilder(this.attrs)
+    return this.withAttr(`hs-attr:${attrName}`, toExprString(condition))
   }
 
   /**
@@ -158,8 +170,7 @@ export class HSBuilder {
    */
   bind(signalName: string | SignalHandle<unknown>): HSBuilder {
     const name = typeof signalName === "string" ? signalName : signalName.name
-    this.attrs["hs-bind"] = name
-    return new HSBuilder(this.attrs)
+    return this.withAttr("hs-bind", name)
   }
 
   /**
@@ -167,16 +178,42 @@ export class HSBuilder {
    */
   text(signalName: string | SignalHandle<unknown>): HSBuilder {
     const name = typeof signalName === "string" ? signalName : signalName.name
-    this.attrs["hs-text"] = `$${name}.value`
-    return new HSBuilder(this.attrs)
+    return this.withAttr("hs-text", `$${name}.value`)
+  }
+
+  /**
+   * Set innerHTML based on expression
+   */
+  html(content: Expr | string | number | boolean): HSBuilder {
+    return this.withAttr("hs-html", toExprString(content))
+  }
+
+  /**
+   * Set inline style based on expression
+   */
+  style(prop: string, value: Expr | string | number | boolean): HSBuilder {
+    return this.withAttr(`hs-style:${prop}`, toExprString(value))
+  }
+
+  /**
+   * Run an init expression once on element creation
+   */
+  init(code: Expr | string): HSBuilder {
+    return this.withAttr("hs-init", toExprString(code))
+  }
+
+  /**
+   * Register an element reference for $refs lookup
+   */
+  ref(name: string): HSBuilder {
+    return this.withAttr("hs-ref", name)
   }
 
   /**
    * Disable element based on condition
    */
   disabled(condition: Expr | boolean): HSBuilder {
-    this.attrs["hs-attr:disabled"] = toExprString(condition)
-    return new HSBuilder(this.attrs)
+    return this.withAttr("hs-attr:disabled", toExprString(condition))
   }
 
   /**
@@ -189,8 +226,24 @@ export class HSBuilder {
     action: ActionDescriptor<I, O, S, U> | Action,
     args?: ActionArgsWithExpr<Partial<I extends void ? Record<string, never> : I>>,
   ): HSBuilder {
-    this.attrs["hs-on:click"] = buildDispatchCall(action.id, args as Record<string, unknown>)
-    return new HSBuilder(this.attrs)
+    return this.actionOn("click", action, args)
+  }
+
+  /**
+   * Trigger action on a specific event
+   * @example
+   * hs.actionOn("change", save, { id })
+   * hs.actionOn("keyup", search, { q: query }, { debounce: 200 })
+   */
+  actionOn<I, O, S, U>(
+    event: string,
+    action: ActionDescriptor<I, O, S, U> | Action,
+    args?: ActionArgsWithExpr<Partial<I extends void ? Record<string, never> : I>>,
+    mods?: EventModifiers,
+  ): HSBuilder {
+    const suffix = buildModifierSuffix(mods)
+    const key = `hs-on:${event}${suffix}`
+    return this.withAttr(key, buildDispatchCall(action.id, args as Record<string, unknown>))
   }
 
   /**
@@ -200,26 +253,22 @@ export class HSBuilder {
     action: ActionDescriptor<I, O, S, U> | Action,
     args?: ActionArgsWithExpr<Partial<I extends void ? Record<string, never> : I>>,
   ): HSBuilder {
-    this.attrs["hs-on:submit__prevent"] = buildDispatchCall(
-      action.id,
-      args as Record<string, unknown>,
-    )
-    return new HSBuilder(this.attrs)
+    return this.actionOn("submit", action, args, { prevent: true })
   }
 
   /**
    * Toggle between two class sets based on condition
    */
   toggle(condition: Expr | boolean, trueClasses: string, falseClasses: string): HSBuilder {
-    const builder = new HSBuilder(this.attrs)
+    const attrs = { ...this.attrs }
     for (const cls of trueClasses.split(/\s+/).filter(Boolean)) {
-      builder.attrs[`hs-class:${cls}`] = toExprString(condition)
+      attrs[`hs-class:${cls}`] = toExprString(condition)
     }
     const negated = condition instanceof Expr ? new Expr(`!(${condition.code})`) : !condition
     for (const cls of falseClasses.split(/\s+/).filter(Boolean)) {
-      builder.attrs[`hs-class:${cls}`] = toExprString(negated)
+      attrs[`hs-class:${cls}`] = toExprString(negated)
     }
-    return new HSBuilder(builder.attrs)
+    return new HSBuilder(attrs)
   }
 
   /**
@@ -252,11 +301,12 @@ export class HSBuilder {
           ? String(dataValue)
           : `'${String(dataValue).replace(/'/g, "\\'")}'`
 
-    this.attrs["draggable"] = "true"
-    this.attrs["hs-on:dragstart"] =
+    const attrs = { ...this.attrs }
+    attrs["draggable"] = "true"
+    attrs["hs-on:dragstart"] =
       `$evt.dataTransfer.setData('${dataKey}', ${valueStr}); $evt.dataTransfer.effectAllowed = 'move'; $el.style.opacity = '0.5'`
-    this.attrs["hs-on:dragend"] = "$el.style.opacity = '1'"
-    return new HSBuilder(this.attrs)
+    attrs["hs-on:dragend"] = "$el.style.opacity = '1'"
+    return new HSBuilder(attrs)
   }
 
   /**
@@ -298,11 +348,12 @@ export class HSBuilder {
 
     const dispatchCall = buildDispatchCall(action.id, allArgs)
 
-    this.attrs["hs-on:dragover"] =
+    const attrs = { ...this.attrs }
+    attrs["hs-on:dragover"] =
       `$evt.preventDefault(); $evt.dataTransfer.dropEffect = 'move'; $el.classList.add(${addClasses})`
-    this.attrs["hs-on:dragleave"] = `$el.classList.remove(${removeClasses})`
-    this.attrs["hs-on:drop"] = `$evt.preventDefault(); $el.classList.remove(${removeClasses}); ${dispatchCall}`
-    return new HSBuilder(this.attrs)
+    attrs["hs-on:dragleave"] = `$el.classList.remove(${removeClasses})`
+    attrs["hs-on:drop"] = `$evt.preventDefault(); $el.classList.remove(${removeClasses}); ${dispatchCall}`
+    return new HSBuilder(attrs)
   }
 
   /**
@@ -349,6 +400,18 @@ export const hs = {
   },
 
   /**
+   * Compose multiple expressions into a single statement
+   * @example
+   * hs.on("click", hs.seq(count.set(0), filter.set("all")))
+   */
+  seq(...expressions: Array<Expr | string>): Expr {
+    const parts = expressions
+      .map((expr) => (expr instanceof Expr ? expr.code : expr))
+      .filter((part) => part && String(part).trim().length > 0)
+    return new Expr(parts.join("; "))
+  },
+
+  /**
    * Trigger action on click.
    * Args can include signal handles (auto-convert to $signal.value) or hs.expr().
    *
@@ -361,6 +424,23 @@ export const hs = {
     args?: ActionArgsWithExpr<Partial<I extends void ? Record<string, never> : I>>,
   ): HSBuilder {
     return new HSBuilder().action(action, args)
+  },
+
+  /**
+   * Trigger action on a specific event.
+   * Supports event modifiers like debounce, prevent, outside, etc.
+   *
+   * @example
+   * hs.actionOn("change", save, { id })
+   * hs.actionOn("keyup", search, { q: query }, { debounce: 200 })
+   */
+  actionOn<I, O, S, U>(
+    event: string,
+    action: ActionDescriptor<I, O, S, U> | Action,
+    args?: ActionArgsWithExpr<Partial<I extends void ? Record<string, never> : I>>,
+    mods?: EventModifiers,
+  ): HSBuilder {
+    return new HSBuilder().actionOn(event, action, args, mods)
   },
 
   /**
@@ -418,6 +498,34 @@ export const hs = {
    */
   text(signalName: string | SignalHandle<unknown>): HSBuilder {
     return new HSBuilder().text(signalName)
+  },
+
+  /**
+   * Set innerHTML based on expression
+   */
+  html(content: Expr | string | number | boolean): HSBuilder {
+    return new HSBuilder().html(content)
+  },
+
+  /**
+   * Set inline style based on expression
+   */
+  style(prop: string, value: Expr | string | number | boolean): HSBuilder {
+    return new HSBuilder().style(prop, value)
+  },
+
+  /**
+   * Run an init expression once on element creation
+   */
+  init(code: Expr | string): HSBuilder {
+    return new HSBuilder().init(code)
+  },
+
+  /**
+   * Register an element reference for $refs lookup
+   */
+  ref(name: string): HSBuilder {
+    return new HSBuilder().ref(name)
   },
 
   /**

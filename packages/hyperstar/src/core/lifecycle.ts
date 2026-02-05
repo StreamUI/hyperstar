@@ -2,7 +2,7 @@
  * Hyperstar v3 - Lifecycle Context (Simplified)
  *
  * Minimal lifecycle context for onStart hook.
- * Use app.timer(), app.interval(), app.cron() for scheduled work.
+ * Use app.repeat() and app.cron() for scheduled work.
  */
 
 // ============================================================================
@@ -54,19 +54,19 @@ export const createLifecycleContext = <S extends object>(
 
   // Cleanup is now a no-op since we removed interval/spawn/timeout
   const cleanup = () => {
-    // No-op - timers/intervals/crons are managed by the app
+    // No-op - repeat/cron are managed by the app
   }
 
   return { context, cleanup }
 }
 
 // Keep createManagedTimer for backwards compatibility but mark as deprecated
-/** @deprecated Use app.timer() instead */
+/** @deprecated Use app.repeat() instead */
 export const createManagedTimer = <S extends object>(
   _config: TimerConfig<S>,
   _getStore: () => S,
   _updateStore: (fn: (s: S) => S) => void,
 ): ManagedTimer => {
-  console.warn("createManagedTimer is deprecated. Use app.timer() instead.")
+  console.warn("createManagedTimer is deprecated. Use app.repeat() instead.")
   return { stop: () => {} }
 }

@@ -5,7 +5,7 @@
  * and status indicators. Perfect for SaaS admin panels.
  *
  * Features demonstrated:
- * - hs.interval() for live data updates
+ * - hs.repeat() for live data updates
  * - Multiple stat cards with trend indicators
  * - Activity feed with timestamps
  * - Status badges
@@ -179,10 +179,10 @@ function updateMetrics(s: Store): Store {
 }
 
 // ============================================================================
-// Interval - Live Updates
+// Repeat - Live Updates
 // ============================================================================
 
-app.interval("metrics-update", {
+app.repeat("metrics-update", {
   every: "3 seconds",
   handler: (ctx) => {
     ctx.update(updateMetrics)
@@ -357,7 +357,7 @@ const server = app.app({
 
       {/* Footer */}
       <footer class="mt-8 py-4 text-center text-sm text-gray-400">
-        Metrics update every 3 seconds via hs.interval() • Open in multiple tabs to see real-time sync
+        Metrics update every 3 seconds via hs.repeat() • Open in multiple tabs to see real-time sync
       </footer>
     </div>
   ),

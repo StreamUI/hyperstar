@@ -8,7 +8,6 @@
     ".": "./src/index.ts",
     "./ui": "./src/ui/index.ts",
     "./action": "./src/action/index.ts",
-    "./signals": "./src/signals/index.ts",
     "./jsx-runtime": "./src/jsx-runtime.ts",
     "./jsx-dev-runtime": "./src/jsx-dev-runtime.ts"
   },

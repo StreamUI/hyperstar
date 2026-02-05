@@ -3,13 +3,13 @@
  *
  * Demonstrates the full factory pattern with all async capabilities:
  * 1. Create factory with createHyperstar<Store, UserStore, Signals>()
- * 2. Define actions, timers, intervals, crons, triggers
+ * 2. Define actions, repeats, crons, triggers
  * 3. Call .app({ store, view }) - view can reference action variables!
  * 4. Call .serve()
  *
  * Features showcased:
- * - Timer with conditional execution & FPS tracking
- * - Interval for heartbeats
+ * - Repeat with conditional execution & FPS tracking
+ * - Repeat for heartbeats
  * - Cron jobs (global and per-user)
  * - Triggers that react to store changes
  * - User triggers for per-session state changes
@@ -129,34 +129,34 @@ const clearLogs = app.action("clearLogs", (ctx) => {
 })
 
 // ============================================================================
-// Timer - Game Loop Style (conditional execution + FPS tracking)
+// Repeat - Game Loop Style (conditional execution + FPS tracking)
 // ============================================================================
 
-app.timer("game-ticker", {
-  interval: 100, // 10 FPS target
+app.repeat("game-ticker", {
+  every: 100, // 10 FPS target
   when: (s) => s.running,
   trackFps: true,
   handler: (ctx) => {
     const store = ctx.getStore()
     if (store.frame % 10 === 0) {
       // Log every 10 frames
-      console.log(`⏱️ [Timer] Frame ${store.frame} - FPS: ${ctx.fps.toFixed(1)}`)
-      addLog(ctx, "⏱️", "Timer", `Frame ${store.frame} - FPS: ${ctx.fps.toFixed(1)}`)
+      console.log(`🔄 [Repeat] Frame ${store.frame} - FPS: ${ctx.fps.toFixed(1)}`)
+      addLog(ctx, "🔄", "Repeat", `Frame ${store.frame} - FPS: ${ctx.fps.toFixed(1)}`)
     }
     ctx.update((s) => ({ ...s, frame: s.frame + 1, fps: ctx.fps }))
   },
 })
 
 // ============================================================================
-// Interval - Simple Repeating (heartbeat)
+// Repeat - Simple Repeating (heartbeat)
 // ============================================================================
 
-app.interval("heartbeat", {
+app.repeat("heartbeat", {
   every: "5 seconds",
   handler: (ctx) => {
     const now = Date.now()
-    console.log(`💓 [Interval] Heartbeat`)
-    addLog(ctx, "💓", "Interval", "Heartbeat pulse")
+    console.log(`💓 [Repeat] Heartbeat`)
+    addLog(ctx, "💓", "Repeat", "Heartbeat pulse")
     ctx.update((s) => ({ ...s, lastHeartbeat: now }))
   },
 })
@@ -166,7 +166,7 @@ app.interval("heartbeat", {
 // ============================================================================
 
 app.cron("cleanup", {
-  schedule: "1 minute",
+  every: "1 minute",
   handler: (ctx) => {
     const store = ctx.getStore()
     console.log(`🧹 [Cron] Cleanup - ${store.users.length} users, count=${store.count}`)
@@ -175,7 +175,7 @@ app.cron("cleanup", {
 })
 
 app.cron("user-sync", {
-  schedule: "30 seconds",
+  every: "30 seconds",
   forEachUser: (ctx) => {
     const now = Date.now()
     console.log(`👥 [Cron] User sync - session ${ctx.sessionId.slice(0, 8)}...`)
@@ -409,18 +409,18 @@ const server = app.app({
             <h2 class="font-bold text-lg mb-4">Background Tasks</h2>
             <div class="grid md:grid-cols-3 gap-4 text-sm">
               <div class="p-3 bg-gray-50 rounded-lg">
-                <div class="font-medium">⏱️ Timer (game-ticker)</div>
-                <div class="text-gray-500">100ms interval, {ctx.store.running ? "RUNNING" : "PAUSED"}</div>
+                <div class="font-medium">🔄 Repeat (game-ticker)</div>
+                <div class="text-gray-500">every: 100ms, {ctx.store.running ? "RUNNING" : "PAUSED"}</div>
                 <div class="text-gray-400">Tracks FPS, increments frame</div>
               </div>
               <div class="p-3 bg-gray-50 rounded-lg">
-                <div class="font-medium">💓 Interval (heartbeat)</div>
-                <div class="text-gray-500">Every 5 seconds</div>
+                <div class="font-medium">💓 Repeat (heartbeat)</div>
+                <div class="text-gray-500">every: 5 seconds</div>
                 <div class="text-gray-400">Updates lastHeartbeat timestamp</div>
               </div>
               <div class="p-3 bg-gray-50 rounded-lg">
                 <div class="font-medium">🧹 Cron (cleanup)</div>
-                <div class="text-gray-500">Every 1 minute</div>
+                <div class="text-gray-500">every: 1 minute</div>
                 <div class="text-gray-400">Logs current state summary</div>
               </div>
             </div>
@@ -458,7 +458,7 @@ const server = app.app({
 
           {/* Footer */}
           <footer class="mt-6 text-center text-gray-400 text-sm">
-            <p>Timers, intervals, crons, and triggers all running in the background</p>
+            <p>Repeats, crons, and triggers all running in the background</p>
             <p>Open in multiple tabs to see real-time sync!</p>
           </footer>
         </div>
@@ -474,8 +474,8 @@ console.log(`
 ║  http://localhost:${server.port}                                    ║
 ║                                                               ║
 ║  Background Tasks:                                            ║
-║  • Timer: 100ms game loop with FPS tracking                   ║
-║  • Interval: 5s heartbeat                                     ║
+║  • Repeat: 100ms game loop with FPS tracking                  ║
+║  • Repeat: 5s heartbeat                                       ║
 ║  • Cron: 1m cleanup, 30s user sync                            ║
 ║  • Triggers: count, running, myCount changes                  ║
 ║                                                               ║

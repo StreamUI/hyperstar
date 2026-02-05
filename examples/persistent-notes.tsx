@@ -6,7 +6,7 @@
  *
  * Features demonstrated:
  * - persist option for automatic store persistence
- * - Signal protocol for client-side form state
+ * - Signals for client-side form state
  * - hs.action() with Schema validation
  * - hs-show for conditional rendering (view/edit modes)
  */

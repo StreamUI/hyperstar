@@ -167,7 +167,7 @@ function TodoItem({ todo }: { todo: Todo }) {
 
         {/* Edit button - sets editingId and editText signals */}
         <button
-          hs-on:click={`$editingId.value = '${todo.id}'; $editText.value = '${todo.text.replace(/'/g, "\\'")}'`}
+          $={hs.on("click", hs.seq(editingId.set(todo.id), editText.set(todo.text)))}
           class="px-2 py-1 text-sm text-blue-500 hover:text-blue-700"
         >
           Edit
@@ -202,7 +202,7 @@ function TodoItem({ todo }: { todo: Todo }) {
         </button>
         <button
           type="button"
-          hs-on:click="$editingId.value = null"
+          $={hs.on("click", editingId.clear())}
           class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
         >
           Cancel

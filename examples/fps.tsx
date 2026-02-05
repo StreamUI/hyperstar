@@ -2,7 +2,7 @@
  * Hyperstar v3 - FPS Stress Test (JSX Version)
  *
  * Demonstrates high-frequency state updates using the factory pattern:
- * - hs.timer() for game-loop style updates
+ * - hs.repeat() for game-loop style updates
  * - trackFps: true for automatic FPS tracking
  * - when: (s) => s.running for conditional execution
  *
@@ -45,11 +45,11 @@ const reset = app.action("reset", (ctx) => {
 })
 
 // ============================================================================
-// Timer - Game Loop Style
+// Repeat - Game Loop Style
 // ============================================================================
 
-app.timer("ticker", {
-  interval: 1, // Max speed - let's see how fast we can go!
+app.repeat("ticker", {
+  every: 1, // Max speed - let's see how fast we can go!
   when: (s) => s.running, // Only tick when running
   trackFps: true, // Enable FPS tracking
   handler: (ctx) => {
@@ -200,8 +200,8 @@ console.log(`
 ╠═══════════════════════════════════════════════════════════════╣
 ║  http://localhost:${server.port}                                    ║
 ║                                                               ║
-║  Using app.timer() for game-loop style updates:               ║
-║  • interval: 1 (max speed)                                    ║
+║  Using app.repeat() for game-loop style updates:              ║
+║  • every: 1 (max speed)                                       ║
 ║  • when: (s) => s.running (conditional)                       ║
 ║  • trackFps: true (automatic FPS tracking)                    ║
 ╚═══════════════════════════════════════════════════════════════╝

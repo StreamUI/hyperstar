@@ -216,47 +216,50 @@ You can also use `hs-*` attributes directly:
 <button hs-class:bg-blue-500={filter.is("all")}>All</button>
 ```
 
-## Timers
+## Background Jobs: Repeat vs Cron
 
-High-frequency state updates for games and animations:
+| Type | Best For | Key Feature |
+|------|----------|-------------|
+| **Repeat** | Games, animations, heartbeats, polling | `when` condition + `trackFps` |
+| **Cron** | Scheduled jobs | Cron syntax + `forEachUser` |
+
+**Repeat** - Time-based repeating tasks (replaces timer + interval):
 
 ```tsx
-app.timer("gameLoop", {
-  interval: 16,                   // ms (~60fps)
-  when: (s) => s.running,         // Only run when condition is true
-  trackFps: true,                 // Enable FPS tracking
+// Game loop with FPS tracking
+app.repeat("gameLoop", {
+  every: 16,                      // ms (~60fps) or duration string
+  when: (s) => s.running,         // Only run when true
+  trackFps: true,                 // Enables ctx.fps
   handler: (ctx) => {
-    ctx.update((s) => ({
-      ...s,
-      frame: s.frame + 1,
-      fps: ctx.fps,               // Available when trackFps: true
-    }))
+    ctx.update((s) => ({ ...s, frame: s.frame + 1, fps: ctx.fps }))
   },
 })
-```
 
-## Intervals
-
-Simple repeating tasks:
-
-```tsx
-app.interval("heartbeat", {
-  every: "5 seconds",             // or: "1 minute", 5000 (ms)
+// Simple heartbeat
+app.repeat("heartbeat", {
+  every: "5 seconds",             // Duration string or ms
   handler: (ctx) => {
     ctx.update((s) => ({ ...s, lastPing: Date.now() }))
   },
 })
 ```
 
-## Crons
-
-Scheduled jobs:
+**Cron** - Scheduled jobs:
 
 ```tsx
 app.cron("cleanup", {
-  schedule: "0 * * * *",          // Cron expression or "1 hour"
+  every: "0 * * * *",             // Cron expression or "1 hour"
   handler: (ctx) => {
     ctx.update((s) => ({ ...s, messages: s.messages.slice(-100) }))
+  },
+})
+
+// Per-user cron (session cleanup, etc):
+app.cron("sessionSync", {
+  every: "30 seconds",
+  forEachUser: (ctx) => {
+    ctx.updateUser((u) => ({ ...u, lastSeen: Date.now() }))
   },
 })
 ```
@@ -293,14 +296,57 @@ app.app({
 })
 ```
 
-## Dynamic Title
+## Dynamic Title and Favicon
 
 ```tsx
 app.app({
-  store: { unreadCount: 0 },
+  store: { unreadCount: 0, status: "idle" },
+
+  // Dynamic title
   title: ({ store }) =>
     store.unreadCount > 0 ? `(${store.unreadCount}) My App` : "My App",
+
+  // Dynamic favicon
+  favicon: ({ store }) =>
+    store.status === "active"
+      ? "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>"
+      : "/favicon.ico",
+
   view: ...
+})
+
+// Or update in actions:
+const notify = app.action("notify", (ctx) => {
+  ctx.head.setTitle("New message!")
+  ctx.head.setFavicon("/alert.ico")
+})
+```
+
+## SQLite (Direct Disk Access)
+
+Since Hyperstar runs on a single server, use `bun:sqlite` directly:
+
+```tsx
+import { Database } from "bun:sqlite"
+import { createHyperstar, Schema } from "hyperstar"
+
+const db = new Database("./data/app.db")
+db.run(`CREATE TABLE IF NOT EXISTS items (id TEXT PRIMARY KEY, name TEXT)`)
+
+interface Store { refresh: number }
+const app = createHyperstar<Store>()
+
+const addItem = app.action("addItem", { name: Schema.String }, (ctx, { name }) => {
+  db.run("INSERT INTO items (id, name) VALUES (?, ?)", [crypto.randomUUID(), name])
+  ctx.update((s) => ({ ...s, refresh: s.refresh + 1 }))
+})
+
+app.app({
+  store: { refresh: 0 },
+  view: (ctx) => {
+    const items = db.query("SELECT * FROM items").all()
+    return <div id="app">{items.map((i: any) => <div id={i.id}>{i.name}</div>)}</div>
+  },
 })
 ```
 

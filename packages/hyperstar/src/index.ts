@@ -66,26 +66,6 @@ export {
   type Action,
 } from "./action"
 
-// Signals (protocol types for type-safe signal handles)
-export {
-  type SignalScope,
-  type SignalDef,
-  type BooleanSignalDef,
-  type NumberSignalDef,
-  type StringSignalDef,
-  type EnumSignalDef,
-  type NullableSignalDef,
-  type AnySignalDef,
-  type SignalAccessor,
-  type BooleanSignalAccessor,
-  type NumberSignalAccessor,
-  type StringSignalAccessor,
-  type EnumSignalAccessor,
-  type NullableSignalAccessor,
-  type SignalProtocol,
-  Signal,
-} from "./signals"
-
 // Server - main entry point
 export {
   type HyperstarConfig,
@@ -93,13 +73,10 @@ export {
   type ServeOptions,
   type HyperstarFactory,
   type HyperstarApp,
-  // Config types for timer/interval/cron
-  type TimerConfig,
-  type TimerHandlerContext,
-  type TimerHandle,
-  type IntervalConfig,
-  type IntervalHandlerContext,
-  type IntervalHandle,
+  // Config types for repeat/cron
+  type RepeatConfig,
+  type RepeatHandlerContext,
+  type RepeatHandle,
   type CronConfig,
   type CronHandlerContext,
   type CronUserContext,

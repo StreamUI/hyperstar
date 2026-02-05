@@ -147,6 +147,7 @@ const server = app.app({
   view: (ctx) => (
     <div
       id="app"
+      $={hs.init("console.log('[hyperstar] Signals showcase ready')")}
       hs-class:bg-gray-900={darkMode.expr}
       hs-class:text-white={darkMode.expr}
       hs-class:bg-gray-50="!$darkMode.value"
@@ -198,7 +199,7 @@ const server = app.app({
               <input
                 type="text"
                 placeholder="Type your name..."
-                $={hs.bind(name)}
+                $={hs.bind(name).ref("nameInput")}
                 hs-class:border-gray-600={darkMode.expr}
                 hs-class:bg-gray-700={darkMode.expr}
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -206,9 +207,27 @@ const server = app.app({
               <p class="mt-2 text-sm">
                 Hello, <span hs-text={`$name.value || 'stranger'`} class="font-semibold text-blue-500" />!
               </p>
+              <div
+                class="mt-2 text-sm text-gray-500"
+                $={hs.html("`<em>HTML preview:</em> ${$name.value || 'stranger'}`")}
+              />
               <p hs-class:text-gray-400={darkMode.expr} class="text-xs text-gray-500 mt-1">
                 Characters: <span hs-text="$name.value.length" class="font-mono" />
               </p>
+              <div class="flex gap-2 mt-3">
+                <button
+                  $={hs.on("click", "$refs.nameInput.focus()")}
+                  class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded"
+                >
+                  Focus Input
+                </button>
+                <button
+                  $={hs.on("click", hs.seq(name.set(""), message.set("")))}
+                  class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded"
+                >
+                  Clear Basics
+                </button>
+              </div>
             </div>
 
             {/* Message Textarea with Counter */}
@@ -363,14 +382,13 @@ const server = app.app({
               <div class="flex items-center gap-4">
                 <input
                   type="color"
-                  $={hs.bind(selectedColor)}
+                  $={hs.bind(selectedColor).actionOn("change", saveColor, { color: selectedColor })}
                   class="w-16 h-16 rounded-lg cursor-pointer border-0"
                 />
                 <div>
                   <p
-                    hs-text="$selectedColor.value"
                     class="font-mono text-lg"
-                    hs-attr:style="`color: ${$selectedColor.value}`"
+                    $={hs.text(selectedColor).style("color", selectedColor.expr)}
                   />
                   <button
                     $={hs.action(saveColor, { color: selectedColor })}
@@ -386,7 +404,7 @@ const server = app.app({
             <div class="mb-6">
               <label class="block text-sm font-medium mb-2">Preview Box</label>
               <div
-                hs-attr:style="`background-color: ${$selectedColor.value}`"
+                $={hs.style("background-color", selectedColor.expr)}
                 class="w-full h-32 rounded-lg transition-colors flex items-center justify-center text-white font-bold text-xl shadow-lg"
               >
                 <span hs-text="$selectedColor.value" />
@@ -401,7 +419,7 @@ const server = app.app({
                   {ctx.store.savedColors.map((color, i) => (
                     <button
                       id={`color-${i}`}
-                      hs-on:click={`$selectedColor.value = '${color}'`}
+                      $={hs.on("click", selectedColor.set(color))}
                       style={`background-color: ${color}`}
                       class="w-10 h-10 rounded-lg shadow hover:scale-110 transition-transform"
                       title={color}
@@ -444,8 +462,7 @@ const server = app.app({
               <input
                 type="email"
                 placeholder="you@example.com"
-                $={hs.bind(email)}
-                hs-on:blur="$touched.value = true"
+                $={hs.bind(email).on("blur", touched.set(true))}
                 hs-class:border-red-500="$touched.value && !$email.value.includes('@')"
                 hs-class:border-green-500="$email.value.includes('@')"
                 hs-class:border-gray-600={darkMode.expr}
@@ -486,6 +503,12 @@ const server = app.app({
               class="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors"
             >
               Submit Form
+            </button>
+            <button
+              $={hs.on("click", hs.seq(email.set(""), agreeToTerms.set(false), touched.set(false)))}
+              class="mt-2 w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-lg"
+            >
+              Reset Validation
             </button>
 
             {/* Validation Status */}

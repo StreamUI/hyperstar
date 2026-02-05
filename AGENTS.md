@@ -41,7 +41,7 @@ packages/hyperstar/src/
 ├── core/
 │   └── lifecycle.ts  # Lifecycle hooks (onStart, onConnect, etc.)
 ├── schedule/
-│   └── index.ts      # Timers, intervals, crons
+│   └── index.ts      # Scheduling helpers (repeat, cron)
 └── triggers/
     └── index.ts      # Store change watchers
 
@@ -258,14 +258,20 @@ The `$` prop takes an `hs.*` helper that adds reactive attributes:
 
 ```tsx
 hs.action(action, args?)       // Trigger action on click
+hs.actionOn(event, action, args?, mods?) // Trigger action on a specific event
 hs.form(action, args?)         // Submit form to action
 hs.bind(signal)                // Two-way bind signal to input
 hs.show(condition)             // Show/hide element
 hs.class(className, condition) // Toggle CSS class
 hs.attr(attrName, condition)   // Set attribute based on condition
+hs.html(expr)                  // Set innerHTML
+hs.style(prop, expr)           // Set inline style
+hs.init(expr)                  // Run init expression once
+hs.ref(name)                   // Register element ref
 hs.disabled(condition)         // Disable element
 hs.on(event, handler, mods?)   // Bind event to expression
 hs.expr(code)                  // Create client-side expression
+hs.seq(...exprs)               // Compose expressions into a single statement
 hs.compose(...builders)        // Compose multiple builders
 ```
 
@@ -291,6 +297,7 @@ You can also use `hs-*` attributes directly:
 <button $={hs.action(myAction)}>Click</button>
 <button $={hs.action(myAction, { id: "123" })}>With static args</button>
 <button $={hs.action(myAction, { amount: hs.expr("parseInt($amount.value)") })}>With expr</button>
+<input $={hs.actionOn("input", myAction, { q: query }, { debounce: 200 })} />
 
 // Form submission
 <form $={hs.form(submitForm)}>...</form>
@@ -322,13 +329,13 @@ app.app({
 })
 ```
 
-### Timers
+### Repeat
 
-High-frequency state updates for games and animations:
+Time-based repeating tasks (replaces timer + interval):
 
 ```tsx
-app.timer("gameLoop", {
-  interval: 16,                   // ms (~60fps)
+app.repeat("gameLoop", {
+  every: 16,                      // ms (~60fps)
   when: (s) => s.running,         // Only run when condition is true
   trackFps: true,                 // Enable FPS tracking
   handler: (ctx) => {
@@ -341,22 +348,11 @@ app.timer("gameLoop", {
 })
 ```
 
-### Intervals
-
-```tsx
-app.interval("heartbeat", {
-  every: "5 seconds",             // or: "1 minute", 5000 (ms)
-  handler: (ctx) => {
-    ctx.update((s) => ({ ...s, lastPing: Date.now() }))
-  },
-})
-```
-
-### Crons
+### Cron
 
 ```tsx
 app.cron("cleanup", {
-  schedule: "0 * * * *",          // Cron expression or "1 hour"
+  every: "0 * * * *",             // Cron expression or "1 hour"
   handler: (ctx) => {
     ctx.update((s) => ({ ...s, messages: s.messages.slice(-100) }))
   },

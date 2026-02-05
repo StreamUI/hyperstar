@@ -7,7 +7,7 @@
  * Features demonstrated:
  * - hs.action() with Schema validation
  * - Signals for client-side team selection
- * - hs.timer() for round countdown
+ * - app.repeat() for round countdown
  * - Dynamic grid rendering
  * - Real-time multiplayer sync
  */
@@ -136,11 +136,11 @@ const claimCell = app.action(
 )
 
 // ============================================================================
-// Timer - Round countdown
+// Repeat - Round countdown
 // ============================================================================
 
-app.timer("roundTimer", {
-  interval: 1000,
+app.repeat("roundTimer", {
+  every: 1000,
   handler: (ctx) => {
     ctx.update((s) => {
       if (s.roundState === "playing") {
@@ -343,8 +343,8 @@ console.log(`
 ╠═══════════════════════════════════════════════════════════════╣
 ║  http://localhost:${server.port}                                    ║
 ║                                                               ║
-║  Using hs.timer() for round countdown:                        ║
-║  • interval: 1000 (1 second)                                  ║
+║  Using app.repeat() for round countdown:                      ║
+║  • every: 1000 (1 second)                                     ║
 ║  • Handles round transitions automatically                    ║
 ║                                                               ║
 ║  Signals for team selection:                                  ║
