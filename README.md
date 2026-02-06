@@ -13,7 +13,7 @@
 
 ## Demo: Multiplayer Grid Game
 
-<video src="assets/game-demo.mp4" width="600" controls></video>
+![Grid Game Demo](assets/game-demo.gif)
 
 **[Try it live](https://grid-game-bc4rf.sprites.app/)** | **[View source](examples/grid-game/)**
 
