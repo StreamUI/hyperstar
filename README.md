@@ -9,10 +9,22 @@
 
 **Server-driven UI for real-time web apps. No client code. No state sync. Just TypeScript + JSX.**
 
+---
+
+## Demo: Multiplayer Grid Game
+
+<video src="assets/game-demo.mp4" width="600" controls></video>
+
+**[Try it live](https://grid-game-bc4rf.sprites.app/)** | **[View source](examples/grid-game/)**
+
+A multiplayer territory control game - click cells to claim them for your team. All players see changes in real-time.
+
+---
+
 Inspired by [Phoenix LiveView](https://hexdocs.pm/phoenix_live_view/) | [Datastar](https://data-star.dev/) | [HTMX](https://htmx.org/)
 
 > [!TIP]
-> **Built for Vibe Coding** - JSX that feels like React, but there's no client bundle, no hydration, no state sync bugs. The server owns everything. Live, realtime UI, directly from the server. When you use `bunx hyperstar-cli create`, your project includes a Claude Code skill that teaches Claude how to build Hyperstar apps. If you're not using the CLI, you can copy the skill from [`packages/cli/skill/SKILL.md`](https://github.com/longtailLABS/hyperstar/blob/master/packages/cli/skill/SKILL.md) into your project's `.claude/skills/` directory.
+> **Built for Vibe Coding** - JSX that feels like React, but there's no client bundle, no hydration, no state sync bugs. The server owns everything. Live, realtime UI, directly from the server. When you use `bunx hyperstar-cli create`, your project includes a Claude Code skill that teaches Claude how to build Hyperstar apps. If you're not using the CLI, you can copy the skill from [`packages/cli/skill/SKILL.md`](https://github.com/StreamUI/hyperstar/blob/master/packages/cli/skill/SKILL.md) into your project's `.claude/skills/` directory.
 
 ## Quick Start
 
@@ -23,7 +35,7 @@ bun install
 bun run dev
 ```
 
-Open http://localhost:3000 - you have a working app.
+Open http://localhost:8080 - you have a working app.
 
 Now edit `app.tsx`:
 
@@ -48,7 +60,7 @@ app.app({
       <button $={hs.action(increment)}>+1</button>
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 Open multiple tabs - they all sync in real-time.
@@ -214,7 +226,7 @@ app.app({
 ## Examples
 
 ```bash
-git clone https://github.com/longtailLABS/hyperstar
+git clone https://github.com/StreamUI/hyperstar
 cd hyperstar && bun install
 
 bun --hot examples/counter.tsx           # Basic counter
@@ -251,7 +263,7 @@ Create a `hyperstar.json` in your project root:
 bunx hyperstar-cli deploy --managed
 ```
 
-No account needed. Deploy instantly via longtailLABS.
+No account needed. Deploy instantly.
 
 ### Self-Deploy (Recommended)
 
@@ -423,7 +435,7 @@ app.app({
       </div>
     )
   },
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 No ORM, no connection pooling, no Redis - just `bun:sqlite`. This works because:
@@ -551,7 +563,7 @@ app.app({
       )}
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ### Live API Polling
@@ -603,7 +615,7 @@ app.app({
       )}
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ### Typing Indicator
@@ -692,7 +704,7 @@ app.app({
       </form>
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ### Smooth Animation
@@ -745,7 +757,7 @@ app.app({
       </div>
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ### Session Cleanup with Cron
@@ -793,7 +805,7 @@ app.app({
       <div>Active sessions: {ctx.store.activeSessions}</div>
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ---

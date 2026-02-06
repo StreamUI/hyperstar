@@ -30,7 +30,7 @@ const publicOption = Options.boolean("public").pipe(
 
 const managedOption = Options.boolean("managed").pipe(
   Options.withAlias("m"),
-  Options.withDescription("Deploy via longtailLABS managed hosting (no auth required)"),
+  Options.withDescription("Deploy via managed hosting (no auth required). I'll prob regret this"),
   Options.withDefault(false)
 )
 

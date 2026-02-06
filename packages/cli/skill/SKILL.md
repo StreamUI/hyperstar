@@ -44,7 +44,7 @@ app.app({
       <button $={hs.action(increment)}>+1</button>
     </div>
   ),
-}).serve({ port: 3000 })
+}).serve({ port: 8080 })
 ```
 
 ## Store vs Signals vs UserStore
@@ -103,13 +103,26 @@ const fetchData = app.action("fetchData", async (ctx) => {
 
 ```tsx
 const myAction = app.action("myAction", (ctx) => {
-  ctx.update((s) => ({ ...s, ... }))     // Update shared store
-  ctx.getStore()                          // Get current store
-  ctx.updateUserStore((u) => ({ ... }))   // Update per-session state
-  ctx.getUserStore()                      // Get per-session state
-  ctx.patchSignals({ text: "" })          // Update client signals for this user
-  ctx.sessionId                           // Current session ID
-  ctx.head.setTitle("New Title")          // Update page title
+  // Store operations
+  ctx.update((s) => ({ ...s, ... }))      // Update shared store
+  ctx.getStore()                           // Get current store
+  ctx.updateUserStore((u) => ({ ... }))    // Update per-session state
+  ctx.getUserStore()                       // Get per-session state
+
+  // Client state
+  ctx.patchSignals({ text: "" })           // Update signals for this user
+
+  // Session info
+  ctx.sessionId                            // Current session ID (shorthand)
+  ctx.session.id                           // Full session object
+  ctx.session.connectedAt                  // Connection timestamp
+
+  // Head management
+  ctx.head.setTitle("New Title")           // Update page title
+  ctx.head.setFavicon("/icon.ico", "image/x-icon")  // Update favicon
+
+  // Broadcasting
+  ctx.broadcast({ type: "custom", data })  // Send SSE event to all clients
 })
 ```
 
@@ -143,14 +156,73 @@ The `$` prop takes an `hs.*` helper for reactive attributes:
 ## hs Namespace
 
 ```tsx
-hs.action(action, args?)      // Trigger action on click
-hs.form(action, args?)        // Submit form to action
-hs.bind(signal)               // Two-way bind signal to input
-hs.show(condition)            // Show/hide element
-hs.class(className, condition) // Toggle CSS class
-hs.disabled(condition)        // Disable element
-hs.on(event, handler, mods?)  // Bind event to expression
-hs.expr(code)                 // Create client-side expression
+// Actions & Forms
+hs.action(action, args?)           // Trigger action on click
+hs.actionOn(event, action, args?, mods?)  // Action on specific event
+hs.form(action, args?)             // Submit form to action
+
+// Two-way binding
+hs.bind(signal)                    // Bind signal to input/textarea/select
+
+// Visibility & Styling
+hs.show(condition)                 // Show/hide element
+hs.class(className, condition)     // Toggle CSS class
+hs.attr(name, condition)           // Conditional attribute
+hs.style(property, value)          // Dynamic inline style
+hs.disabled(condition)             // Disable element
+hs.text(signal)                    // Set text content from signal
+
+// Events & Expressions
+hs.on(event, handler, mods?)       // Bind event to expression
+hs.expr(code)                      // Create client-side expression
+hs.seq(...exprs)                   // Sequence multiple expressions
+
+// Element References & Init
+hs.ref(name)                       // Create element reference ($refs.name)
+hs.init(code)                      // Run code when element created
+
+// Dynamic Content
+hs.html(content)                   // Set innerHTML (use carefully)
+
+// Drag and Drop
+hs.drag(dataKey, dataValue)        // Make element draggable
+hs.drop(action, keyFrom, keyTo, extraArgs?)  // Make drop target
+```
+
+### Event Modifiers
+
+```tsx
+// hs.on and hs.actionOn support modifiers
+$={hs.on("input", signal.set("value"), { debounce: 300 })}
+$={hs.actionOn("change", saveAction, { id }, { throttle: 500 })}
+
+// Available modifiers:
+// debounce: ms    - Debounce the handler
+// throttle: ms    - Throttle the handler
+// once: true      - Only fire once
+// prevent: true   - preventDefault()
+// stop: true      - stopPropagation()
+// outside: true   - Only fire for clicks outside element
+// capture: true   - Use capture phase
+// passive: true   - Passive event listener
+// self: true      - Only fire if target is the element itself
+```
+
+### Builder Utilities
+
+```tsx
+// Start a builder chain for complex compositions
+hs.builder().action(save).class("active", isActive).show(isVisible)
+
+// Toggle between two class sets
+hs.toggle(isDark, "bg-gray-900 text-white", "bg-white text-gray-900")
+
+// Compose multiple builders
+hs.compose(
+  hs.action(save),
+  hs.class("active", isActive),
+  hs.show(isVisible)
+)
 ```
 
 ## Signals
@@ -162,27 +234,46 @@ interface Signals {
   filter: "all" | "active" | "done"
   text: string
   count: number
+  isOpen: boolean
   editingId: string | null
 }
 
 const app = createHyperstar<Store, {}, Signals>()
-const { filter, text, count, editingId } = app.signals
+const { filter, text, count, isOpen, editingId } = app.signals
+
+// Common for all signals
+signal.expr                 // Raw expression: "$signal.value"
+signal.set(value)           // Set signal: "$signal.value = 'x'"
+signal.patch(value)         // Create patch object: { signal: value }
 
 // String/enum signal
-filter.is("active")        // "$filter.value === 'active'"
-filter.isNot("done")       // "$filter.value !== 'done'"
-text.isEmpty()             // "$text.value === ''"
-text.isNotEmpty()          // "$text.value !== ''"
+filter.is("active")         // "$filter.value === 'active'"
+filter.isNot("done")        // "$filter.value !== 'done'"
+filter.oneOf(["a", "b"])    // Check against multiple values
+filter.noneOf(["x", "y"])   // Not one of values
+text.isEmpty()              // "$text.value === ''"
+text.isNotEmpty()           // "$text.value !== ''"
 
 // Number signal
-count.gt(5)                // "$count.value > 5"
-count.lt(10)               // "$count.value < 10"
-count.eq(0)                // "$count.value === 0"
+count.eq(0)                 // "$count.value === 0"
+count.gt(5)                 // "$count.value > 5"
+count.gte(5)                // "$count.value >= 5"
+count.lt(10)                // "$count.value < 10"
+count.lte(10)               // "$count.value <= 10"
+count.oneOf([1, 2, 3])      // Multiple value check
+count.noneOf([0])           // Not one of values
+
+// Boolean signal
+isOpen.is(true)             // "$isOpen.value === true"
+isOpen.toggle()             // "$isOpen.value = !$isOpen.value"
+isOpen.setTrue()            // "$isOpen.value = true"
+isOpen.setFalse()           // "$isOpen.value = false"
 
 // Nullable signal
-editingId.isNull()         // "$editingId.value === null"
-editingId.isNotNull()      // "$editingId.value !== null"
-editingId.is("abc")        // "$editingId.value === 'abc'"
+editingId.isNull()          // "$editingId.value === null"
+editingId.isNotNull()       // "$editingId.value !== null"
+editingId.is("abc")         // "$editingId.value === 'abc'"
+editingId.clear()           // "$editingId.value = null"
 ```
 
 ### Expression Composition
@@ -203,17 +294,43 @@ filter.is("active").and(!todo.done)
 
 ## Direct Attributes
 
-You can also use `hs-*` attributes directly:
+You can use `hs-*` attributes directly instead of the `$` prop:
 
 ```tsx
-// Direct signal update
-<button hs-on:click="$tab.value = 'home'">Home</button>
+// Events
+<button hs-on:click="$count.value++">Increment</button>
+<button hs-on:click={count.toggle()}>Toggle</button>
 
 // Show/hide
 <div hs-show={tab.is("home")}>Home content</div>
+<div hs-show="$loading.value">Loading...</div>
 
-// Dynamic class
+// Dynamic classes
 <button hs-class:bg-blue-500={filter.is("all")}>All</button>
+<div hs-class:opacity-50="$disabled.value">Maybe dim</div>
+
+// Conditional attributes
+<button hs-attr:disabled="!$valid.value">Submit</button>
+<input hs-attr:readonly={isLocked.is(true)} />
+
+// Dynamic styles
+<div hs-style:background-color="$color.value">Colored</div>
+<div hs-style:width="$progress.value + '%'">Bar</div>
+
+// Text and HTML content
+<span hs-text="$name.value"></span>
+<div hs-html="$htmlContent.value"></div>
+
+// Element references
+<input hs-ref="myInput" />
+<!-- Access via: $refs.myInput.focus() -->
+
+// Initialization
+<div hs-init="console.log('element created')">...</div>
+
+// Two-way binding
+<input hs-bind="text" />
+<input $={hs.bind(text)} />  <!-- Equivalent -->
 ```
 
 ## Background Jobs: Repeat vs Cron
@@ -264,6 +381,49 @@ app.cron("sessionSync", {
 })
 ```
 
+## Triggers (Store Change Watchers)
+
+React to specific store value changes:
+
+```tsx
+// Watch global store changes
+app.trigger("count-watcher", {
+  watch: (s) => s.count,           // Derived value to watch
+  handler: (ctx, { oldValue, newValue }) => {
+    console.log(`Count changed: ${oldValue} → ${newValue}`)
+  },
+})
+
+// Watch per-user store changes
+app.userTrigger("theme-changed", {
+  watch: (u) => u.theme,
+  handler: (ctx, { oldValue, newValue, sessionId }) => {
+    console.log(`User ${sessionId} changed theme`)
+  },
+})
+```
+
+## HTTP Endpoints
+
+Add custom HTTP routes:
+
+```tsx
+// Simple GET endpoint
+app.http("/api/status", (ctx) => {
+  return Response.json({ status: "ok", count: ctx.getStore().count })
+})
+
+// POST with method config
+app.http("/webhook", {
+  method: "POST",
+  handler: async (ctx) => {
+    const body = await ctx.request.json()
+    ctx.update((s) => ({ ...s, lastWebhook: body }))
+    return Response.json({ received: true })
+  },
+})
+```
+
 ## Lifecycle Hooks
 
 ```tsx
@@ -292,6 +452,16 @@ app.app({
 app.app({
   store: { todos: [] },
   persist: "./data/todos.json",  // Auto-save on changes
+  view: (ctx) => ...
+})
+
+// With options
+app.app({
+  store: { todos: [] },
+  persist: {
+    path: "./data/todos.json",
+    debounceMs: 200,             // Debounce writes (default: 100)
+  },
   view: (ctx) => ...
 })
 ```
@@ -347,6 +517,38 @@ app.app({
     const items = db.query("SELECT * FROM items").all()
     return <div id="app">{items.map((i: any) => <div id={i.id}>{i.name}</div>)}</div>
   },
+})
+```
+
+## App Configuration
+
+```tsx
+app.app({
+  // State
+  store: { count: 0 },              // Initial global state
+  userStore: { theme: "light" },    // Initial per-session state
+  signals: { text: "" },            // Initial signal values
+
+  // View
+  view: (ctx) => <div id="app">...</div>,
+
+  // Dynamic head
+  title: "Static" | ({ store, userStore }) => "Dynamic",
+  favicon: "/icon.ico" | ({ store }) => "/dynamic.ico",
+
+  // Persistence
+  persist: "./data.json" | { path: "...", debounceMs: 100 },
+
+  // Background task control
+  autoPauseWhenIdle: true,          // Pause repeat/cron when no clients (default: true)
+
+  // Lifecycle
+  onStart: (ctx) => { },
+  onConnect: (ctx) => { },
+  onDisconnect: (ctx) => { },
+}).serve({
+  port: 8080,                       // Default: 8080
+  hostname: "0.0.0.0",              // Default: 0.0.0.0
 })
 ```
 
@@ -519,4 +721,67 @@ const hasVoted = ctx.session.id in ctx.store.voters
     ? <div>{option.text}: {option.votes} votes</div>
     : <button $={hs.action(vote, { optionId: option.id })}>{option.text}</button>
 )}
+```
+
+### Drag and drop (Kanban style)
+
+```tsx
+const moveCard = app.action("moveCard", {
+  cardId: Schema.String,
+  targetColumnId: Schema.String,
+}, (ctx, { cardId, targetColumnId }) => {
+  ctx.update((s) => ({
+    ...s,
+    cards: s.cards.map((c) =>
+      c.id === cardId ? { ...c, columnId: targetColumnId } : c
+    ),
+  }))
+})
+
+// Draggable card
+<div $={hs.drag("cardId", card.id)}>
+  {card.title}
+</div>
+
+// Drop target column
+<div $={hs.drop(moveCard, "cardId", "cardId", { targetColumnId: column.id })}>
+  {column.cards.map((card) => ...)}
+</div>
+```
+
+### Debounced search
+
+```tsx
+const { query } = app.signals
+
+const search = app.action("search", { q: Schema.String }, async (ctx, { q }) => {
+  ctx.update((s) => ({ ...s, loading: true }))
+  const results = await fetchResults(q)
+  ctx.update((s) => ({ ...s, results, loading: false }))
+})
+
+// Debounce input to avoid too many requests
+<input
+  $={hs.bind(query).actionOn("input", search, { q: query }, { debounce: 300 })}
+  placeholder="Search..."
+/>
+```
+
+### Sequencing expressions
+
+```tsx
+const { text, filter } = app.signals
+
+// Clear multiple signals and focus input
+<button
+  $={hs.on("click", hs.seq(
+    text.set(""),
+    filter.set("all"),
+    hs.expr("$refs.input.focus()")
+  ))}
+>
+  Reset
+</button>
+
+<input $={hs.ref("input").bind(text)} />
 ```

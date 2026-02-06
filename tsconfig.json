@@ -27,6 +27,7 @@
   "exclude": [
     "templates/**/*",
     "node_modules",
-    "packages/cli/templates/**/*"
+    "packages/cli/templates/**/*",
+    "examples/grid-game"
   ]
 }

@@ -1,0 +1,4 @@
+{
+  "name": "grid-game",
+  "entrypoint": "app.tsx"
+}

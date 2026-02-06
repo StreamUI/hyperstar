@@ -134,7 +134,7 @@ const server = app.app({
       </footer>
     </div>
   ),
-}).serve({ port: Number(process.env.PORT) || 3000 })
+}).serve({ port: Number(process.env.PORT) || 8080 })
 
 console.log(`
 Hyperstar running at http://localhost:${server.port}
