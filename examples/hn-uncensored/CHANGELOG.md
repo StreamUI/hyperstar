@@ -1,5 +1,12 @@
 # hn-uncensored
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [3fea1bd]
+  - hyperstar@0.9.0
+
 ## 1.0.3
 
 ### Patch Changes

@@ -1,5 +1,0 @@
----
-"hyperstar": minor
----
-
-Http endpoint

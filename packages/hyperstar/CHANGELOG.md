@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.9.0
+
+### Minor Changes
+
+- 3fea1bd: Http endpoint
+
 ## 0.8.0
 
 ### Minor Changes
