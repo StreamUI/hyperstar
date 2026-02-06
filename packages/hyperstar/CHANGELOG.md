@@ -1,5 +1,11 @@
 # hyperstar
 
+## 0.10.0
+
+### Minor Changes
+
+- d26215c: small fixes
+
 ## 0.9.0
 
 ### Minor Changes
