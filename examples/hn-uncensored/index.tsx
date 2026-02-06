@@ -709,6 +709,33 @@ app.repeat("hnPoll", {
   },
 })
 
+// Cron webhook - allows external services (cron-job.org, Uptime Robot, etc.) to trigger polls
+// This enables Sprites hibernation while still collecting data periodically
+app.http("/cron", async (ctx) => {
+  const cronSecret = process.env.CRON_SECRET
+  const providedSecret = ctx.req.headers.get("x-cron-secret") ?? ctx.url.searchParams.get("secret")
+
+  // Authenticate if CRON_SECRET is set
+  if (cronSecret && providedSecret !== cronSecret) {
+    console.log(`${LOG_PREFIX} ⚠️  Cron webhook rejected - invalid secret`)
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
+    })
+  }
+
+  console.log(`${LOG_PREFIX} 🔔 Cron webhook triggered`)
+  await runPoll(ctx, { source: "manual" })  // Respects poll interval
+
+  return new Response(JSON.stringify({
+    ok: true,
+    timestamp: new Date().toISOString(),
+    message: "Poll triggered successfully"
+  }), {
+    headers: { "Content-Type": "application/json" },
+  })
+})
+
 const server = app
   .app({
     store: {
@@ -1489,9 +1516,12 @@ console.log(`
 ║                    HN Uncensored Monitor                      ║
 ╠═══════════════════════════════════════════════════════════════╣
 ║  http://localhost:${server.port}                                    ║
+║  http://localhost:${server.port}/cron  (webhook for external cron)  ║
 ║                                                               ║
 ║  Polling: ${DEFAULT_POLL_MINUTES} minutes                     ║
 ║  Persist: ./data/hn-uncensored.json                           ║
+║                                                               ║
+║  Set CRON_SECRET env var to secure the webhook                ║
 ╚═══════════════════════════════════════════════════════════════╝
 `)
 

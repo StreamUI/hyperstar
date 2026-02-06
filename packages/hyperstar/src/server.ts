@@ -380,6 +380,35 @@ export interface CronHandle {
   readonly isPaused: boolean
 }
 
+/**
+ * HTTP route handler context.
+ * Provides access to store and update functions for custom HTTP endpoints.
+ */
+export interface HttpHandlerContext<S extends object> {
+  readonly req: Request
+  readonly url: URL
+  readonly getStore: () => S
+  readonly update: (fn: (s: S) => S) => void
+}
+
+/**
+ * HTTP route handler function.
+ * Returns a Response or void (void returns 200 OK with empty body).
+ */
+export type HttpHandler<S extends object> = (
+  ctx: HttpHandlerContext<S>
+) => Response | Promise<Response> | void | Promise<void>
+
+/**
+ * HTTP route configuration.
+ */
+export interface HttpConfig<S extends object> {
+  /** HTTP method(s) to match. Defaults to ["GET", "POST"] */
+  readonly method?: string | string[]
+  /** Route handler */
+  readonly handler: HttpHandler<S>
+}
+
 // ============================================================================
 // App Configuration (passed to .app())
 // ============================================================================
@@ -487,6 +516,26 @@ export interface HyperstarFactory<
   }): void
 
   /**
+   * Define a custom HTTP endpoint.
+   * Useful for webhooks, cron triggers, health checks, APIs.
+   *
+   * @example
+   * ```tsx
+   * app.http("/cron", async (ctx) => {
+   *   await runPoll(ctx)
+   *   return new Response(JSON.stringify({ ok: true }))
+   * })
+   *
+   * // With specific method
+   * app.http("/api/data", { method: "GET", handler: (ctx) => {
+   *   return Response.json(ctx.getStore())
+   * }})
+   * ```
+   */
+  http(path: string, handler: HttpHandler<S>): void
+  http(path: string, config: HttpConfig<S>): void
+
+  /**
    * Configure the app with store, view, and other options.
    * Returns a servable app.
    */
@@ -560,6 +609,7 @@ export const createHyperstar = <
   const cronDefs: Array<{ id: string; config: CronConfig<S, U> }> = []
   const triggerDefs: Array<{ id: string; config: Omit<TriggerConfig<S, unknown>, "id"> }> = []
   const userTriggerDefs: Array<{ id: string; config: Omit<UserTriggerConfig<S, U, unknown>, "id"> }> = []
+  const httpDefs: Array<{ path: string; methods: string[]; handler: HttpHandler<S> }> = []
 
   // Create signal handles lazily via Proxy - handles are created on first access
   // Uses universal handles with all methods; TypeScript restricts visibility based on Signals type
@@ -627,6 +677,16 @@ export const createHyperstar = <
       handler: (ctx: UserTriggerContext<S, U>, change: UserTriggerChange<T>) => void
     }): void {
       userTriggerDefs.push({ id, config: config as UserTriggerConfig<S, U, unknown> })
+    },
+
+    http(path: string, handlerOrConfig: HttpHandler<S> | HttpConfig<S>): void {
+      const isConfig = typeof handlerOrConfig === "object" && "handler" in handlerOrConfig
+      const handler = isConfig ? handlerOrConfig.handler : handlerOrConfig
+      const methodInput = isConfig ? handlerOrConfig.method : undefined
+      const methods = methodInput
+        ? (Array.isArray(methodInput) ? methodInput : [methodInput]).map(m => m.toUpperCase())
+        : ["GET", "POST"]
+      httpDefs.push({ path, methods, handler })
     },
 
     app(config: HyperstarConfig<S, U, Signals>): HyperstarApp {
@@ -1032,6 +1092,34 @@ export const createHyperstar = <
               status: 500,
               headers: { "Content-Type": "application/json" },
             })
+          }
+        }
+
+        // Check custom HTTP routes
+        for (const { path: routePath, methods, handler } of httpDefs) {
+          if (reqPath === routePath && methods.includes(req.method)) {
+            try {
+              const ctx: HttpHandlerContext<S> = {
+                req,
+                url,
+                getStore,
+                update: updateStore,
+              }
+              const result = await handler(ctx)
+              if (result instanceof Response) {
+                return result
+              }
+              // void return = 200 OK
+              return new Response(JSON.stringify({ ok: true }), {
+                headers: { "Content-Type": "application/json" },
+              })
+            } catch (error) {
+              console.error(`[hyperstar] HTTP handler error for ${routePath}:`, error)
+              return new Response(JSON.stringify({ error: String(error) }), {
+                status: 500,
+                headers: { "Content-Type": "application/json" },
+              })
+            }
           }
         }
 
