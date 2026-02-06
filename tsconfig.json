@@ -28,6 +28,7 @@
     "templates/**/*",
     "node_modules",
     "packages/cli/templates/**/*",
-    "examples/grid-game"
+    "examples/grid-game",
+    "examples/xxxhn"
   ]
 }
