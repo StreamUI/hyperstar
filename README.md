@@ -17,7 +17,7 @@
 
 **[Try it live](https://grid-game-bc4rf.sprites.app/)** | **[View source](examples/grid-game/)**
 
-A multiplayer territory control game - click cells to claim them for your team. All players see changes in real-time.
+A multiplayer territory control game in ~300 lines of code. Click cells to claim them for your team - all players see changes in real-time.
 
 ---
 
