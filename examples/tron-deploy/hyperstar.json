@@ -1,0 +1,4 @@
+{
+  "name": "tron-deploy",
+  "entrypoint": "app.tsx"
+}
