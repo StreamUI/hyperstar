@@ -29,6 +29,7 @@
     "node_modules",
     "packages/cli/templates/**/*",
     "examples/grid-game",
-    "examples/xxxhn"
+    "examples/xxxhn",
+    "examples/tron-deploy"
   ]
 }
