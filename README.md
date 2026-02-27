@@ -237,6 +237,7 @@ bun --hot examples/dashboard.tsx         # Live metrics dashboard
 bun --hot examples/sqlite-notes.tsx      # SQLite persistence
 bun --hot examples/state-types.tsx       # Store vs UserStore vs Signals
 bun --hot examples/fps.tsx               # 60fps game loop
+bun --hot examples/tron/app.tsx          # Multiplayer Tron
 ```
 
 ---

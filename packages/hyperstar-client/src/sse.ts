@@ -22,7 +22,6 @@ let reconnectAttempts = 0;
 let lastEventId: string | null = null;
 let currentUrl: string | null = null;
 let visibilityHandler: (() => void) | null = null;
-let isPaused = false;
 
 const MAX_RECONNECT_ATTEMPTS = 10;
 const BASE_RECONNECT_DELAY = 1000;
@@ -117,12 +116,6 @@ function handleMessage(msg: SSEMessage): void {
   // Track last event ID for resume support
   if (msg.id) {
     lastEventId = msg.id;
-  }
-
-  // Skip processing when paused (tab hidden) to save CPU
-  // We still track the event ID above for resume support
-  if (isPaused) {
-    return;
   }
 
   switch (msg.event) {
@@ -305,8 +298,8 @@ function getReconnectDelay(): number {
 let isConnecting = false;
 
 /**
- * Set up visibility change handler to pause SSE when tab is hidden
- * Optimization: Saves bandwidth/CPU when tab is not visible
+ * Set up visibility change handler
+ * If connection dropped while backgrounded, reconnect when visible again.
  */
 function setupVisibilityHandler(url: string): void {
   if (visibilityHandler) {
@@ -314,16 +307,9 @@ function setupVisibilityHandler(url: string): void {
   }
 
   visibilityHandler = () => {
-    if (document.hidden) {
-      // Tab is hidden - pause processing (connection stays open)
-      isPaused = true;
-    } else {
-      // Tab is visible again
-      isPaused = false;
-      // If connection was lost while hidden, reconnect
-      if (!isConnected() && !isConnecting) {
-        connect(url);
-      }
+    // If connection was lost while hidden/backgrounded, reconnect once visible.
+    if (!document.hidden && !isConnected() && !isConnecting) {
+      connect(url);
     }
   };
 
@@ -428,7 +414,6 @@ function scheduleReconnect(url: string): void {
  */
 export function disconnect(): void {
   isConnecting = false;
-  isPaused = false;
 
   if (reconnectTimer) {
     clearTimeout(reconnectTimer);

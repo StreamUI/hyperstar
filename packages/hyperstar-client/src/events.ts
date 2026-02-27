@@ -42,6 +42,7 @@ export interface EventModifiers {
   stop?: boolean;
   once?: boolean;
   outside?: boolean;
+  window?: boolean;
   debounce?: number;
   throttle?: number;
   capture?: boolean;
@@ -69,6 +70,7 @@ export function parseEventAttribute(attr: string): ParsedEvent | null {
     else if (mod === "stop") modifiers.stop = true;
     else if (mod === "once") modifiers.once = true;
     else if (mod === "outside") modifiers.outside = true;
+    else if (mod === "window") modifiers.window = true;
     else if (mod === "capture") modifiers.capture = true;
     else if (mod === "passive") modifiers.passive = true;
     else if (mod === "self") modifiers.self = true;
@@ -173,7 +175,11 @@ export function bindEvent(
   // Handle 'outside' modifier
   let cleanup: () => void;
 
-  if (modifiers.outside) {
+  if (modifiers.window) {
+    // Listen on window globally (no focus required - useful for keyboard shortcuts, games)
+    window.addEventListener(event, handler, options);
+    cleanup = () => window.removeEventListener(event, handler, options);
+  } else if (modifiers.outside) {
     // Listen on document for clicks outside the element
     const outsideHandler = (evt: Event) => {
       if (!el.contains(evt.target as Node)) {

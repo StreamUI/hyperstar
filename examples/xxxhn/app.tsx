@@ -4,7 +4,8 @@
  * Tracks HN ranks over time and flags abrupt drops using z-score anomaly detection.
  */
 import { createHyperstar, hs, Schema } from "hyperstar"
-import { mean, standardDeviation } from "simple-statistics"
+import { mean, median, standardDeviation } from "simple-statistics"
+import { appendFileSync, mkdirSync } from "fs"
 
 // ============================================================================
 // Types
@@ -37,6 +38,8 @@ interface Alert {
   hnUrl: string
   severity: number
   drop: number
+  adjustedDrop: number // Drop after subtracting batch median shift
+  batchMedian: number // Median rank change across all tracked stories this poll
   fromRank: number
   toRank: number
   scoreRising: boolean
@@ -90,10 +93,10 @@ const LOG_PREFIX = "[HN-UNCENSORED]"
 // Based on smoothed z-score algorithm for real-time anomaly detection
 const ANOMALY_CONFIG = {
   lag: 24, // Rolling window size (2 hours of history at 5-min polls)
-  threshold: 3.0, // Z-score threshold - 3 std devs = statistically significant
+  threshold: 3.5, // Z-score threshold - 3.5 std devs = very statistically significant
   influence: 0.2, // How much anomalies affect future baseline (0-1)
-  minDataPoints: 6, // Need 30 min of data before detecting (prevents false positives on new stories)
-  minDrop: 5, // Minimum rank drop to even consider (filters noise)
+  minDataPoints: 10, // Need ~50 min of data before detecting (prevents false positives on new stories)
+  minDrop: 8, // Minimum adjusted rank drop to even consider (filters noise)
 }
 
 // Data Retention Config
@@ -147,16 +150,16 @@ function formatAge(now: number, ts: number): string {
 }
 
 function severityColor(severity: number): string {
-  if (severity >= 40) return "#dc2626"
-  if (severity >= 25) return "#f97316"
-  if (severity >= 15) return "#f59e0b"
+  if (severity >= 55) return "#dc2626"
+  if (severity >= 35) return "#f97316"
+  if (severity >= 20) return "#f59e0b"
   return "#6b7280"
 }
 
 function severityLabel(severity: number): string {
-  if (severity >= 40) return "Likely Flagged"
-  if (severity >= 25) return "Suspicious Drop"
-  if (severity >= 15) return "Sharp Decline"
+  if (severity >= 55) return "Likely Flagged"
+  if (severity >= 35) return "Suspicious Drop"
+  if (severity >= 20) return "Sharp Decline"
   return "Monitoring"
 }
 
@@ -351,6 +354,16 @@ function getDetectorState(detectors: Record<string, DetectorState>, idStr: strin
   }
 }
 
+// Append alert as JSON-line to disk for offline analysis
+function logAlertToFile(alert: Alert): void {
+  try {
+    mkdirSync("./data", { recursive: true })
+    appendFileSync("./data/alerts.jsonl", JSON.stringify(alert) + "\n")
+  } catch {
+    // Don't break polling if write fails
+  }
+}
+
 function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: number) {
   const positionMap = new Map<number, number>()
   const topIds: number[] = []
@@ -386,6 +399,23 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
   )
   const newAlerts: Alert[] = []
 
+  // --- Batch Shift Compensation ---
+  // Compute median rank change across all tracked front-page stories.
+  // This neutralizes uniform shifts caused by new popular stories entering the list.
+  const rawDeltas: number[] = []
+  for (const [idStr, hist] of Object.entries(store.history)) {
+    const last = hist[hist.length - 1]
+    if (!last || last.rank > FRONT_PAGE_SIZE) continue
+    const id = Number(idStr)
+    const currentRank = positionMap.get(id) ?? OFF_LIST_RANK
+    const delta = currentRank - last.rank
+    rawDeltas.push(delta)
+  }
+  const batchMedian = rawDeltas.length > 0 ? median(rawDeltas) : 0
+  console.log(
+    `${LOG_PREFIX} batch median shift: ${batchMedian.toFixed(1)} (from ${rawDeltas.length} tracked stories)`,
+  )
+
   // Z-score anomaly detection for each tracked story
   for (const [idStr, hist] of Object.entries(store.history)) {
     // Skip if not enough data points
@@ -397,7 +427,8 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
 
     const id = Number(idStr)
     const currentRank = positionMap.get(id) ?? OFF_LIST_RANK
-    const drop = currentRank - last.rank // Positive = dropped in rank
+    const drop = currentRank - last.rank // Positive = dropped in rank (raw)
+    const adjustedDrop = drop - batchMedian // Subtract batch shift
 
     // Skip if already alerted recently
     if (recentAlertIds.has(id)) continue
@@ -407,16 +438,16 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
     const { filteredDeltas } = detector
     let { avgFilter, stdFilter } = detector
 
-    // Calculate if this is an anomaly
+    // Calculate if this is an anomaly (using adjustedDrop)
     let isAnomaly = false
     let zScore = 0
 
     if (filteredDeltas.length >= ANOMALY_CONFIG.minDataPoints) {
       // We have enough history to compute z-score
-      zScore = computeZScore(drop, avgFilter, stdFilter)
+      zScore = computeZScore(adjustedDrop, avgFilter, stdFilter)
 
-      // Anomaly: significant drop AND z-score exceeds threshold
-      if (drop >= ANOMALY_CONFIG.minDrop && zScore > ANOMALY_CONFIG.threshold) {
+      // Anomaly: significant adjusted drop AND z-score exceeds threshold
+      if (adjustedDrop >= ANOMALY_CONFIG.minDrop && zScore > ANOMALY_CONFIG.threshold) {
         isAnomaly = true
       }
     }
@@ -427,12 +458,12 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
 
     if (isAnomaly) {
       // Anomaly: blend with influence parameter to prevent corruption
-      const prevFiltered = newFilteredDeltas.length > 0 ? newFilteredDeltas[newFilteredDeltas.length - 1]! : drop
-      const influencedValue = ANOMALY_CONFIG.influence * drop + (1 - ANOMALY_CONFIG.influence) * prevFiltered
+      const prevFiltered = newFilteredDeltas.length > 0 ? newFilteredDeltas[newFilteredDeltas.length - 1]! : adjustedDrop
+      const influencedValue = ANOMALY_CONFIG.influence * adjustedDrop + (1 - ANOMALY_CONFIG.influence) * prevFiltered
       newFilteredDeltas.push(influencedValue)
     } else {
-      // Normal: use actual value
-      newFilteredDeltas.push(drop)
+      // Normal: use adjusted value
+      newFilteredDeltas.push(adjustedDrop)
     }
 
     // Keep only the most recent 'lag' values
@@ -463,8 +494,8 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
       const severity = Math.min(
         100,
         Math.round(
-          Math.abs(zScore) * 15 + // Base: how anomalous (z-score of 3 = 45 points)
-          (scoreRising ? 25 : 0) + // Score rising = very suspicious
+          Math.abs(zScore) * 10 + // Base: how anomalous (z-score of 3.5 = 35 points)
+          (scoreRising ? 30 : 0) + // Score rising = very suspicious
           (currentRank > TOP_STORIES_FETCH ? 20 : 0), // Fell off list entirely
         ),
       )
@@ -474,20 +505,25 @@ function applyPoll(store: Store, posts: HNPost[], now: number, durationMs: numbe
       const url = post ? getStoryUrl(post) : `https://news.ycombinator.com/item?id=${id}`
       const score = post?.points ?? last.points
 
-      newAlerts.push({
+      const alert: Alert = {
         id,
         title,
         url,
         hnUrl: `https://news.ycombinator.com/item?id=${id}`,
         severity,
         drop,
+        adjustedDrop: Math.round(adjustedDrop * 100) / 100,
+        batchMedian: Math.round(batchMedian * 100) / 100,
         fromRank: last.rank,
         toRank: currentRank,
         scoreRising,
         score,
         detectedAt: now,
         zScore: Math.round(zScore * 100) / 100, // Round to 2 decimal places
-      })
+      }
+
+      newAlerts.push(alert)
+      logAlertToFile(alert)
     }
   }
 
@@ -677,7 +713,7 @@ async function runPoll(
       for (const alert of result.newAlerts) {
         const toLabel = alert.toRank > TOP_STORIES_FETCH ? "off list" : `#${alert.toRank}`
         console.log(
-          `${LOG_PREFIX} ALERT #${alert.fromRank} → ${toLabel} drop ${alert.drop} | ` +
+          `${LOG_PREFIX} ALERT #${alert.fromRank} → ${toLabel} raw-drop ${alert.drop} adj-drop ${alert.adjustedDrop ?? "N/A"} batch-median ${alert.batchMedian ?? "N/A"} | ` +
           `z-score ${alert.zScore} | score ${alert.score} | rising ${alert.scoreRising} | severity ${alert.severity} | ${alert.title}`,
         )
       }
@@ -1342,7 +1378,7 @@ const server = app
                           <div class="alert-meta">
                             <span>{label}</span>
                             <span>#{alert.fromRank} → {toLabel}</span>
-                            <span>drop {alert.drop}</span>
+                            <span>drop {alert.adjustedDrop != null ? `${alert.adjustedDrop} (raw ${alert.drop})` : alert.drop}</span>
                             <span>z: {alert.zScore ?? "N/A"}</span>
                             <span>score {alert.score}</span>
                             {alert.scoreRising && <span>score rising</span>}

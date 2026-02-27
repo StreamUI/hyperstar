@@ -432,14 +432,16 @@ export interface HyperstarConfig<S extends object, U extends object, Signals ext
    */
   readonly autoPauseWhenIdle?: boolean
   readonly onStart?: (ctx: LifecycleContext<S>) => void
-  readonly onConnect?: (ctx: { session: Session; store: S; update: (fn: (s: S) => S) => void }) => void
-  readonly onDisconnect?: (ctx: { session: Session; store: S; update: (fn: (s: S) => S) => void }) => void
+  readonly onConnect?: (ctx: { session: Session; sessionId: string; store: S; update: (fn: (s: S) => S) => void }) => void
+  readonly onDisconnect?: (ctx: { session: Session; sessionId: string; store: S; update: (fn: (s: S) => S) => void }) => void
 }
 
 export interface ViewContext<S extends object, U extends object> {
   readonly store: Readonly<S>
   readonly userStore: Readonly<U>
   readonly session: Session
+  /** Shortcut: current session ID */
+  readonly sessionId: string
 }
 
 export interface ServeOptions {
@@ -892,6 +894,7 @@ export const createHyperstar = <
           store,
           userStore,
           session,
+          sessionId: session.id,
         }
         const result = config.view(ctx)
         if (typeof result === "string") {
@@ -922,6 +925,7 @@ export const createHyperstar = <
           store,
           userStore,
           session,
+          sessionId: session.id,
         }
 
         const viewResult = config.view(ctx)
@@ -973,7 +977,7 @@ export const createHyperstar = <
               sseClients.set(connectionId, { controller, session, connectionId })
               console.log(`[hyperstar] SSE client registered. Total clients: ${sseClients.size}`)
               checkIdleState()  // Check if we went from idle to active
-              config.onConnect?.({ session, store: getStore(), update: updateStore })
+              config.onConnect?.({ session, sessionId: session.id, store: getStore(), update: updateStore })
               controller.enqueue(new TextEncoder().encode(": connected\n\n"))
             },
             cancel() {
@@ -985,7 +989,7 @@ export const createHyperstar = <
               if (!hasOtherConnections) {
                 cleanupSession(session.id)
               }
-              config.onDisconnect?.({ session, store: getStore(), update: updateStore })
+              config.onDisconnect?.({ session, sessionId: session.id, store: getStore(), update: updateStore })
               checkIdleState()  // Check if we went from active to idle
             },
           })
